@@ -32,6 +32,8 @@
 
     @media screen and (max-width: 550px) {
       margin: 0 25px;
+
+      width: 85vw;
     }
 
     .modal__closeIcon {
@@ -90,7 +92,7 @@
 
           border-bottom: 4px solid transparent;
 
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: 550px) {
             height: 55px;
 
             font-size: 18px;

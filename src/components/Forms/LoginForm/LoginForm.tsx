@@ -52,7 +52,7 @@ const LoginForm: FC = () => {
       exit='exit'
       className='loginForm'>
       <div className='loginForm__group'>
-        <span className={classNames('loginForm__label', { 'loginForm__label-top': userData.email })} ref={emailLabelRef}>
+        <span className={classNames('loginForm__label', { 'loginForm__label-top': userData.email.length < 0 })} ref={emailLabelRef}>
           Email
         </span>
         <input
@@ -67,7 +67,11 @@ const LoginForm: FC = () => {
       </div>
 
       <div className='loginForm__group'>
-        <span className={classNames('loginForm__label', { 'loginForm__label-top': userData.password })} ref={passwordLabelRef}>
+        <span
+          className={classNames('loginForm__label', {
+            'loginForm__label-top': userData.password.length < 0 || userData.password,
+          })}
+          ref={passwordLabelRef}>
           Пароль
         </span>
         <input
