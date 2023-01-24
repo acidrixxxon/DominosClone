@@ -30,11 +30,20 @@
       margin: 0 45px;
     }
 
+    @media screen and (max-width: 550px) {
+      margin: 0 25px;
+    }
+
     .modal__closeIcon {
       position: absolute;
       top: -20px;
       right: -20px;
       cursor: pointer;
+
+      @media screen and (max-width: 550px) {
+        top: -15px;
+        right: -15px;
+      }
 
       &:active {
         &-btn {
