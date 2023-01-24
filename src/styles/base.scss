@@ -1,0 +1,29 @@
+:root {
+  --gray-color: #6a6a76;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'ProximaNova', sans-serif;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+li {
+  list-style: none;
+}
+
+.authError__message {
+  z-index: 99999;
+}
+
+.Toastify {
+  .Toastify__toast {
+    z-index: 99999999;
+  }
+}
