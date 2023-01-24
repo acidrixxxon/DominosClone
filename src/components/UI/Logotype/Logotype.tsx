@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-const Logotype = () => {
-  return <div>Logotype</div>;
+import DesktopLogo from './DesktopLogo/DesktopLogo';
+import './Logotype.scss';
+import MobileLogo from './MobileLogo/MobileLogo';
+
+const Logotype: FC = () => {
+  return (
+    <Link to='/'>
+      <MobileLogo className='mobile__logotype' />
+      <DesktopLogo className='desktop__logotype' />
+    </Link>
+  );
 };
 
 export default Logotype;

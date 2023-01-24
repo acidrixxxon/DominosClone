@@ -1,0 +1,13 @@
+.mobile__logotype {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
+.desktop__logotype {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
