@@ -9,16 +9,16 @@ class UserService {
     return axios.post<ILoginUserResponse>(`${BACKEND_URL}/user/login`, data);
   }
 
-  async refreshToken(token: string) {
-    return await axios.get<IRefreshTokenResponse>(`${BACKEND_URL}/user/refresh_token`, {
+  refreshToken(token: string) {
+    return axios.get<IRefreshTokenResponse>(`${BACKEND_URL}/user/refresh_token`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   }
 
-  async registerUser(data: RegisterFormFieldInterface): Promise<AxiosResponse> {
-    return await axios.post<IRegisterUserResponse>(`${BACKEND_URL}/user/register`, data);
+  registerUser(data: RegisterFormFieldInterface): Promise<AxiosResponse> {
+    return axios.post<IRegisterUserResponse>(`${BACKEND_URL}/user/register`, data);
   }
 }
 

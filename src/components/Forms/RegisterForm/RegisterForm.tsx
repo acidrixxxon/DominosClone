@@ -41,7 +41,7 @@ const RegisterForm: FC = () => {
     }));
   };
 
-  const formSubmitHandler = async (e: React.FormEvent<HTMLFormElement>): void => {
+  const formSubmitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<any> => {
     e.preventDefault();
 
     const result = await dispatch(registerUserProcess(userData));

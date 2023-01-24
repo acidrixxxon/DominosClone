@@ -41,7 +41,7 @@ const LoginForm: FC = () => {
     dispatch(loginUserProcess(userData));
   };
 
-  const buttonDisabled = userData.password.trim() === '' || userData.password.trim() === '' ? true : false;
+  const buttonDisabled = userData.email.trim() === '' || userData.password.trim() === '' ? true : false;
 
   return (
     <motion.form

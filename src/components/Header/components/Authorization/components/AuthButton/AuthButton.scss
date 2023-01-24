@@ -26,8 +26,8 @@
 
     box-shadow: 10px 25px 15px -20px rgba(0, 0, 0, 0.5);
 
-    @media screen and (max-width: 550px) {
-      margin: 0 30px;
+    @media screen and (max-width: 768px) {
+      margin: 0 45px;
     }
 
     .modal__closeIcon {
@@ -81,6 +81,16 @@
 
           border-bottom: 4px solid transparent;
 
+          @media screen and (max-width: 768px) {
+            height: 55px;
+
+            font-size: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
           &.active {
             border-bottom: 4px solid #e31836;
             color: #0b0b0b;
@@ -100,6 +110,10 @@
 
     .modal__body {
       padding: 20px 25px;
+
+      @media screen and (max-width: 768px) {
+        padding: 10px 20px 30px;
+      }
     }
   }
 }
