@@ -1,11 +1,11 @@
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
+import './assets/base.scss';
 import Header from './components/Header/Header';
 import { useAppDispatch } from './hooks/useAppDispatch';
 import { useAppSelector } from './hooks/useAppSelector';
 import { refreshTokenProcess } from './redux/actions/UserActions';
-import './styles/base.scss';
 
 function App() {
   const state = useAppSelector((state) => state);

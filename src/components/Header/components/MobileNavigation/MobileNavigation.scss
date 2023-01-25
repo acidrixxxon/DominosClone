@@ -1,6 +1,9 @@
+@import './../../../../assets/mixins.scss';
+
 .mobileNav {
   display: none;
 
+  position: relative;
   @media screen and (max-width: 600px) {
     display: block;
   }
@@ -10,5 +13,95 @@
     height: 30px;
 
     color: #fff;
+
+    cursor: pointer;
+  }
+
+  .mobileNav__navigation {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    transition: 0.25s all ease-in;
+
+    &.mobileNav__navigation-visible {
+      right: 0;
+    }
+
+    .mobileNav__header {
+      display: flex;
+
+      background-color: #fff;
+
+      padding: 10px 20px;
+
+      .mobileNav__container {
+        width: 100%;
+
+        @include dflex(space-between, center);
+
+        .mobileNav__closeIcon {
+          cursor: pointer;
+
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+
+    .mobileNav__body {
+      .mobileNav__container {
+        .mobileNav__user {
+          width: 100%;
+
+          background-color: #333;
+
+          @include dflex(center, center);
+
+          padding: 10px 20px;
+
+          .mobileNav__authButton {
+            padding: 2vw 9vw;
+            font-size: 4.2vw;
+            font-weight: 600;
+            border-radius: 0.2em;
+            border: none;
+            cursor: pointer;
+          }
+        }
+
+        .mobileNav__navigation {
+          position: inherit;
+
+          padding: 40px 20px;
+
+          .mobileNav__navigation-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            .mobileNav__navigation-item {
+              width: 50%;
+
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              margin-bottom: 20px;
+
+              cursor: pointer;
+              svg {
+                margin-bottom: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
