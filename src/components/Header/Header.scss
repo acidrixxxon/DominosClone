@@ -7,6 +7,10 @@
     justify-content: center;
     align-items: center;
 
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+
     .container {
       display: flex;
       justify-content: space-between;
@@ -30,6 +34,10 @@
     background-color: #333;
 
     padding: 10px 0;
+
+    @media screen and (max-width: 600px) {
+      padding: 3px 0;
+    }
 
     .container {
       display: flex;

@@ -1,0 +1,14 @@
+.mobileNav {
+  display: none;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+
+  &__hamburger {
+    width: 30px;
+    height: 30px;
+
+    color: #fff;
+  }
+}

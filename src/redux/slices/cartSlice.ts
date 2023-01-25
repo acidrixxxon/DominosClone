@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { ICartState } from '../types/CartTypes';
 
 const initialState: ICartState = {
