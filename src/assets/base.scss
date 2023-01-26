@@ -5,7 +5,7 @@
 }
 
 #root {
-  background: #f8f4f8;
+  background-color: #f8f4f8;
 }
 
 * {
@@ -29,7 +29,12 @@ li {
 }
 
 .Toastify {
+  .Toastify__toast-container,
   .Toastify__toast {
     z-index: 99999999;
   }
+}
+
+.rotated {
+  transform: rotate(180deg);
 }

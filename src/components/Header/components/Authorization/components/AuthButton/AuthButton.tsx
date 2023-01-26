@@ -4,19 +4,29 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
 
+import { useAppDispatch } from '../../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../../hooks/useAppSelector';
+import { viewActions as actions } from '../../../../../../redux/slices/viewSlice';
+import { useActionCreators } from '../../../../../../redux/store';
 import LoginForm from '../../../../../Forms/LoginForm/LoginForm';
 import RegisterForm from '../../../../../Forms/RegisterForm/RegisterForm';
 import Modal from '../../../../../UI/Modal/Modal';
 import './AuthButton.scss';
 
 const AuthButton: FC = () => {
-  const [authModal, setAuthModal] = React.useState<boolean>(false);
   const [authType, setAuthType] = React.useState<number>(0);
 
   const {
-    loaders: { refreshLoading },
-  } = useAppSelector((state) => state.user);
+    user: {
+      loaders: { refreshLoading },
+    },
+    view: {
+      modals: {
+        auth: { visible },
+      },
+    },
+  } = useAppSelector((state) => state);
+  const viewActions = useActionCreators(actions);
 
   if (refreshLoading)
     return (
@@ -27,13 +37,13 @@ const AuthButton: FC = () => {
 
   return (
     <>
-      <button className='auth__button' onClick={() => setAuthModal(true)}>
+      <button className='auth__button' onClick={() => viewActions.showAuthModal()}>
         <FiLogIn className='auth__button-icon' />
         Увійти
       </button>
 
-      <Modal className='authModal__overlay' renderCondition={authModal} onClose={() => setAuthModal(false)}>
-        <span className='modal__closeIcon' onClick={() => setAuthModal(false)}>
+      <Modal className='authModal__overlay' renderCondition={visible} onClose={() => viewActions.hideAuthModal()}>
+        <span className='modal__closeIcon' onClick={() => viewActions.hideAuthModal()}>
           <AiOutlineClose className='modal__closeIcon-btn' />
         </span>
         <div className='modal__header'>

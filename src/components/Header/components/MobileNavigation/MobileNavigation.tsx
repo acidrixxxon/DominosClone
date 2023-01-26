@@ -5,6 +5,8 @@ import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { viewActions as actions } from '../../../../redux/slices/viewSlice';
+import { useActionCreators } from '../../../../redux/store';
 import DrinkIcon from '../../../UI/Icons/DrinkIcon';
 import PizzaIcon from '../../../UI/Icons/PizzaIcon';
 import SideIcon from '../../../UI/Icons/SideIcon';
@@ -21,7 +23,12 @@ const MobileNavigation: FC = () => {
   const [mobileMenu, setMobileMenu] = React.useState<boolean>(false);
 
   const { user } = useAppSelector((state) => state.user);
+  const viewActions = useActionCreators(actions);
 
+  const loginButtonHandler = () => {
+    viewActions.showAuthModal();
+    setMobileMenu(false);
+  };
   return (
     <div className='mobileNav'>
       <FiMenu className='mobileNav__hamburger' onClick={() => setMobileMenu(true)} />
@@ -45,7 +52,9 @@ const MobileNavigation: FC = () => {
                   </Link>
                 </ul>
               ) : (
-                <button className='mobileNav__authButton'>Увійти</button>
+                <button className='mobileNav__authButton' onClick={loginButtonHandler}>
+                  Увійти
+                </button>
               )}
             </div>
 

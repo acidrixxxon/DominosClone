@@ -1,0 +1,24 @@
+.category {
+  .category__list {
+    display: flex;
+
+    .category__item {
+      margin-right: 10px;
+
+      padding: 13px 30px;
+
+      border-radius: 30px;
+
+      cursor: pointer;
+
+      transition: 0.2s all ease-in;
+
+      &.category__item-active {
+        background-color: #282828;
+
+        color: #fff;
+        font-weight: 700;
+      }
+    }
+  }
+}
