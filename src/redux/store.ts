@@ -1,7 +1,8 @@
-import { ActionCreatorsMapObject, bindActionCreators, combineReducers, configureStore } from '@reduxjs/toolkit';
+import { ActionCreatorsMapObject, bindActionCreators, combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { useMemo } from 'react';
 
+import { productApi } from '../Api/ProductApi';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import cartReducer from './slices/cartSlice';
 import userReducer from './slices/userSlice';
@@ -11,10 +12,12 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
   view: viewReducer,
+  [productApi.reducerPath]: productApi.reducer,
 });
 
 export const storeSetup = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

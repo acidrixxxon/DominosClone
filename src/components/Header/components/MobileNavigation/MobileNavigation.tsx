@@ -29,6 +29,12 @@ const MobileNavigation: FC = () => {
     viewActions.showAuthModal();
     setMobileMenu(false);
   };
+
+  const changeCategoryHandler = (category: number): void => {
+    viewActions.setCategory(category);
+    setMobileMenu(false);
+  };
+
   return (
     <div className='mobileNav'>
       <FiMenu className='mobileNav__hamburger' onClick={() => setMobileMenu(true)} />
@@ -61,7 +67,7 @@ const MobileNavigation: FC = () => {
             <div className='mobileNav__navigation'>
               <ul className='mobileNav__navigation-list'>
                 {navigationItems.map((item) => (
-                  <li className='mobileNav__navigation-item' key={item.id}>
+                  <li className='mobileNav__navigation-item' key={item.id} onClick={() => changeCategoryHandler(item.id)}>
                     {item.icon} {item.title}
                   </li>
                 ))}

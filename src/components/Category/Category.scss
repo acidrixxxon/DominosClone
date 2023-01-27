@@ -1,4 +1,7 @@
 .category {
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
   .category__list {
     display: flex;
 
