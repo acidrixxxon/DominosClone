@@ -18,14 +18,15 @@ const sortVariants = [
 const Sort: FC = () => {
   const [visibleMenu, setVisibleMenu] = React.useState<boolean>(false);
   const { sort } = useAppSelector((state) => state.view);
-  console.log(visibleMenu);
+
   const listRef = React.useRef<HTMLDivElement>(null);
   const viewActions = useActionCreators(actions);
 
-  useOutsideClick(listRef, () => setVisibleMenu(false));
+  // useOutsideClick(listRef, () => setVisibleMenu(false));
 
   const changeSortHandler = (item: { id: number; title: string }): void => {
     viewActions.setSort(item);
+    setVisibleMenu(false);
   };
   return (
     <div className='sort' ref={listRef}>

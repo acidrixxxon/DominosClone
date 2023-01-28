@@ -27,6 +27,10 @@ export const viewSlise = createSlice({
     },
     setCategory: (state, action: PayloadAction<number>) => {
       state.category = action.payload;
+      state.sort = {
+        id: 0,
+        title: 'популярністю',
+      };
     },
     setSort: (state, action: PayloadAction<{ id: number; title: string }>) => {
       state.sort = action.payload;

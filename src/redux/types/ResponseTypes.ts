@@ -1,3 +1,4 @@
+import { IPizza, IProductCategory } from './ProductTypes';
 import { IUser } from './UserTypes';
 
 //LOGIN TYPES
@@ -54,3 +55,41 @@ export interface IRegisterUserResponseError {
 }
 
 export type IRegisterUserResponse = IRefreshTokenResponseSuccess | IRefreshTokenResponseError;
+
+//Product Responses
+
+//Get categories with products
+
+export interface IFetchCategoriesSuccess {
+  categories: IProductCategory[];
+  products?: [];
+  message: string;
+  success: true;
+}
+
+export interface IFetchCategoriesError {
+  message: string;
+  categories?: [];
+  products?: [];
+  success: false;
+}
+
+export type IFetchCategoriesResponse = IFetchCategoriesError | IFetchCategoriesSuccess;
+
+//Fetch all products with sort params
+
+export interface IFetchProductsSuccess {
+  message: string;
+  success: true;
+  products: IPizza[];
+  categories?: [];
+}
+
+export interface IFetchProductsError {
+  message: string;
+  success: false;
+  products?: [];
+  categories?: [];
+}
+
+export type IFetchProductsResponse = IFetchProductsSuccess | IFetchProductsError;
