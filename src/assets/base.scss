@@ -18,6 +18,10 @@
 button {
   outline: none;
   border: none;
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 li {

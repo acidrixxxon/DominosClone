@@ -4,7 +4,7 @@ export interface IProductCategory {
   products: IPizza[];
 }
 
-export interface IPizza {
+export type IPizza = {
   _id: string;
   aNewOne: boolean;
   category: string;
@@ -12,8 +12,52 @@ export interface IPizza {
   defaultPrice: number;
   fullimageUrl: string;
   imageUrl: string;
-  ingridients: [];
+  ingridients: [
+    {
+      ingridientId: {
+        _id: string;
+        addPrice: number;
+        title: string;
+        category: string;
+        imageUrl: string;
+      };
+      qty: number;
+      _id: string;
+    },
+  ];
   rating: number;
   title: string;
-  variants: [];
-}
+  variants: [
+    {
+      _id: string;
+      title: string;
+      variants: [
+        {
+          _id: string;
+          fulltitle: string;
+          inSell: true;
+          price: number;
+          title: string;
+        },
+      ];
+    },
+  ];
+};
+
+export type ISide = {
+  id: string;
+  category: string;
+  class: number;
+  imageUrl: string;
+  defaultPrice: number;
+  title: string;
+  variants: [
+    {
+      size: string;
+      price: number;
+      _id: string;
+    },
+  ];
+};
+
+export type IProduct = IPizza & ISide;

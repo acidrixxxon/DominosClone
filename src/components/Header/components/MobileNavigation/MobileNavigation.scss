@@ -57,6 +57,8 @@
     }
 
     .mobileNav__body {
+      background-color: #fff;
+
       .mobileNav__container {
         .mobileNav__user {
           width: 100%;
@@ -74,6 +76,19 @@
             border-radius: 0.2em;
             border: none;
             cursor: pointer;
+
+            opacity: 0.8;
+
+            transition: 0.2s all linear;
+
+            &:focus {
+              background-color: #f8f4f8;
+              opacity: 1;
+            }
+            &:hover {
+              background-color: #f8f4f8;
+              opacity: 1;
+            }
           }
         }
 

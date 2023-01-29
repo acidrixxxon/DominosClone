@@ -15,6 +15,10 @@
 
     .home-page__content {
       padding: 40px 0;
+
+      @media screen and (max-width: 600px) {
+        padding: 10px 0 20px;
+      }
     }
   }
 }
