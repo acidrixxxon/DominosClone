@@ -1,10 +1,10 @@
 export interface IProductCategory {
   _id: string;
   title: string;
-  products: IPizza[];
+  products: IProduct[];
 }
 
-export type IPizza = {
+export interface IPizza {
   _id: string;
   aNewOne: boolean;
   category: string;
@@ -34,6 +34,7 @@ export type IPizza = {
       variants: [
         {
           _id: string;
+          id?: string;
           fulltitle: string;
           inSell: true;
           price: number;
@@ -42,10 +43,10 @@ export type IPizza = {
       ];
     },
   ];
-};
+}
 
-export type ISide = {
-  id: string;
+export interface ISide {
+  _id: string;
   category: string;
   class: number;
   imageUrl: string;
@@ -58,6 +59,6 @@ export type ISide = {
       _id: string;
     },
   ];
-};
+}
 
 export type IProduct = IPizza & ISide;

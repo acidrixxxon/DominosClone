@@ -1,4 +1,4 @@
-import { IPizza, IProductCategory } from './ProductTypes';
+import { IPizza, IProduct, IProductCategory } from './ProductTypes';
 import { IUser } from './UserTypes';
 
 //LOGIN TYPES
@@ -81,7 +81,7 @@ export type IFetchCategoriesResponse = IFetchCategoriesError | IFetchCategoriesS
 export interface IFetchProductsSuccess {
   message: string;
   success: true;
-  products: IPizza[];
+  products: IProduct[];
   categories?: [];
 }
 
