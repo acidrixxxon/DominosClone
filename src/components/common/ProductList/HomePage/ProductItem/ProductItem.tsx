@@ -65,6 +65,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
         <ul className='item__crust'>
           {item.variants[activeType.size].variants.map((item, index) => (
             <button
+              disabled={!item.inSell}
               onClick={() => setActiveType((state) => ({ ...state, crust: index }))}
               className={classNames('item__crust-item', { 'item__crust-active': activeType.crust === index })}>
               {item.title}
