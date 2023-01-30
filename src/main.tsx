@@ -12,9 +12,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
       <App />
       <ToastContainer />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-      </Routes>
     </BrowserRouter>
   </Provider>,
 );

@@ -14,4 +14,4 @@ const Logotype: FC = () => {
   );
 };
 
-export default Logotype;
+export default React.memo(Logotype);

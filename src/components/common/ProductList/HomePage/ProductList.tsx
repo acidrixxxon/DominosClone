@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { useFetchProductsQuery } from '../../../../Api/ProductApi';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { IPizza, IProductCategory } from '../../../../redux/types/ProductTypes';
+import { IProductCategory } from '../../../../redux/types/ProductTypes';
 import Skeleton from '../../../UI/Skeleton/Skeleton';
 import ProductItem from './ProductItem/ProductItem';
 import './ProductList.scss';
@@ -39,11 +39,11 @@ const ProductList: FC = () => {
         </>
       ) : (
         <ul className='productList__category-list'>
-          {data && data.products && data.products.map((item) => <ProductItem item={item} />)}
+          {data && data.products && data.products.map((item) => <ProductItem item={item} key={item._id} />)}
         </ul>
       )}
     </div>
   );
 };
 
-export default ProductList;
+export default React.memo(ProductList);

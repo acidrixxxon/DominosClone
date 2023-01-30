@@ -1,6 +1,8 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
+import HomePage from './Pages/HomePage';
 import './assets/base.scss';
 import Header from './components/Header/Header';
 import { useAppDispatch } from './hooks/useAppDispatch';
@@ -8,10 +10,13 @@ import { useAppSelector } from './hooks/useAppSelector';
 import { refreshTokenProcess } from './redux/actions/UserActions';
 
 function App() {
-  const state = useAppSelector((state) => state);
+  const appRef = React.useRef<HTMLDivElement>(null);
+  const headerRef = React.useRef<HTMLDivElement>(null);
+
+  // const state = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  console.log(state);
+  // console.log(state);
 
   React.useLayoutEffect(() => {
     setInterval(() => {
@@ -19,8 +24,12 @@ function App() {
     }, 60000);
   }, []);
   return (
-    <div className='App'>
-      <Header />
+    <div className='App' ref={appRef}>
+      <Header refLink={headerRef} appRef={appRef} />
+
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+      </Routes>
     </div>
   );
 }

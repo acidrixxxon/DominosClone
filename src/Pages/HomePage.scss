@@ -4,6 +4,9 @@
   min-height: 100vh;
   padding: 20px 0;
 
+  display: flex;
+  justify-content: center;
+
   .container {
     .home-page__headline {
       @include dflex(space-between, center);
@@ -14,7 +17,7 @@
     }
 
     .home-page__content {
-      padding: 40px 0;
+      padding: 20px 0;
 
       @media screen and (max-width: 600px) {
         padding: 10px 0 20px;

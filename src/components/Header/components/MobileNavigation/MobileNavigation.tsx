@@ -1,50 +1,66 @@
 import classNames from 'classnames';
-import React, { FC } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { FiMenu } from 'react-icons/fi';
+import React, { FC, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { viewActions as actions } from '../../../../redux/slices/viewSlice';
 import { useActionCreators } from '../../../../redux/store';
+import CloseIcon from '../../../UI/Icons/CloseIcon';
 import DrinkIcon from '../../../UI/Icons/DrinkIcon';
+import HamburgerIcon from '../../../UI/Icons/HamburgerIcon';
 import PizzaIcon from '../../../UI/Icons/PizzaIcon';
 import SideIcon from '../../../UI/Icons/SideIcon';
 import Logotype from '../../../UI/Logotype/Logotype';
 import './MobileNavigation.scss';
+import MobileNavItem from './components/MobileNavItem/MobileNavItem';
+
+const navigationItems = [
+  { id: 0, title: 'Піци', icon: <PizzaIcon /> },
+  { id: 1, title: 'Сайди', icon: <SideIcon /> },
+  { id: 2, title: 'Напої', icon: <DrinkIcon /> },
+];
 
 const MobileNavigation: FC = () => {
-  const navigationItems = [
-    { id: 0, title: 'Піци', icon: <PizzaIcon /> },
-    { id: 1, title: 'Сайди', icon: <SideIcon /> },
-    { id: 2, title: 'Напої', icon: <DrinkIcon /> },
-  ];
-
   const [mobileMenu, setMobileMenu] = React.useState<boolean>(false);
 
-  const { user } = useAppSelector((state) => state.user);
+  const {
+    user: { user },
+    view: {
+      modals: {
+        auth: { visible },
+      },
+    },
+  } = useAppSelector((state) => state);
   const viewActions = useActionCreators(actions);
 
-  const loginButtonHandler = () => {
+  const openMobileMenu = useCallback((): void => {
+    setMobileMenu(true);
+  }, []);
+
+  const closeMobileMenu = useCallback((): void => {
+    setMobileMenu(false);
+  }, []);
+
+  const loginButtonHandler = useCallback((): void => {
     viewActions.showAuthModal();
     setMobileMenu(false);
-  };
+  }, [visible]);
 
-  const changeCategoryHandler = (category: number): void => {
+  const changeCategoryHandler = useCallback((category: number): void => {
     viewActions.setCategory(category);
     setMobileMenu(false);
-  };
+  }, []);
 
   return (
     <div className='mobileNav'>
-      <FiMenu className='mobileNav__hamburger' onClick={() => setMobileMenu(true)} />
+      <HamburgerIcon onClick={openMobileMenu} />
 
       <div className={classNames('mobileNav__navigation', { 'mobileNav__navigation-visible': mobileMenu })}>
         <div className='mobileNav__header'>
           <div className='mobileNav__container'>
             <Logotype />
 
-            <AiOutlineClose className='mobileNav__closeIcon' onClick={() => setMobileMenu(false)} />
+            <CloseIcon closeHandler={closeMobileMenu} />
           </div>
         </div>
 
@@ -67,9 +83,7 @@ const MobileNavigation: FC = () => {
             <div className='mobileNav__navigation'>
               <ul className='mobileNav__navigation-list'>
                 {navigationItems.map((item) => (
-                  <li className='mobileNav__navigation-item' key={item.id} onClick={() => changeCategoryHandler(item.id)}>
-                    {item.icon} {item.title}
-                  </li>
+                  <MobileNavItem item={item} changeCategory={changeCategoryHandler} />
                 ))}
               </ul>
             </div>

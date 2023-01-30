@@ -39,7 +39,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
           <ul className='item__ingridients-list'>
             {item.ingridients.map((ingridient, index) => {
               return (
-                <li className='item__ingridients-item'>
+                <li className='item__ingridients-item' key={ingridient._id}>
                   {index === 0 ? ingridient.ingridientId.title : ingridient.ingridientId.title.toLocaleLowerCase()}
                   {item.ingridients.length === index + 1 ? null : ','}
                 </li>
@@ -53,6 +53,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
         <ul className='item__sizes'>
           {item.variants.map((size, index) => (
             <button
+              key={size._id}
               onClick={() => setActiveType((state) => ({ ...state, size: index, crust: item.class === 0 ? 0 : null }))}
               className={classNames('item__sizes-item', { 'item__sizes-active': activeType.size === index })}>
               {item.variants[index].title}
@@ -65,6 +66,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
         <ul className='item__crust'>
           {item.variants[activeType.size].variants.map((item, index) => (
             <button
+              key={item._id}
               disabled={!item.inSell}
               onClick={() => setActiveType((state) => ({ ...state, crust: index }))}
               className={classNames('item__crust-item', { 'item__crust-active': activeType.crust === index })}>
@@ -85,4 +87,4 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
   );
 };
 
-export default ProductItem;
+export default React.memo(ProductItem);
