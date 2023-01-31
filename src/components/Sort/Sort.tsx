@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
@@ -22,7 +22,11 @@ const Sort: FC = () => {
   const listRef = React.useRef<HTMLDivElement>(null);
   const viewActions = useActionCreators(actions);
 
-  // useOutsideClick(listRef, () => setVisibleMenu(false));
+  const hideMenu = useCallback(() => {
+    setVisibleMenu(false);
+  }, []);
+
+  useOutsideClick(listRef, hideMenu);
 
   const changeSortHandler = (item: { id: number; title: string }): void => {
     viewActions.setSort(item);

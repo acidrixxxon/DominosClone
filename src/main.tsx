@@ -8,7 +8,7 @@ import HomePage from './Pages/HomePage';
 import { storeSetup } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={storeSetup}>
+  <Provider store={storeSetup()}>
     <BrowserRouter>
       <App />
       <ToastContainer />

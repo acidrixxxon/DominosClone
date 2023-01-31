@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC,memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import DesktopLogo from './DesktopLogo/DesktopLogo';
@@ -14,4 +14,4 @@ const Logotype: FC = () => {
   );
 };
 
-export default React.memo(Logotype);
+export default memo(Logotype);

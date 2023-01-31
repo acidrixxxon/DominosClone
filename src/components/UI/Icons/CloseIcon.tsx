@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-const CloseIcon = React.memo(({ closeHandler }: { closeHandler: () => void }) => {
+const CloseIcon = ({ closeHandler }: { closeHandler: () => void }) => {
   return <AiOutlineClose className='mobileNav__closeIcon' onClick={closeHandler} />;
-});
+};
 
-export default CloseIcon;
+export default memo(CloseIcon);

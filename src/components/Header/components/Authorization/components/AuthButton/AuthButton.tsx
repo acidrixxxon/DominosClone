@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
@@ -26,6 +26,7 @@ const AuthButton: FC = () => {
       },
     },
   } = useAppSelector((state) => state);
+
   const viewActions = useActionCreators(actions);
 
   if (refreshLoading)

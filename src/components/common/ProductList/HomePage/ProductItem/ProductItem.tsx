@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IPizza, IProduct, ISide } from '../../../../../redux/types/ProductTypes';
+import { IProduct } from '../../../../../redux/types/ProductTypes';
+import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
 import './ProductItem.scss';
 
 interface ComponentProps {
@@ -25,6 +26,8 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
       <div className='item__image-container'>
         <Link to={`/product/${item._id}`} className='item__link'>
           <img src={item.imageUrl} alt={item.title} className='item__image-img' />
+
+          {item.aNewOne && <NewProductIcon />}
         </Link>
       </div>
 
@@ -56,7 +59,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
               key={size._id}
               onClick={() => setActiveType((state) => ({ ...state, size: index, crust: item.class === 0 ? 0 : null }))}
               className={classNames('item__sizes-item', { 'item__sizes-active': activeType.size === index })}>
-              {item.variants[index].title}
+              {item.class === 0 ? size.title : size.size}
             </button>
           ))}
         </ul>

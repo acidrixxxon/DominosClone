@@ -41,6 +41,7 @@ export interface IPizza {
           title: string;
         },
       ];
+      size?: string;
     },
   ];
 }

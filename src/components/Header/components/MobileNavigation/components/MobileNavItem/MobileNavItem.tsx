@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, memo } from 'react';
 
 interface ComponentProps {
   item: { id: number; title: string; icon: any };
@@ -13,4 +13,4 @@ const MobileNavItem: FC<ComponentProps> = ({ item, changeCategory }) => {
   );
 };
 
-export default React.memo(MobileNavItem);
+export default memo(MobileNavItem);
