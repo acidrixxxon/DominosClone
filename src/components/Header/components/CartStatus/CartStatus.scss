@@ -13,12 +13,47 @@
 
   cursor: pointer;
 
+  transition: 0.2s all linear;
+
+  &.cartStatus__active {
+    background-color: #bf142e;
+
+    @media screen and (max-width: 600px) {
+      background-color: #fff;
+    }
+
+    .cartStatus__container {
+      .cartStatus__count {
+        border-color: #333;
+
+        @media screen and (max-width: 600px) {
+          border: 1px solid transparent;
+        }
+      }
+
+      .cartStatus__price {
+        color: #fff;
+
+        @media screen and (max-width: 600px) {
+          color: #333;
+        }
+      }
+
+      .cartStatus__order {
+        background-color: #fff;
+      }
+    }
+  }
+
   position: relative;
+
   @media screen and (max-width: 600px) {
     position: fixed;
 
     left: 30px;
     bottom: 30px;
+
+    z-index: 99;
 
     box-shadow: 0 0 15px #000;
   }
@@ -39,6 +74,7 @@
       @include dflex(center, center);
 
       border-radius: 50%;
+      border: 1px solid transparent;
 
       @media screen and (max-width: 600px) {
         background-color: #e31837;
@@ -63,12 +99,23 @@
       background-color: #bf142e;
       color: #fff;
 
+      font-size: 16px;
+
       height: 46px;
       width: 145px;
 
       border-radius: 25px;
 
       @include dflex(center, center);
+
+      cursor: pointer;
+
+      .cartStatus__arrow-icon {
+        fill: #333;
+
+        width: 25px;
+        height: 25px;
+      }
 
       @media screen and (max-width: 900px) {
         display: none;

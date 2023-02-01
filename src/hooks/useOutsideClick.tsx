@@ -1,23 +1,23 @@
-import React, { RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
 
 export const useOutsideClick = <T extends HTMLElement = HTMLElement>(ref: RefObject<T>, handler: () => void): void => {
-  const el = ref.current;
+  const listener = (e: any) => {
+    const el = ref?.current;
 
-  if (el) {
-    const listener = (e: any) => {
-      if (el && el.contains(e.target as Node)) {
+    if (el) {
+      if (el.contains(e.target as Node)) {
         return;
       } else {
         handler();
       }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', listener);
+
+    return () => {
+      document.removeEventListener('click', listener);
     };
-
-    React.useEffect(() => {
-      document.addEventListener('click', listener);
-
-      return () => {
-        document.removeEventListener('click', listener);
-      };
-    }, []);
-  }
+  }, []);
 };

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './Pages/HomePage';
+import './assets/animations.scss';
 import './assets/base.scss';
 import Header from './components/Header/Header';
 import { useAppDispatch } from './hooks/useAppDispatch';

@@ -1,3 +1,5 @@
+@import './../../../../../../assets/mixins';
+
 .cartStatus__details {
   position: absolute;
   right: 0;
@@ -12,11 +14,82 @@
   visibility: hidden;
   transform: translateY(30px);
   transition: 0.2s all linear;
-  box-shadow: rgba(80, 80, 97, 0.3) 0px 3px 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 
   &.cartStatus__details-visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+  }
+
+  .cartStatus__promo {
+    position: relative;
+
+    .cartStatus__promoContainer {
+      height: 80px;
+      width: 100%;
+      background-color: black;
+      margin-bottom: 40px;
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 8px;
+
+      .cartStatus__promo-img {
+        height: auto;
+        width: 100%;
+
+        border-radius: 8px;
+
+        opacity: 0.4;
+
+        animation: promoTransform 0.3s linear;
+
+        object-fit: cover;
+
+        transform: translateY(-30%);
+      }
+
+      .cartStatus__promo-text {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 20px;
+
+        line-height: 19px;
+      }
+    }
+  }
+
+  .cartStatus__emptyCart {
+    @include dflex(center, center);
+    flex-direction: column;
+
+    .cartStatus__emptyCart-icon {
+      margin-bottom: 10px;
+    }
+
+    .cartStatus__emptyCart-text {
+      color: #b3b3b3;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+}
+
+@keyframes promoTransform {
+  from {
+    transform: translateY(30%);
+  }
+
+  to {
+    transform: translateY(-30%);
   }
 }

@@ -83,7 +83,7 @@ const MobileNavigation: FC = () => {
             <div className='mobileNav__navigation'>
               <ul className='mobileNav__navigation-list'>
                 {navigationItems.map((item) => (
-                  <MobileNavItem item={item} changeCategory={changeCategoryHandler} />
+                  <MobileNavItem item={item} key={item.id} changeCategory={changeCategoryHandler} />
                 ))}
               </ul>
             </div>
