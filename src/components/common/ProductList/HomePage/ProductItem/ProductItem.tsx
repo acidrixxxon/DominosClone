@@ -2,8 +2,11 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { CartProductDto } from '../../../../../Utils/Dto';
+import { useActionCreators } from '../../../../../redux/store';
 import { IProduct } from '../../../../../redux/types/ProductTypes';
 import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
+import actions from './../../../../../redux/actions/ProductActions';
 import './ProductItem.scss';
 
 interface ComponentProps {
@@ -11,15 +14,23 @@ interface ComponentProps {
 }
 
 const ProductItem: FC<ComponentProps> = ({ item }) => {
-  const [activeType, setActiveType] = React.useState<{ size: number; crust: number | null }>({
+  const [activeType, setActiveType] = React.useState<{ size: number; crust: number | -1 }>({
     size: 0,
-    crust: item.class === 0 ? 0 : null,
+    crust: item.class === 0 ? 0 : -1,
   });
 
+  const { addToCartAction } = useActionCreators(actions);
+
   const activeProductPrice =
-    item.class === 0 && activeType.crust !== null
+    item.class === 0 && activeType.crust !== -1
       ? item.variants[activeType.size].variants[activeType.crust].price
       : item.variants[activeType.size].price;
+
+  const addToCartHandler = (item: IProduct): void => {
+    const product = CartProductDto(item, activeType);
+
+    if (product) addToCartAction(product);
+  };
 
   return (
     <li className='productList__category-item'>
@@ -84,7 +95,9 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
           <span>{activeProductPrice}</span> грн
         </span>
 
-        <button className='item__toCart-button'>В кошик</button>
+        <button className='item__toCart-button' onClick={() => addToCartHandler(item)}>
+          В кошик
+        </button>
       </div>
     </li>
   );

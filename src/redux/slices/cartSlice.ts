@@ -1,20 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import LocalStorageService from '../../Services/LocalStorageService';
 import { ICartState } from '../types/CartTypes';
 
-const initialState: ICartState = {
-  items: [],
-  totalCost: 0,
-  totalCount: 0,
-};
+const initialState: ICartState =
+  localStorage.getItem('cart') !== null
+    ? LocalStorageService.getCart()
+    : {
+        items: [],
+        totalCost: 0,
+        totalCount: 0,
+      };
 
 export const cartSlise = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state) => {
-      state.items.push();
-      state.totalCount += 1;
+    addToCart: (state, action: PayloadAction<ICartState>) => {
+      state.items = action.payload.items;
+      state.totalCount = action.payload.totalCount;
+      state.totalCost = action.payload.totalCost;
     },
   },
 });

@@ -25,6 +25,7 @@ export const storeSetup = (preloadedState?: PreloadedState<RootState>) => {
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof storeSetup>;
 export type AppDispatch = AppStore['dispatch'];
+export type GetState = AppStore['getState'];
 
 export const useActionCreators = (actions: ActionCreatorsMapObject) => {
   const dispatch = useAppDispatch();

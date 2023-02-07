@@ -1,0 +1,74 @@
+.cartStatus__listItem {
+  border-bottom: 1px solid #d6d8dc;
+  padding: 15px 16px 10px;
+
+  .cartStatus__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    .cartStatus__title {
+      font-size: 14px;
+      max-width: 200px;
+    }
+
+    .cartStatus__addMocarella {
+      display: flex;
+      align-items: center;
+
+      font-size: 12px;
+
+      svg {
+        width: 25px;
+        height: 25px;
+        fill: gray;
+        margin-right: 3px;
+
+        &.cartStatus__addMocarellaAdded {
+          fill: red;
+        }
+      }
+    }
+  }
+
+  .cartStatus__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .cartStatus__qtyBlock {
+      font-family: Open Sans, sans-serif;
+      font-size: 15px;
+      color: #fff;
+      background: #e31837;
+
+      border-radius: 15px;
+
+      width: 90px;
+      height: 30px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0 10px;
+
+      .cartStatus__qty {
+        font-weight: 700;
+        letter-spacing: 1e-7rem;
+        cursor: pointer;
+
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 10px;
+          fill: #fff;
+        }
+      }
+    }
+  }
+}

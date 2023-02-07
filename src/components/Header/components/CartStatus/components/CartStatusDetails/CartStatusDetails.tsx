@@ -16,7 +16,10 @@ const CartStatusDetails: FC<ComponentProps> = ({ visible }) => {
 
   const emptyCart = totalCount === 0 && items.length === 0 && totalCost === 0;
   return (
-    <div data-testid='cartStatus-details' className={classNames('cartStatus__details', { 'cartStatus__details-visible': visible })}>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      data-testid='cartStatus-details'
+      className={classNames('cartStatus__details', { 'cartStatus__details-visible': visible })}>
       {visible && <Promo />}
 
       {emptyCart ? <EmptyCart /> : <ProductList />}

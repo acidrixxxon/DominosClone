@@ -4,10 +4,9 @@ import { Provider } from 'react-redux';
 import { storeSetup } from '../../../../redux/store';
 import { ICartState } from '../../../../redux/types/CartTypes';
 import CartStatus from './CartStatus';
-import EmptyCart from './components/CartStatusDetails/components/EmptyCart/EmptyCart';
 
-const cartState: ICartState = { items: [], totalCount: 5, totalCost: 500 };
-const initialState = { items: [], totalCount: 0, totalCost: 0 };
+const cartState = { items: [], totalCount: 5, totalCost: 500 };
+const initialState: ICartState = { items: [], totalCount: 0, totalCost: 0 };
 
 describe('testing cart status component', () => {
   afterEach(cleanup);
@@ -80,7 +79,7 @@ describe('testing cart status component', () => {
     expect(details).toBeVisible();
   });
 
-  it('check for empty cart component render with detault initial state of reducer', () => {
+  it('check for empty cart component render with detault initial state', () => {
     store = storeSetup({ cart: initialState });
 
     render(
@@ -93,7 +92,7 @@ describe('testing cart status component', () => {
     expect(document.querySelector('.cartStatus__listContainer')).not.toBeTruthy();
   });
 
-  it('check for product list component render with changed initial state', () => {
+  it('check for product list component render with changed state', () => {
     store = storeSetup({ cart: cartState });
 
     render(

@@ -8,8 +8,11 @@
   min-width: 350px;
   top: 53px;
   z-index: 999;
-  padding: 20px 15px 30px;
+
+  padding: 20px 0;
+
   border-radius: 15px;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(30px);
@@ -29,11 +32,12 @@
   .cartStatus__promo {
     position: relative;
 
+    margin: 0 10px 10px;
+
     .cartStatus__promoContainer {
       height: 80px;
       width: 100%;
       background-color: black;
-      margin-bottom: 40px;
       position: relative;
 
       overflow: hidden;
@@ -80,6 +84,38 @@
       color: #b3b3b3;
       font-size: 17px;
       font-weight: bold;
+    }
+  }
+
+  .cartStatus__listContainer {
+    max-height: 325px;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  .cartStatus__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 16px 0;
+
+    .cartStatus__footerLink {
+      cursor: pointer;
+      border-radius: 20px;
+      height: 40px;
+      border: 1px solid #e31836;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e31836;
+      width: 100%;
+      padding: 0 16px;
+      text-decoration: none;
     }
   }
 }

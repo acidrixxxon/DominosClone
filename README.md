@@ -6,6 +6,9 @@ React Router
 Redux + ReduxTK
 Animation(Framer Motion)
 
+Tests:
+-Jest + React Testing Library
+
 Backend:
 NodeJS
 Express

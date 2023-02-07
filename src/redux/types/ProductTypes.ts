@@ -4,6 +4,20 @@ export interface IProductCategory {
   products: IProduct[];
 }
 
+export interface IPizzaIngridientsFull {
+  ingridientId: IPizzaIngridientsShort;
+  qty: number;
+  _id: string;
+}
+
+export interface IPizzaIngridientsShort {
+  _id: string;
+  addPrice: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+}
+
 export interface IPizza {
   _id: string;
   aNewOne: boolean;
@@ -12,19 +26,7 @@ export interface IPizza {
   defaultPrice: number;
   fullimageUrl: string;
   imageUrl: string;
-  ingridients: [
-    {
-      ingridientId: {
-        _id: string;
-        addPrice: number;
-        title: string;
-        category: string;
-        imageUrl: string;
-      };
-      qty: number;
-      _id: string;
-    },
-  ];
+  ingridients: IPizzaIngridientsFull[];
   rating: number;
   title: string;
   variants: [
@@ -63,3 +65,16 @@ export interface ISide {
 }
 
 export type IProduct = IPizza & ISide;
+
+export interface IProductInCart {
+  _id: string;
+  class: number;
+  image: string;
+  category: string;
+  title: string;
+  fulltitle: string;
+  ingridients: IPizzaIngridientsFull[] | null;
+  qty: number;
+  price: number;
+  uniqueId?: string;
+}
