@@ -15,8 +15,26 @@
 
   transition: 0.2s all linear;
 
+  z-index: 999999;
+  position: relative;
+
   &.cartStatus__active {
     background-color: #bf142e;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 2px;
+      bottom: -28px;
+      background-color: #fff;
+      height: 50px;
+      width: 145px;
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+    }
 
     @media screen and (max-width: 600px) {
       background-color: #fff;

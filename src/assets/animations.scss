@@ -37,3 +37,19 @@
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+
+.scalechange__animation {
+  animation: scalechange 0.4s ease-in 1;
+}
+
+@keyframes scalechange {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

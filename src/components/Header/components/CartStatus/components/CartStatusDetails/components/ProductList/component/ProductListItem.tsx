@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { AiFillCheckCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 import { MINUS, PLUS } from '../../../../../../../../../Utils/constants';
@@ -15,10 +15,19 @@ interface ComponentProps {
 }
 
 const ProductListItem: FC<ComponentProps> = ({ item }) => {
+  const [qtyAnimation, setQtyAnimation] = React.useState<boolean>(false);
   const { changeQtyInCart } = useActionCreators(ProductActions);
 
   const mocarella =
     item.ingridients && item.ingridients.find((ingridient) => ingridient.ingridientId._id === '63714ca4858cf7c6b09716fc');
+
+  useEffect(() => {
+    setQtyAnimation(true);
+
+    setTimeout(() => {
+      setQtyAnimation(false);
+    }, 300);
+  }, [item.qty]);
 
   return (
     <div className={styles.cartStatus__listItem}>
@@ -34,12 +43,14 @@ const ProductListItem: FC<ComponentProps> = ({ item }) => {
       </div>
 
       <div className={styles.cartStatus__body}>
-        <div className={styles.cartStatus__qtyBlock} onClick={() => changeQtyInCart(MINUS, item._id)}>
-          <span className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyMinus)}>
+        <div className={styles.cartStatus__qtyBlock}>
+          <span
+            className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyMinus)}
+            onClick={() => changeQtyInCart(MINUS, item._id)}>
             <MinusIcon />
           </span>
 
-          <span>{item.qty}</span>
+          <span className={classNames({ scalechange__animation: qtyAnimation })}>{item.qty}</span>
 
           <span
             className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyPlus)}

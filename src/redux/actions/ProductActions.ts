@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 
 import { CHANGE_QTY, MINUS, PLUS } from '../../Utils/constants';
-import { addToCart } from '../slices/cartSlice';
+import { addToCart, setCart } from '../slices/cartSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
 import { IProductInCart } from '../types/ProductTypes';
 
@@ -83,11 +83,48 @@ const addToCartAction = (item: IProductInCart) => async (dispatch: AppDispatch, 
   }
 };
 
-const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDispatch, getStae: GetState) => {
+const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDispatch, getState: GetState) => {
+  const {
+    cart: { items, totalCost, totalCount },
+  } = getState();
+  const item = items.find((item) => item._id === id);
+
+  if (!item) return;
+
   if (type === MINUS) {
-    console.log(type, id);
+    if (item.qty === 1) {
+      const cartObj = {
+        totalCost: totalCost - item.price,
+        totalCount: totalCount - 1,
+        items: items.filter((item) => item._id !== id),
+      };
+
+      dispatch(setCart(cartObj));
+    } else if (item.qty > 1) {
+      const itemIndex = items.findIndex((item) => item._id === id);
+      let updatedArray = [...items];
+      updatedArray[itemIndex] = { ...item, qty: item.qty - 1 };
+
+      const cartObj = {
+        items: updatedArray,
+        totalCost: totalCost - item.price,
+        totalCount: totalCount - 1,
+      };
+
+      dispatch(setCart(cartObj));
+    }
   } else if (type === PLUS) {
-    console.log(type, id);
+    const itemIndex = items.findIndex((item) => item._id === id);
+    let updatedArray = [...items];
+    updatedArray[itemIndex] = { ...item, qty: item.qty + 1 };
+
+    const cartObj = {
+      items: updatedArray,
+      totalCost: totalCost + item.price,
+      totalCount: totalCount + 1,
+    };
+
+    dispatch(setCart(cartObj));
   }
 };
 

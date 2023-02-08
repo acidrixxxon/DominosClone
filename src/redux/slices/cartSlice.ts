@@ -21,9 +21,14 @@ export const cartSlise = createSlice({
       state.totalCount = action.payload.totalCount;
       state.totalCost = action.payload.totalCost;
     },
+    setCart: (state, action: PayloadAction<ICartState>) => {
+      state.items = action.payload.items;
+      state.totalCount = action.payload.totalCount;
+      state.totalCost = action.payload.totalCost;
+    },
   },
 });
 
-export const { addToCart } = cartSlise.actions;
+export const { addToCart, setCart } = cartSlise.actions;
 
 export default cartSlise.reducer;

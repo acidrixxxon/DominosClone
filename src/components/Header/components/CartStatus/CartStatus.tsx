@@ -30,6 +30,7 @@ const CartStatus: FC = () => {
   useEffect(() => {
     setState(false);
   }, [pathname]);
+
   return (
     <div
       data-testid='cartStatus-button'
