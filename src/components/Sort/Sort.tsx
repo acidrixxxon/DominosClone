@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { FC, useCallback } from 'react';
+import { FC } from 'react';
 
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
+import { useOutsideClick2 } from '../../hooks/useOutsideClick2';
 import { viewActions as actions } from '../../redux/slices/viewSlice';
 import { useActionCreators } from '../../redux/store';
 import Arrow from '../UI/Arrow/Arrow';
@@ -16,34 +16,28 @@ const sortVariants = [
 ];
 
 const Sort: FC = () => {
-  const [visibleMenu, setVisibleMenu] = React.useState<boolean>(false);
   const { sort } = useAppSelector((state) => state.view);
 
-  const listRef = React.useRef<HTMLDivElement>(null);
-  const viewActions = useActionCreators(actions);
+  const { setSort } = useActionCreators(actions);
 
-  const hideMenu = useCallback(() => {
-    setVisibleMenu(false);
-  }, []);
-
-  useOutsideClick(listRef, hideMenu);
+  const [state, setState, ref] = useOutsideClick2();
 
   const changeSortHandler = (item: { id: number; title: string }): void => {
-    viewActions.setSort(item);
-    setVisibleMenu(false);
+    setSort(item);
+    setState(false);
   };
   return (
-    <div className='sort' ref={listRef}>
+    <div className='sort' ref={ref}>
       <div className='sort__label'>
-        <Arrow rotated={visibleMenu} />
+        <Arrow rotated={state} />
         Сортування за:
       </div>
-      <div className='sort__title' onClick={() => setVisibleMenu((state) => !state)}>
+      <div className='sort__title' onClick={() => setState((state) => !state)}>
         {sort.title}
       </div>
 
       <AnimatePresence>
-        {visibleMenu && (
+        {state && (
           <motion.div
             initial={{
               opacity: 0,

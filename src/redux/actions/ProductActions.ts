@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 
-import { CHANGE_QTY, MINUS, PLUS } from '../../Utils/constants';
+import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../Utils/constants';
 import { addToCart, setCart } from '../slices/cartSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
 import { IProductInCart } from '../types/ProductTypes';
@@ -128,7 +128,60 @@ const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDi
   }
 };
 
+const toggleMocarella = (type: MOCARELLA_TYPES, id: string) => async (dispatch: AppDispatch, getState: GetState) => {
+  const {
+    cart: { items, totalCost, totalCount },
+  } = getState();
+
+  const item = items.find((item) => item._id === id);
+  const itemIndex = items.findIndex((item) => item._id === id);
+  const mocarella = item && item.ingridients && item.ingridients.find((item) => item.ingridientId._id === MOCARELLA_ID);
+
+  if (item && mocarella) {
+    if (type === ADD_MOCARELLA) {
+      const updatedItem = {
+        ...item,
+        ingridients:
+          item.ingridients &&
+          item.ingridients.map((item) => (item.ingridientId._id === MOCARELLA_ID ? { ...item, qty: item.qty + 1 } : item)),
+        price: item.price + mocarella.ingridientId.addPrice,
+      };
+
+      let updatedArray = [...items];
+      updatedArray[itemIndex] = updatedItem;
+
+      const cartObj = {
+        totalCount,
+        items: updatedArray,
+        totalCost: totalCost + updatedItem.qty * mocarella.ingridientId.addPrice,
+      };
+
+      dispatch(setCart(cartObj));
+    } else if (type === REMOVE_MOCARELLA) {
+      const updatedItem = {
+        ...item,
+        ingridients:
+          item.ingridients &&
+          item.ingridients.map((item) => (item.ingridientId._id === MOCARELLA_ID ? { ...item, qty: item.qty - 1 } : item)),
+        price: item.price - mocarella.ingridientId.addPrice,
+      };
+
+      let updatedArray = [...items];
+      updatedArray[itemIndex] = updatedItem;
+
+      const cartObj = {
+        totalCount,
+        items: updatedArray,
+        totalCost: totalCost - updatedItem.qty * mocarella.ingridientId.addPrice,
+      };
+
+      dispatch(setCart(cartObj));
+    }
+  }
+};
+
 export default {
   addToCartAction,
   changeQtyInCart,
+  toggleMocarella,
 };
