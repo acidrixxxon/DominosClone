@@ -4,6 +4,21 @@
   grid-gap: 10px;
   margin-bottom: 40px;
 
+  @media screen and (max-width: 950px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+
   &.productDetails__optionsSingle {
     grid-template-columns: 1fr;
 
@@ -17,12 +32,22 @@
   }
 
   .productDetails__optionsContainer {
+    @media screen and (max-width: 950px) {
+      .productDetails__optionsList {
+        min-height: auto !important;
+      }
+    }
+
     .productDetails__listTitle {
       margin-bottom: 20px;
       font-size: 16px;
       font-weight: 500;
 
       display: block;
+
+      @media screen and (max-width: 950px) {
+        margin-bottom: 10px;
+      }
     }
 
     .productDetails__optionsList {
