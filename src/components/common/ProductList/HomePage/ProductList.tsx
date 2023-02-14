@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { useFetchProductsQuery } from '../../../../Api/ProductApi';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { IProductCategory } from '../../../../redux/types/ProductTypes';
+import { IProductCategory } from '../../../../types/ProductTypes';
 import Skeleton from '../../../UI/Skeleton/Skeleton';
 import ProductItem from './ProductItem/ProductItem';
 import './ProductList.scss';
@@ -15,7 +15,7 @@ const ProductList: FC = () => {
     sortId: sort.id,
   };
   const { data, error, isLoading } = useFetchProductsQuery(obj);
-
+  console.log(data?.categories);
   if (isLoading) return <Skeleton />;
   return (
     <div className='productList'>
@@ -24,6 +24,7 @@ const ProductList: FC = () => {
           {data &&
             data.categories &&
             data.categories.map((item: IProductCategory) => {
+              if (item.products.length === 0) return;
               return (
                 <div className='productList__category' key={item._id}>
                   <h4 className='productList__category-title'>{item.title}</h4>

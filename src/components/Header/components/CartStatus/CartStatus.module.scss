@@ -130,11 +130,13 @@
 
       cursor: pointer;
 
-      .cartStatus__arrow-icon {
-        fill: #333;
+      .cartStatus__arrow {
+        .cartStatus__arrowIcon {
+          fill: #333;
 
-        width: 25px;
-        height: 25px;
+          width: 25px;
+          height: 25px;
+        }
       }
 
       @media screen and (max-width: 900px) {

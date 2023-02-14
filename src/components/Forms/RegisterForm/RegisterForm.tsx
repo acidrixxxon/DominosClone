@@ -7,7 +7,7 @@ import { Rings } from 'react-loader-spinner';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { registerUserProcess } from '../../../redux/actions/UserActions';
-import { RegisterFormFieldInterface } from '../../../redux/types/CommontTypes';
+import { RegisterFormFieldInterface } from '../../../types/CommontTypes';
 import SuccessRegister from '../../UI/SuccessRegister/SuccessRegister';
 import './RegisterForm.scss';
 

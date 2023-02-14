@@ -1,13 +1,19 @@
-import React from 'react';
+import classNames from 'classnames';
 
+import { useAppSelector } from '../../../../../../../../hooks/useAppSelector';
 import EmptyCartIcon from '../../../../../../../UI/Icons/EmptyCartIcon';
+import animationStyles from './../../../../../../../../assets/animations.module.scss';
+import styles from './EmptyCart.module.scss';
 
 const EmptyCart = () => {
+  const { totalCount } = useAppSelector((state) => state.cart);
   return (
-    <div className='cartStatus__emptyCart'>
-      <EmptyCartIcon />
+    <div className={styles.cartStatus__emptyCart}>
+      <EmptyCartIcon
+        className={classNames(styles.cartStatus__emptyCartIcon, { [animationStyles.shaking__animation]: totalCount == 0 })}
+      />
 
-      <p className='cartStatus__emptyCart-text'>Положите что-нибудь в корзину.</p>
+      <p className={styles.cartStatus__emptyCartText}>Положите что-нибудь в корзину.</p>
     </div>
   );
 };

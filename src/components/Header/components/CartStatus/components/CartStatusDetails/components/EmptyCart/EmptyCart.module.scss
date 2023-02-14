@@ -1,0 +1,16 @@
+@import './../../../../../../../../assets/mixins.scss';
+
+.cartStatus__emptyCart {
+  @include dflex(center, center);
+  flex-direction: column;
+
+  .cartStatus__emptyCartIcon {
+    margin-bottom: 10px;
+  }
+
+  .cartStatus__emptyCartText {
+    color: #b3b3b3;
+    font-size: 17px;
+    font-weight: bold;
+  }
+}

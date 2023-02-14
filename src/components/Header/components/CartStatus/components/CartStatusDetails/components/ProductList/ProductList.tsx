@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../../../../../hooks/useAppSelector';
+import styles from './ProductList.module.scss';
 import ProductListItem from './component/ProductListItem';
 
 const ProductList: FC = () => {
@@ -9,16 +10,16 @@ const ProductList: FC = () => {
 
   return (
     <>
-      <div className='cartStatus__listContainer'>
+      <div className={styles.cartStatus__listContainer}>
         {items.map((item) => (
           <ProductListItem item={item} key={item._id} />
         ))}
       </div>
 
-      <div className='cartStatus__footer'>
-        <Link to='/cart' className='cartStatus__footerLink'>
-          <span className='cartStatus__footerText'>Оформити</span>
-          <span className='cartStatus__footerPrice'>{totalCost}грн</span>
+      <div className={styles.cartStatus__footer}>
+        <Link to='/cart' className={styles.cartStatus__footerLink}>
+          <span className={styles.cartStatus__footerText}>Оформити</span>
+          <span className={styles.cartStatus__footerPrice}>{totalCost}грн</span>
         </Link>
       </div>
     </>

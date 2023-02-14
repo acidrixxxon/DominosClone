@@ -1,4 +1,4 @@
-import { IProduct, IProductInCart } from '../redux/types/ProductTypes';
+import { IProduct, IProductInCart } from '../types/ProductTypes';
 
 export const CartProductDto = (item: IProduct, activeType: { size: number; crust: number | -1 }): IProductInCart => {
   return {

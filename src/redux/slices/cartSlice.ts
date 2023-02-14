@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import LocalStorageService from '../../Services/LocalStorageService';
-import { ICartState } from '../types/CartTypes';
+import { ICartState } from '../../types/CartTypes';
 
 const initialState: ICartState =
   localStorage.getItem('cart') !== null

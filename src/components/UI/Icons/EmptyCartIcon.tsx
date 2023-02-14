@@ -1,16 +1,6 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
-
-const EmptyCartIcon = () => {
-  const { totalCount } = useAppSelector((state) => state.cart);
-
+const EmptyCartIcon = ({ className }: { className: string }) => {
   return (
-    <svg
-      className={totalCount === 0 ? 'cartStatus__emptyCart-icon shaking__animation' : 'cartStatus__emptyCart-icon'}
-      xmlns='http://www.w3.org/2000/svg'
-      width='192'
-      height='192'
-      fill='none'
-      viewBox='0 0 192 192'>
+    <svg className={className} xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='none' viewBox='0 0 192 192'>
       <path
         fill='#fff'
         d='M26 84h140v22H26V84zM6 159h180v24H6v-24zM26 106V84l-2.933 11L6 159h7l13-53zM166 84v22l14 53h6l-17.067-64L166 84z'></path>

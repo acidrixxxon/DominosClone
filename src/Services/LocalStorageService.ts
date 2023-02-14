@@ -1,4 +1,4 @@
-import { ICartState } from '../redux/types/CartTypes';
+import { ICartState } from '../types/CartTypes';
 
 class LocalStorageService {
   saveAccessToken(token: string): void {

@@ -7,7 +7,7 @@ import { Rings } from 'react-loader-spinner';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { loginUserProcess } from '../../../redux/actions/UserActions';
-import { LoginFormFieldInterface } from '../../../redux/types/CommontTypes';
+import { LoginFormFieldInterface } from '../../../types/CommontTypes';
 import './LoginForm.scss';
 
 const LoginForm: FC = () => {

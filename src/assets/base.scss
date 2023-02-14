@@ -2,7 +2,25 @@
   --gray-color: #6a6a76;
   --tablet-displayWidth: 768px;
   --mobile-displayWidth: 500px;
+
+  --white-color: #fff;
+  --black-color: #333;
+  --red-color: red;
+  --gray-color: gray;
+  --lightgray-color: lightgray;
+
+  --transition-duration: 0.25s;
 }
+
+$colors: (
+  lg: lightgray,
+  pulse: #ef6eae,
+  close: #ff7f82,
+  raise: #ffa260,
+  up: #e4cb58,
+  slide: #8fc866,
+  offset: #19bc8b,
+);
 
 #root {
   background-color: #f8f4f8;

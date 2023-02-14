@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 
 import { useAppSelector } from '../../../../../../hooks/useAppSelector';
-import './CartStatusDetails.scss';
+import styles from './CartStatusDetails.module.scss';
 import EmptyCart from './components/EmptyCart/EmptyCart';
 import ProductList from './components/ProductList/ProductList';
 import Promo from './components/Promo/Promo';
@@ -19,7 +19,7 @@ const CartStatusDetails: FC<ComponentProps> = ({ visible }) => {
     <div
       onClick={(e) => e.stopPropagation()}
       data-testid='cartStatus-details'
-      className={classNames('cartStatus__details', { 'cartStatus__details-visible': visible })}>
+      className={classNames(styles.cartStatus__details, { [styles.cartStatus__detailsVisible]: visible })}>
       {visible && <Promo />}
 
       {emptyCart ? <EmptyCart /> : <ProductList />}

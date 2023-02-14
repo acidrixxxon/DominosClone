@@ -7,7 +7,8 @@ import { useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { useOutsideClick2 } from '../../../../hooks/useOutsideClick2';
-import './CartStatus.scss';
+import animationStyles from './../../../../assets/animations.module.scss';
+import styles from './CartStatus.module.scss';
 import CartStatusDetails from './components/CartStatusDetails/CartStatusDetails';
 
 const CartStatus: FC = () => {
@@ -15,29 +16,24 @@ const CartStatus: FC = () => {
     countShaking: false,
     costOpacity: false,
   });
-  const [countShaking, setCountShaking] = useState<boolean>(false);
+
   const { totalCost, totalCount, items } = useAppSelector((state) => state.cart);
+
   const [state, setState, ref] = useOutsideClick2();
+
   const { pathname } = useLocation();
 
   const productCount = totalCount === 0 ? '00' : totalCount < 10 ? `0${totalCount}` : totalCount;
   const totalPrice = totalCost === 0 ? '0.00' : `${totalCost}.00`;
 
   useEffect(() => {
-    if (!animations.countShaking && totalCount !== 0) setAnimations((state) => ({ ...state, countShaking: true }));
+    if (!animations.countShaking && !animations.costOpacity && totalCount !== 0)
+      setAnimations((state) => ({ costOpacity: true, countShaking: true }));
 
     setTimeout(() => {
-      setAnimations((state) => ({ ...state, countShaking: false }));
+      setAnimations((state) => ({ costOpacity: false, countShaking: false }));
     }, 300);
-  }, [totalCount, items.length]);
-
-  useEffect(() => {
-    if (!animations.costOpacity && totalCount !== 0) setAnimations((state) => ({ ...state, costOpacity: true }));
-
-    setTimeout(() => {
-      setAnimations((state) => ({ ...state, costOpacity: false }));
-    }, 300);
-  }, [totalCost]);
+  }, [totalCount, items.length, totalCost]);
 
   useEffect(() => {
     setState(false);
@@ -47,25 +43,27 @@ const CartStatus: FC = () => {
     <div
       data-testid='cartStatus-button'
       ref={ref}
-      className={classNames('cartStatus', { cartStatus__active: state })}
+      className={classNames(styles.cartStatus, { [styles.cartStatus__active]: state })}
       onClick={() => setState((state) => pathname !== '/cart' && !state)}>
-      <div className='cartStatus__container'>
-        <span className={classNames('cartStatus__count', { shaking__animation: animations.countShaking })}>
+      <div className={styles.cartStatus__container}>
+        <span className={classNames(styles.cartStatus__count, { [animationStyles.shaking__animation]: animations.countShaking })}>
           {productCount}
           <AiOutlineShoppingCart />
         </span>
 
-        <span className={classNames('cartStatus__price', { opacity__animation: animations.costOpacity })}>{totalPrice} грн</span>
+        <span className={classNames(styles.cartStatus__price, { [animationStyles.opacity__animation]: animations.costOpacity })}>
+          {totalPrice} грн
+        </span>
 
-        <button className='cartStatus__order'>
+        <button className={styles.cartStatus__order}>
           <AnimatePresence>
             {state ? (
               <motion.span
                 initial={{ transform: 'translateY(20px)' }}
                 animate={{ transform: 'translateY(0px)' }}
                 exit={{ opacity: 0, transform: 'translateX(-10px)', display: 'none' }}
-                className='cartStatus__arrow'>
-                <MdKeyboardArrowDown className='cartStatus__arrow-icon' />
+                className={styles.cartStatus__arrow}>
+                <MdKeyboardArrowDown className={styles.cartStatus__arrowIcon} />
               </motion.span>
             ) : (
               <>Замовити</>

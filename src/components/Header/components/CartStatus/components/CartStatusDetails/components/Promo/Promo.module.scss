@@ -1,0 +1,52 @@
+.cartStatus__promo {
+  position: relative;
+
+  margin: 0 10px 10px;
+
+  .cartStatus__promoContainer {
+    height: 80px;
+    width: 100%;
+    background-color: black;
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    .cartStatus__promoImage {
+      height: auto;
+      width: 100%;
+
+      border-radius: 8px;
+
+      opacity: 0.4;
+
+      animation: promoTransform 0.3s linear;
+
+      object-fit: cover;
+
+      transform: translateY(-30%);
+    }
+
+    .cartStatus__promoText {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+
+      line-height: 19px;
+    }
+  }
+}
+
+@keyframes promoTransform {
+  from {
+    transform: translateY(30%);
+  }
+
+  to {
+    transform: translateY(-30%);
+  }
+}

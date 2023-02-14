@@ -1,9 +1,9 @@
 import lodash from 'lodash';
 
 import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../Utils/constants';
+import { IProductInCart } from '../../types/ProductTypes';
 import { addToCart, setCart } from '../slices/cartSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
-import { IProductInCart } from '../types/ProductTypes';
 
 const addToCartAction = (item: IProductInCart) => async (dispatch: AppDispatch, getState: GetState) => {
   const { cart } = getState();

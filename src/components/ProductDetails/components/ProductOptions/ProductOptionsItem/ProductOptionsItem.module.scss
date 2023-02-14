@@ -1,0 +1,41 @@
+@import './../../../../../assets/mixins.scss';
+
+.productDetails__optionsItem {
+  cursor: pointer;
+
+  padding: 5px;
+
+  border-radius: 5px;
+  border: 1px solid var(--lightgray-color);
+
+  margin-bottom: 10px;
+
+  @include dflex(space-between, center);
+
+  transition: 0.2s all linear;
+
+  &:hover {
+    border-color: var(--gray-color);
+  }
+
+  &.productDetails__optionsItemActive {
+    border-color: var(--gray-color);
+
+    .productDetails__priceContainer {
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .productDetails__titleContainer {
+    display: flex;
+    align-items: center;
+
+    .productDetails__checkbox {
+      width: 21px;
+      height: 21px;
+      margin-right: 5px;
+    }
+  }
+}

@@ -5,9 +5,10 @@ import { AiFillCheckCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { ADD_MOCARELLA, MINUS, PLUS, REMOVE_MOCARELLA } from '../../../../../../../../../Utils/constants';
 import ProductActions from '../../../../../../../../../redux/actions/ProductActions';
 import { useActionCreators } from '../../../../../../../../../redux/store';
-import { IProductInCart } from '../../../../../../../../../redux/types/ProductTypes';
+import { IProductInCart } from '../../../../../../../../../types/ProductTypes';
 import MinusIcon from '../../../../../../../../UI/Icons/MinusIcon';
 import PlusIcon from '../../../../../../../../UI/Icons/PlusIcon';
+import animationStyles from './../../../../../../../../../assets/animations.module.scss';
 import styles from './ProductListItem.module.scss';
 
 interface ComponentProps {
@@ -57,7 +58,7 @@ const ProductListItem: FC<ComponentProps> = ({ item }) => {
             <MinusIcon />
           </span>
 
-          <span className={classNames({ scalechange__animation: qtyAnimation })}>{item.qty}</span>
+          <span className={classNames({ [animationStyles.scalechange__animation]: qtyAnimation })}>{item.qty}</span>
 
           <span
             className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyPlus)}

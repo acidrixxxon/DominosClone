@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import LocalStorageService from '../../Services/LocalStorageService';
 import UserService from '../../Services/UserService';
+import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../../types/CommontTypes';
 import {
   loginUserError,
   loginUserRequest,
@@ -14,7 +15,6 @@ import {
   registerUserSuccess,
 } from '../slices/userSlice';
 import { AppDispatch } from '../store';
-import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../types/CommontTypes';
 
 export const loginUserProcess = (data: LoginFormFieldInterface) => async (dispatch: AppDispatch) => {
   try {

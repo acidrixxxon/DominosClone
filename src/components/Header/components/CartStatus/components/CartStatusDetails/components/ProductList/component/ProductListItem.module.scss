@@ -46,14 +46,12 @@
 
       border-radius: 15px;
 
-      width: 90px;
+      width: 85px;
       height: 30px;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      padding: 0 10px;
 
       .cartStatus__qty {
         font-weight: 700;
@@ -61,9 +59,13 @@
         cursor: pointer;
 
         height: 100%;
+        width: 25px;
+
         display: flex;
         align-items: center;
+        justify-content: center;
 
+        margin: 0px 3px;
         svg {
           width: 10px;
           fill: #fff;

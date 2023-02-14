@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartProductDto } from '../../../../../Utils/Dto';
 import { useActionCreators } from '../../../../../redux/store';
-import { IProduct } from '../../../../../redux/types/ProductTypes';
+import { IProduct } from '../../../../../types/ProductTypes';
 import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
 import actions from './../../../../../redux/actions/ProductActions';
 import './ProductItem.scss';
@@ -36,7 +36,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
     <li className='productList__category-item'>
       <div className='item__image-container'>
         <Link to={`/product/${item._id}`} className='item__link'>
-          <img src={item.imageUrl} alt={item.title} className='item__image-img' />
+          <img src={item.imageUrl} alt={item.title} o className='item__image-img' />
 
           {item.aNewOne && <NewProductIcon />}
         </Link>

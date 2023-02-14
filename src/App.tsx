@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
-import HomePage from './Pages/HomePage';
+import HomePage from './Pages/HomePage/HomePage';
+import ProductPage from './Pages/ProductPage/ProductPage';
 import LocalStorageService from './Services/LocalStorageService';
-import './assets/animations.scss';
 import './assets/base.scss';
 import Header from './components/Header/Header';
 import { useAppDispatch } from './hooks/useAppDispatch';
@@ -36,6 +36,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/product/:id' element={<ProductPage />} />
       </Routes>
     </div>
   );

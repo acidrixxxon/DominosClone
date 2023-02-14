@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { BACKEND_URL } from '../Utils/config';
-import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../redux/types/CommontTypes';
-import { ILoginUserResponse, IRefreshTokenResponse, IRegisterUserResponse } from '../redux/types/ResponseTypes';
+import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../types/CommontTypes';
+import { ILoginUserResponse, IRefreshTokenResponse, IRegisterUserResponse } from '../types/ResponseTypes';
 
 class UserService {
   loginUser(data: LoginFormFieldInterface) {

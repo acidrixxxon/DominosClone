@@ -78,3 +78,30 @@ export interface IProductInCart {
   price: number;
   uniqueId?: string;
 }
+
+export interface ISideVariant {
+  size: string;
+  price: number;
+  _id: string;
+  title?: string;
+  variants?: any;
+}
+
+export interface IPizzaVariant {
+  _id: string;
+  title: string;
+  variants: [
+    {
+      _id: string;
+      id?: string;
+      fulltitle: string;
+      inSell: true;
+      price: number;
+      title: string;
+    },
+  ];
+  price?: number;
+  size?: string;
+}
+
+export type IProductVariant = IPizzaVariant & ISideVariant;
