@@ -6,12 +6,14 @@ import styles from './IngridientsItem.module.scss';
 
 interface ComponentProps {
   ingridient: IPizzaIngridientsFull;
+  removeIngridient: (id: string) => void;
+  changeIngridientQty: (id: string) => void;
 }
 
-const IngridientsItem: FC<ComponentProps> = ({ ingridient }) => {
+const IngridientsItem: FC<ComponentProps> = ({ ingridient, removeIngridient, changeIngridientQty }) => {
   return (
     <li className={styles.productDetails__ingridientsItem} key={ingridient.ingridientId._id}>
-      <span className={styles.productDetails__removeIcon}>
+      <span className={styles.productDetails__removeIcon} onClick={() => removeIngridient(ingridient.ingridientId._id)}>
         <AiOutlineClose />
       </span>
 
@@ -24,7 +26,7 @@ const IngridientsItem: FC<ComponentProps> = ({ ingridient }) => {
       </div>
 
       <div className={styles.productDetails__ingridientQty}>
-        <span className={styles.productDetails__ingridientQtyIcon}>
+        <span className={styles.productDetails__ingridientQtyIcon} onClick={() => changeIngridientQty(ingridient.ingridientId._id)}>
           <AiOutlineMinus />
         </span>
 

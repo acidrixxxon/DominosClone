@@ -15,7 +15,7 @@ const ProductList: FC = () => {
     sortId: sort.id,
   };
   const { data, error, isLoading } = useFetchProductsQuery(obj);
-  console.log(data?.categories);
+
   if (isLoading) return <Skeleton />;
   return (
     <div className='productList'>

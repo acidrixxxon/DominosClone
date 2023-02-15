@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
+import lodash from 'lodash';
+import { FC, useEffect, useState } from 'react';
 
-import { IProduct } from '../../types/ProductTypes';
+import { IProduct, IProductDetails } from '../../types/ProductTypes';
 import styles from './ProductDetails.module.scss';
 import IngridientsList from './components/IngridientsList/IngridientsList';
 import ProductOptions from './components/ProductOptions/ProductOptions';
@@ -9,30 +10,54 @@ interface ComponentProps {
   product: IProduct;
 }
 
+interface IActiveTypes {
+  size: number;
+  crust: number;
+}
+
 const ProductDetails: FC<ComponentProps> = ({ product }) => {
-  const [activeTypes, setActiveTypes] = useState<{ size: number; crust: number }>({
+  const [productDetails, setProductDetails] = useState<IProductDetails | null>(null);
+
+  const [activeTypes, setActiveTypes] = useState<IActiveTypes>({
     size: 0,
     crust: product.class === 0 ? 0 : -1,
   });
 
-  const totalPrice = product.variants[activeTypes.size].price
-    ? product.variants[activeTypes.size].price
-    : product.variants[activeTypes.size].variants[activeTypes.crust].price;
+  useEffect(() => {
+    setProductDetails({
+      ...product,
+      defaultObj: lodash.cloneDeep(product),
+    });
+  }, [product]);
+
+  console.log(productDetails);
+
+  const totalPrice =
+    productDetails && productDetails.variants[activeTypes.size].price
+      ? product.variants[activeTypes.size].price
+      : product.variants[activeTypes.size].variants[activeTypes.crust].price;
+
+  const renderIngridientsList = product.class === 0 && productDetails?.ingridients;
+
   return (
     <div className={styles.productDetails}>
       <div className={styles.container}>
         <div className={styles.productDetails__imageContainer}>
-          <img src={product.imageUrl} alt={product.title} className={styles.productDetails__image} />
+          <img src={productDetails?.imageUrl} alt={productDetails?.title} className={styles.productDetails__image} />
         </div>
 
         <div className={styles.productDetails__content}>
           <div className={styles.productDetails__titleContainer}>
-            <h4 className={styles.productDetails__title}>{product.title}</h4>
+            <h4 className={styles.productDetails__title}>{productDetails?.title}</h4>
           </div>
 
-          {product.class === 0 && <IngridientsList ingridients={product.ingridients} />}
+          {renderIngridientsList && <IngridientsList ingridients={productDetails.ingridients} setDetails={setProductDetails} />}
 
-          <ProductOptions data={{ class: product.class, variants: product.variants, activeTypes, setActiveTypes }} />
+          {productDetails && (
+            <ProductOptions
+              data={{ class: productDetails.class, variants: productDetails && productDetails.variants, activeTypes, setActiveTypes }}
+            />
+          )}
 
           <div className={styles.productDetails__total}>
             <div className={styles.productDetails__price}>{totalPrice}.00 грн</div>

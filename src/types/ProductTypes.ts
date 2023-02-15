@@ -105,3 +105,5 @@ export interface IPizzaVariant {
 }
 
 export type IProductVariant = IPizzaVariant & ISideVariant;
+
+export type IProductDetails = IProduct & { defaultObj: IProduct };

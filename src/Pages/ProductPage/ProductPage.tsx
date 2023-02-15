@@ -10,7 +10,7 @@ const ProductPage: FC = () => {
   const { id } = useParams();
 
   const { data, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(data);
+
   return (
     <div className={styles.productPage}>
       <div className={styles.productPage__container}>

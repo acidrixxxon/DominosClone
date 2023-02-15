@@ -24,7 +24,7 @@ const ProductOptionsItem: FC<ComponentProps> = ({ item, activeTypes, active, set
       className={classNames(styles.productDetails__optionsItem, { [styles.productDetails__optionsItemActive]: active })}
       onClick={setActiveTypes}>
       <div className={styles.productDetails__titleContainer}>
-        <input type='checkbox' className={styles.productDetails__checkbox} checked={active} />
+        <input type='checkbox' className={styles.productDetails__checkbox} checked={active} onChange={setActiveTypes} />
         {item.title ? item.title : item.size}
       </div>
 
