@@ -18,7 +18,13 @@ class LocalStorageService {
   }
 
   getCart(): ICartState {
-    return JSON.parse(localStorage.getItem('cart'));
+    return localStorage.getItem('cart') !== null
+      ? JSON.parse(localStorage.getItem('cart'))
+      : {
+          items: [],
+          totalCount: 0,
+          totalCost: 0,
+        };
   }
 }
 
