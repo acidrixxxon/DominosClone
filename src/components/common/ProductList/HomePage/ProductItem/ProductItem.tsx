@@ -68,7 +68,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
           {item.variants.map((size, index) => (
             <button
               key={size._id}
-              onClick={() => setActiveType((state) => ({ ...state, size: index, crust: item.class === 0 ? 0 : null }))}
+              onClick={() => setActiveType((state) => ({ ...state, size: index, crust: item.class === 0 ? 0 : -1 }))}
               className={classNames('item__sizes-item', { 'item__sizes-active': activeType.size === index })}>
               {item.class === 0 ? size.title : size.size}
             </button>
