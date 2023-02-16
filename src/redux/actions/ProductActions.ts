@@ -12,6 +12,7 @@ const addToCartAction = (item: IProductInCart) => async (dispatch: AppDispatch, 
 
   if (item.class === 0) {
     if (alreadyInCart) {
+      console.log('da');
       const sameIngridients = lodash.isEqual(item.ingridients, alreadyInCart.ingridients);
 
       if (sameIngridients) {

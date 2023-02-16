@@ -10,11 +10,8 @@ import './ProductList.scss';
 const ProductList: FC = () => {
   const { category, sort } = useAppSelector((state) => state.view);
   const productString = category === 0 ? 'pizza' : category === 1 ? 'sides' : category === 2 ? 'drinks' : '';
-  const obj = {
-    category: productString,
-    sortId: sort.id,
-  };
-  const { data, error, isLoading } = useFetchProductsQuery(obj);
+
+  const { data, error, isLoading } = useFetchProductsQuery({ category: productString, sortId: sort.id });
 
   if (isLoading) return <Skeleton />;
   return (

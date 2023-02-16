@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { FC } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
 import ReactPortal from '../../common/ReactPortal/ReactPortal';
 import './Modal.scss';
@@ -64,6 +65,9 @@ const Modal: FC<ComponentProps> = ({ children, renderCondition, onClose, options
               exit='exit'
               className='modal__content'
               onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
+              <span className='modal__closeIcon' onClick={onClose}>
+                <AiOutlineClose className='modal__closeIcon-btn' />
+              </span>
               {children}
             </motion.div>
           </motion.div>

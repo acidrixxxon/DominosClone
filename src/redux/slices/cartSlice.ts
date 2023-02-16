@@ -11,7 +11,7 @@ const setInitialState = () => {
     return {
       items: [],
       totalCount: 0,
-      totalString: 0,
+      totalCost: 0,
     };
   }
 };

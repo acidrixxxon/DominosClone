@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { BACKEND_URL } from '../Utils/config';
-import { IPizza, IProductCategory } from '../types/ProductTypes';
-import { IFetchCategoriesResponse, IFetchProductsResponse } from '../types/ResponseTypes';
+import { IFetchCategoriesResponse, IFetchIngridientsResponse, IFetchProductsResponse } from '../types/ResponseTypes';
 
 export const productApi = createApi({
   reducerPath: 'productApi',
@@ -15,7 +14,10 @@ export const productApi = createApi({
     getProductById: builder.query({
       query: (productId) => `search/${productId}`,
     }),
+    fetchIngridients: builder.query({
+      query: () => 'pizza/ingridient/get_all',
+    }),
   }),
 });
 
-export const { useFetchProductsQuery, useGetProductByIdQuery } = productApi;
+export const { useFetchProductsQuery, useGetProductByIdQuery, useFetchIngridientsQuery } = productApi;

@@ -1,4 +1,4 @@
-import { IPizza, IProduct, IProductCategory } from './ProductTypes';
+import { IPizza, IPizzaIngridientsCategory, IProduct, IProductCategory } from './ProductTypes';
 import { IUser } from './UserTypes';
 
 //LOGIN TYPES
@@ -93,3 +93,19 @@ export interface IFetchProductsError {
 }
 
 export type IFetchProductsResponse = IFetchProductsSuccess | IFetchProductsError;
+
+//Fetching ingridients
+
+export interface IFetchIngridientsSuccess {
+  message: string;
+  succuess: true;
+  ingridients: IPizzaIngridientsCategory[];
+}
+
+export interface IFetchIngridientsError {
+  message: string;
+  succuess: false;
+  ingridients?: [];
+}
+
+export type IFetchIngridientsResponse = IFetchIngridientsSuccess | IFetchIngridientsError;

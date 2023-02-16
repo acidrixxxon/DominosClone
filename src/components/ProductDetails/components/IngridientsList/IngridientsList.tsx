@@ -1,20 +1,22 @@
 import { FC } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { IPizzaIngridientsFull, IProduct, IProductDetails } from '../../../../types/ProductTypes';
+import { CHANGE_QTY, MINUS, PLUS } from '../../../../Utils/constants';
+import { IPizzaIngridientsFull, IProductDetails } from '../../../../types/ProductTypes';
+import AddIngridients from './AddIngridients/AddIngridients';
 import IngridientsItem from './IngridientsItem/IngridientsItem';
 import styles from './IngridientsList.module.scss';
 
 interface ComponentProps {
   ingridients: IPizzaIngridientsFull[];
-  setDetails: React.Dispatch<React.SetStateAction<IProductDetails | null>>;
+  setDetails: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const IngridientsList: FC<ComponentProps> = ({ ingridients, setDetails }) => {
   const removeIngridient = (id: string): void => {
     const ingridient = ingridients.find((item) => item.ingridientId._id === id);
     if (ingridient) {
-      setDetails((state) => {
+      setDetails((state: IProductDetails) => {
         return {
           ...state,
           ingridients: state && state.ingridients.filter((item) => item.ingridientId._id !== id),
@@ -36,25 +38,68 @@ const IngridientsList: FC<ComponentProps> = ({ ingridients, setDetails }) => {
     }
   };
 
-  const changeIngridientQty = (id: string): void => {
+  const changeIngridientQty = (type: CHANGE_QTY, id: string): void => {
     const ingridient = ingridients.find((item) => item.ingridientId._id === id);
-
-    if (ingridient && ingridient.qty == 1) {
-      removeIngridient(id);
-    } else {
-      setDetails((state) => {
-        return {
-          ...state,
-          ingridients: state?.ingridients.map((ingridient) =>
-            ingridient.ingridientId._id === id
-              ? {
-                  ...ingridient,
-                  qty: ingridient.qty - 1,
-                }
-              : ingridient,
-          ),
-        };
-      });
+    if (type === MINUS) {
+      if (ingridient && ingridient.qty == 1) {
+        removeIngridient(id);
+      } else if (ingridient && ingridient.qty == 2) {
+        setDetails((state: IProductDetails) => {
+          return {
+            ...state,
+            variants:
+              state &&
+              state.variants.map((size) => {
+                return {
+                  ...size,
+                  variants: size.variants.map((crust) => {
+                    return {
+                      ...crust,
+                      price: crust.price - ingridient?.ingridientId.addPrice,
+                    };
+                  }),
+                };
+              }),
+            ingridients: state?.ingridients.map((ingridient) =>
+              ingridient.ingridientId._id === id
+                ? {
+                    ...ingridient,
+                    qty: ingridient.qty - 1,
+                  }
+                : ingridient,
+            ),
+          };
+        });
+      }
+    } else if (PLUS) {
+      if (ingridient && ingridient.qty == 1) {
+        setDetails((state: IProductDetails) => {
+          return {
+            ...state,
+            ingridients: state?.ingridients.map((ingridient) =>
+              ingridient.ingridientId._id === id
+                ? {
+                    ...ingridient,
+                    qty: ingridient.qty + 1,
+                  }
+                : ingridient,
+            ),
+            variants:
+              state &&
+              state.variants.map((size) => {
+                return {
+                  ...size,
+                  variants: size.variants.map((crust) => {
+                    return {
+                      ...crust,
+                      price: crust.price + ingridient?.ingridientId.addPrice,
+                    };
+                  }),
+                };
+              }),
+          };
+        });
+      }
     }
   };
 
@@ -72,11 +117,7 @@ const IngridientsList: FC<ComponentProps> = ({ ingridients, setDetails }) => {
           />
         ))}
 
-        <li className={styles.productDetails__ingridientsItemAdd}>
-          <span className='productDetails__ingridientsItemIcon'>
-            <AiOutlinePlus />
-          </span>
-        </li>
+        <AddIngridients setDetails={setDetails} ingridients={ingridients} />
       </ul>
     </div>
   );

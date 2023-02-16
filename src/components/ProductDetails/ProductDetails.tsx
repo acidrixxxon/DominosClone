@@ -1,7 +1,10 @@
 import lodash from 'lodash';
 import { FC, useEffect, useState } from 'react';
 
+import { CartProductDto } from '../../Utils/Dto';
+import { useActionCreators } from '../../redux/store';
 import { IProduct, IProductDetails } from '../../types/ProductTypes';
+import cartActions from './../../redux/actions/ProductActions';
 import styles from './ProductDetails.module.scss';
 import IngridientsList from './components/IngridientsList/IngridientsList';
 import ProductOptions from './components/ProductOptions/ProductOptions';
@@ -18,26 +21,41 @@ interface IActiveTypes {
 const ProductDetails: FC<ComponentProps> = ({ product }) => {
   const [productDetails, setProductDetails] = useState<IProductDetails | null>(null);
 
+  const { addToCartAction } = useActionCreators(cartActions);
+
   const [activeTypes, setActiveTypes] = useState<IActiveTypes>({
     size: 0,
     crust: product.class === 0 ? 0 : -1,
   });
 
   useEffect(() => {
+    const defaultObj = lodash.cloneDeep(product);
     setProductDetails({
       ...product,
-      defaultObj: lodash.cloneDeep(product),
+      defaultObj: product,
     });
   }, [product]);
 
-  console.log(productDetails);
-
   const totalPrice =
-    productDetails && productDetails.variants[activeTypes.size].price
-      ? product.variants[activeTypes.size].price
-      : product.variants[activeTypes.size].variants[activeTypes.crust].price;
+    productDetails && productDetails.class === 0
+      ? productDetails.variants[activeTypes.size].variants[activeTypes.crust].price
+      : productDetails && productDetails.variants[activeTypes.size].price;
 
   const renderIngridientsList = product.class === 0 && productDetails?.ingridients;
+
+  const toCartHandler = () => {
+    const item = Object.assign({}, productDetails);
+
+    if (item) {
+      Reflect.deleteProperty(item, 'defaultObj');
+
+      const product = CartProductDto(item, activeTypes);
+      addToCartAction(product);
+
+      productDetails && setProductDetails({ ...productDetails.defaultObj, defaultObj: productDetails.defaultObj });
+      setActiveTypes({ size: 0, crust: product.class === 0 ? 0 : -1 });
+    }
+  };
 
   return (
     <div className={styles.productDetails}>
@@ -62,7 +80,9 @@ const ProductDetails: FC<ComponentProps> = ({ product }) => {
           <div className={styles.productDetails__total}>
             <div className={styles.productDetails__price}>{totalPrice}.00 грн</div>
 
-            <button className={styles.productDetails__toCartButton}>В кошик</button>
+            <button className={styles.productDetails__toCartButton} onClick={toCartHandler}>
+              В кошик
+            </button>
           </div>
         </div>
       </div>

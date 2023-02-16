@@ -18,6 +18,12 @@ export interface IPizzaIngridientsShort {
   imageUrl: string;
 }
 
+export interface IPizzaIngridientsCategory {
+  _id: string;
+  title: string;
+  ingridients: IPizzaIngridientsShort[];
+}
+
 export interface IPizza {
   _id: string;
   aNewOne: boolean;
