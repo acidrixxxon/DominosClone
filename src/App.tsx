@@ -1,5 +1,6 @@
+import { AnimatePresence } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './Pages/HomePage/HomePage';
@@ -20,6 +21,8 @@ function App() {
 
   console.log(state);
 
+  const location = useLocation();
+
   React.useLayoutEffect(() => {
     setInterval(() => {
       dispatch(refreshTokenProcess());
@@ -34,10 +37,12 @@ function App() {
     <div className='App' ref={appRef}>
       <Header refLink={headerRef} appRef={appRef} />
 
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/product/:id' element={<ProductPage />} />
-      </Routes>
+      <AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/product/:id' element={<ProductPage />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 }

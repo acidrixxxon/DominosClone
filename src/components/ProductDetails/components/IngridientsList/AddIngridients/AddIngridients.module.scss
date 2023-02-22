@@ -12,6 +12,10 @@
   transition: 0.2s all linear;
   border-radius: 0.3em;
 
+  @media screen and (max-width: 550px) {
+    height: 118px;
+  }
+
   &:hover {
     box-shadow: 0 0 0.6em 0 rgba(0, 0, 0, 0.15);
     opacity: 0.6;
@@ -23,5 +27,32 @@
       height: 50px;
       fill: lightgray;
     }
+  }
+}
+
+.productDetails__addIngridientsModal {
+  div {
+    .loaderContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        transform: translateY(-50px);
+      }
+    }
+  }
+
+  .productDetails__title {
+    font-family: Roboto, sans-serif;
+    font-size: 23px;
+    color: #757575;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+  }
+
+  .productDetails__categoriesList {
   }
 }

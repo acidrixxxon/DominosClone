@@ -14,10 +14,13 @@ export const productApi = createApi({
     getProductById: builder.query({
       query: (productId) => `search/${productId}`,
     }),
-    fetchIngridients: builder.query({
+    fetchIngridientsCategories: builder.query<IFetchIngridientsResponse, any>({
+      query: () => 'pizza/ingridient/get_all',
+    }),
+    fetchAllIngridients: builder.query<IFetchIngridientsResponse, any>({
       query: () => 'pizza/ingridient/get_all',
     }),
   }),
 });
 
-export const { useFetchProductsQuery, useGetProductByIdQuery, useFetchIngridientsQuery } = productApi;
+export const { useFetchProductsQuery, useGetProductByIdQuery, useFetchIngridientsCategoriesQuery } = productApi;

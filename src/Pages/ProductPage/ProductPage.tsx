@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetProductByIdQuery } from '../../Api/ProductApi';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
+import PageContainer from '../../components/UI/PageContainer/PageContainer';
 import styles from './ProductPage.module.scss';
 
 const ProductPage: FC = () => {
@@ -12,7 +13,7 @@ const ProductPage: FC = () => {
   const { data, error, isLoading } = useGetProductByIdQuery(id);
 
   return (
-    <div className={styles.productPage}>
+    <PageContainer className={styles.productPage}>
       <div className={styles.productPage__container}>
         {isLoading && (
           <div className={styles.productPage__loaderContainer}>
@@ -31,7 +32,7 @@ const ProductPage: FC = () => {
 
         {data && data.result && <ProductDetails product={data.result} />}
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
