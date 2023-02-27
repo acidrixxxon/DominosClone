@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Oval } from 'react-loader-spinner';
 
@@ -6,14 +6,14 @@ import { useFetchIngridientsCategoriesQuery } from '../../../../../Api/ProductAp
 import { IPizzaIngridientsFull } from '../../../../../types/ProductTypes';
 import Modal from '../../../../UI/Modal/Modal';
 import styles from './AddIngridients.module.scss';
-import CategoryItem from './CategoryItem/CategoryItem';
+import Category from './Category/Category';
 
 interface ComponentProps {
   ingridients: IPizzaIngridientsFull[];
   setDetails: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const AddIngridients: FC<ComponentProps> = ({ ingridients }) => {
+const AddIngridients: FC<ComponentProps> = ({ ingridients, setDetails }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { data, error, isLoading, isSuccess } = useFetchIngridientsCategoriesQuery('da');
@@ -29,7 +29,11 @@ const AddIngridients: FC<ComponentProps> = ({ ingridients }) => {
         </span>
       </li>
 
-      <Modal renderCondition={showModal} onClose={closeModal} className={styles.productDetails__addIngridientsModal}>
+      <Modal
+        id='addIngridient-modal'
+        renderCondition={showModal}
+        onClose={closeModal}
+        className={styles.productDetails__addIngridientsModal}>
         <h4 className={styles.productDetails__title}>Обрати інгрідієнти:</h4>
 
         {isLoading && (
@@ -47,10 +51,10 @@ const AddIngridients: FC<ComponentProps> = ({ ingridients }) => {
           />
         )}
 
-        {isSuccess && data && data.ingridients && (
+        {isSuccess && !isLoading && data && data.ingridients && (
           <ul className={styles.productDetails__categoriesList}>
             {data.ingridients.map((item) => (
-              <CategoryItem item={item} ingridients={ingridients} key={item._id} />
+              <Category item={item} ingridients={ingridients} key={item._id} setDetails={setDetails} />
             ))}
           </ul>
         )}

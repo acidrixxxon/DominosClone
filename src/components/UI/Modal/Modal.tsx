@@ -15,9 +15,11 @@ interface ComponentProps {
     content?: {};
   };
   className?: string;
+  id?: string;
+  ref?: React.RefObject<HTMLDivElement>;
 }
 
-const Modal: FC<ComponentProps> = ({ children, renderCondition, onClose, options, className }) => {
+const Modal: FC<ComponentProps> = ({ ref, id, children, renderCondition, onClose, options, className }) => {
   const defaultOptions = {
     overlay: options?.overlay
       ? options.overlay
@@ -52,6 +54,7 @@ const Modal: FC<ComponentProps> = ({ children, renderCondition, onClose, options
       {renderCondition && (
         <ReactPortal wrapperId='root'>
           <motion.div
+            id={id}
             className={classNames('modal__overlay', className)}
             onClick={onClose}
             variants={defaultOptions.overlay}
@@ -59,6 +62,7 @@ const Modal: FC<ComponentProps> = ({ children, renderCondition, onClose, options
             animate='animate'
             exit='exit'>
             <motion.div
+              ref={ref}
               variants={defaultOptions.content}
               initial='initial'
               animate='animate'
