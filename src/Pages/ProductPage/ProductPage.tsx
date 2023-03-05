@@ -10,7 +10,7 @@ import styles from './ProductPage.module.scss';
 const ProductPage: FC = () => {
   const { id } = useParams();
 
-  const { data, error, isLoading } = useGetProductByIdQuery(id);
+  const { data, isLoading } = useGetProductByIdQuery(id);
 
   return (
     <PageContainer className={styles.productPage}>

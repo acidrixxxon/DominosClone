@@ -1,0 +1,14 @@
+.productDetails__imageContainer {
+  .productDetails__image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    @media screen and (max-width: 750px) {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

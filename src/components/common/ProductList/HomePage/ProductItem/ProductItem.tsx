@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { FC, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartProductDto } from '../../../../../Utils/Dto';
@@ -11,9 +12,10 @@ import './ProductItem.scss';
 
 interface ComponentProps {
   item: IProduct;
+  index: number;
 }
 
-const ProductItem: FC<ComponentProps> = ({ item }) => {
+const ProductItem: FC<ComponentProps> = ({ item, index }) => {
   const [activeType, setActiveType] = React.useState<{ size: number; crust: number | -1 }>({
     size: 0,
     crust: item.class === 0 ? 0 : -1,
@@ -33,10 +35,13 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
   };
 
   return (
-    <li className='productList__category-item'>
+    <motion.li
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.15, delay: index * 0.3 } }}
+      className='productList__category-item'>
       <div className='item__image-container'>
         <Link to={`/product/${item._id}`} className='item__link'>
-          <img src={item.imageUrl} alt={item.title} o className='item__image-img' />
+          <img src={item.imageUrl} alt={item.title} className='item__image-img' />
 
           {item.aNewOne && <NewProductIcon />}
         </Link>
@@ -99,7 +104,7 @@ const ProductItem: FC<ComponentProps> = ({ item }) => {
           В кошик
         </button>
       </div>
-    </li>
+    </motion.li>
   );
 };
 

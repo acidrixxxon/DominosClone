@@ -27,8 +27,8 @@ const ProductList: FC = () => {
                   <h4 className='productList__category-title'>{item.title}</h4>
 
                   <ul className='productList__category-list'>
-                    {item.products.map((item) => (
-                      <ProductItem item={item} key={item._id} />
+                    {item.products.map((item, index) => (
+                      <ProductItem item={item} key={item._id} index={index} />
                     ))}
                   </ul>
                 </div>
@@ -37,7 +37,7 @@ const ProductList: FC = () => {
         </>
       ) : (
         <ul className='productList__category-list'>
-          {data && data.products && data.products.map((item) => <ProductItem item={item} key={item._id} />)}
+          {data && data.products && data.products.map((item, index) => <ProductItem index={index} item={item} key={item._id} />)}
         </ul>
       )}
     </div>

@@ -1,4 +1,4 @@
-@import './../../../../../assets/mixins.scss';
+@import './../../../../../../assets/mixins.scss';
 
 .productDetails__ingridientsItem {
   cursor: pointer;
@@ -43,6 +43,10 @@
   .productDetails__ingridientsItemTitle {
     font-size: 0.93em;
     color: #333;
+
+    sup {
+      font-size: 10px;
+    }
   }
 
   .productDetails__ingridientQty {

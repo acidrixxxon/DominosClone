@@ -12,7 +12,7 @@ const ProductList: FC = () => {
     <>
       <div className={styles.cartStatus__listContainer}>
         {items.map((item) => (
-          <ProductListItem item={item} key={item._id} />
+          <ProductListItem item={item} key={item.uniqueId} />
         ))}
       </div>
 

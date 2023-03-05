@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Oval } from 'react-loader-spinner';
 
@@ -54,7 +54,7 @@ const AddIngridients: FC<ComponentProps> = ({ ingridients, setDetails }) => {
         {isSuccess && !isLoading && data && data.ingridients && (
           <ul className={styles.productDetails__categoriesList}>
             {data.ingridients.map((item) => (
-              <Category item={item} ingridients={ingridients} key={item._id} setDetails={setDetails} />
+              <Category item={item} ingridients={ingridients} key={item._id} setDetails={setDetails} closeModal={closeModal} />
             ))}
           </ul>
         )}

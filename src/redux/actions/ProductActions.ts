@@ -88,7 +88,7 @@ const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDi
   const {
     cart: { items, totalCost, totalCount },
   } = getState();
-  const item = items.find((item) => item._id === id);
+  const item = items.find((item) => item.uniqueId === id);
 
   if (!item) return;
 
@@ -97,12 +97,13 @@ const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDi
       const cartObj = {
         totalCost: totalCost - item.price,
         totalCount: totalCount - 1,
-        items: items.filter((item) => item._id !== id),
+        items: items.filter((item) => item.uniqueId !== id),
       };
 
       dispatch(setCart(cartObj));
     } else if (item.qty > 1) {
-      const itemIndex = items.findIndex((item) => item._id === id);
+      const itemIndex = items.findIndex((item) => item.uniqueId === id);
+      console.log(itemIndex);
       let updatedArray = [...items];
       updatedArray[itemIndex] = { ...item, qty: item.qty - 1 };
 
@@ -115,7 +116,7 @@ const changeQtyInCart = (type: CHANGE_QTY, id: string) => async (dispatch: AppDi
       dispatch(setCart(cartObj));
     }
   } else if (type === PLUS) {
-    const itemIndex = items.findIndex((item) => item._id === id);
+    const itemIndex = items.findIndex((item) => item.uniqueId === id);
     let updatedArray = [...items];
     updatedArray[itemIndex] = { ...item, qty: item.qty + 1 };
 

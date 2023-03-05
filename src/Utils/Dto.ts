@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 import { IProduct, IProductInCart } from '../types/ProductTypes';
 
 export const CartProductDto = (item: IProduct, activeType: { size: number; crust: number | -1 }): IProductInCart => {
@@ -7,6 +9,7 @@ export const CartProductDto = (item: IProduct, activeType: { size: number; crust
     image: item.imageUrl,
     category: item.category,
     title: item.title,
+    uniqueId: v4(),
     fulltitle:
       item.class === 0
         ? item.variants[activeType.size].variants[activeType.crust].fulltitle

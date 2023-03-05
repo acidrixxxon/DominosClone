@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import { cloneDeep } from 'lodash';
 import { FC, useEffect, useState } from 'react';
 
 import { CartProductDto } from '../../Utils/Dto';
@@ -6,7 +6,8 @@ import { useActionCreators } from '../../redux/store';
 import { IProduct, IProductDetails } from '../../types/ProductTypes';
 import cartActions from './../../redux/actions/ProductActions';
 import styles from './ProductDetails.module.scss';
-import IngridientsList from './components/IngridientsList/IngridientsList';
+import Image from './components/Image/Image';
+import Ingridients from './components/IngridientsList/Ingridients';
 import ProductOptions from './components/ProductOptions/ProductOptions';
 
 interface ComponentProps {
@@ -29,7 +30,7 @@ const ProductDetails: FC<ComponentProps> = ({ product }) => {
   });
 
   useEffect(() => {
-    const defaultObj = lodash.cloneDeep(product);
+    const defaultObj = cloneDeep(product);
     setProductDetails({
       ...product,
       defaultObj: product,
@@ -60,16 +61,14 @@ const ProductDetails: FC<ComponentProps> = ({ product }) => {
   return (
     <div className={styles.productDetails}>
       <div className={styles.container}>
-        <div className={styles.productDetails__imageContainer}>
-          <img src={productDetails?.imageUrl} alt={productDetails?.title} className={styles.productDetails__image} />
-        </div>
+        <Image imageUrl={productDetails?.imageUrl} alt={productDetails?.title} />
 
         <div className={styles.productDetails__content}>
           <div className={styles.productDetails__titleContainer}>
             <h4 className={styles.productDetails__title}>{productDetails?.title}</h4>
           </div>
 
-          {renderIngridientsList && <IngridientsList ingridients={productDetails.ingridients} setDetails={setProductDetails} />}
+          {renderIngridientsList && <Ingridients ingridients={productDetails.ingridients} setDetails={setProductDetails} />}
 
           {productDetails && (
             <ProductOptions

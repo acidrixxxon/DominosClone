@@ -9,3 +9,4 @@ export const ADD_MOCARELLA = 'add_mocarella';
 export const REMOVE_MOCARELLA = 'remove_mocarella';
 
 export const MOCARELLA_ID = '63714ca4858cf7c6b09716fc';
+export const SOUCE_CATEGORY_ID = '636f4d444ea5314e1da77912';

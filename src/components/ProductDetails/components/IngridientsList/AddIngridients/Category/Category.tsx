@@ -12,9 +12,10 @@ interface ComponentProps {
   item: IPizzaIngridientsCategory;
   ingridients: IPizzaIngridientsFull[] | undefined | [];
   setDetails: React.Dispatch<React.SetStateAction<any>>;
+  closeModal: () => void;
 }
 
-const Category: FC<ComponentProps> = ({ item, ingridients, setDetails }) => {
+const Category: FC<ComponentProps> = ({ item, ingridients, setDetails, closeModal }) => {
   const [visibleIngridients, setVisibleIngridients] = useState<boolean>(false);
 
   const divRef = useRef<HTMLLIElement>(null);
@@ -27,7 +28,11 @@ const Category: FC<ComponentProps> = ({ item, ingridients, setDetails }) => {
       if (divRef.current?.contains(e.target as Node)) {
         return;
       } else {
-        setVisibleIngridients(false);
+        if (modalContent?.childNodes[0].contains(e.target as Node)) {
+          setVisibleIngridients(false);
+        } else {
+          closeModal();
+        }
       }
     };
 
@@ -73,7 +78,7 @@ const Category: FC<ComponentProps> = ({ item, ingridients, setDetails }) => {
 
                 return (
                   <CategoryItem
-                    ref={listItemRef}
+                    refObj={listItemRef}
                     item={ingrid}
                     alreadyInPizza={alreadyInPizza}
                     setDetails={setDetails}

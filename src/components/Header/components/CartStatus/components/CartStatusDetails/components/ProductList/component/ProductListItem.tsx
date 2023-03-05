@@ -54,7 +54,7 @@ const ProductListItem: FC<ComponentProps> = ({ item }) => {
         <div className={styles.cartStatus__qtyBlock}>
           <span
             className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyMinus)}
-            onClick={() => changeQtyInCart(MINUS, item._id)}>
+            onClick={() => changeQtyInCart(MINUS, item.uniqueId)}>
             <MinusIcon />
           </span>
 
@@ -62,7 +62,7 @@ const ProductListItem: FC<ComponentProps> = ({ item }) => {
 
           <span
             className={classNames(styles.cartStatus__qty, styles.cartStatus__qtyPlus)}
-            onClick={() => changeQtyInCart(PLUS, item._id)}>
+            onClick={() => changeQtyInCart(PLUS, item.uniqueId)}>
             <PlusIcon />
           </span>
         </div>

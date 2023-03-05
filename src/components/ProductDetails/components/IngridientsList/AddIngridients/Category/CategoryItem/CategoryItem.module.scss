@@ -86,6 +86,13 @@
       height: 27px;
 
       border: 0.25px solid #333;
+
+      transition: 0.2s all ease-in-out;
+
+      &.productDetails__iconDisabled {
+        opacity: 0.5;
+        cursor: default;
+      }
     }
 
     .productDetails__qtyCount {
