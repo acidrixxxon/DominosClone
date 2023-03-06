@@ -1,0 +1,24 @@
+.cart {
+  padding: 20px 0;
+  min-height: calc(100vh - 110px);
+
+  @media screen and (max-width: 600px) {
+    min-height: calc(100vh - 75px);
+  }
+
+  .cart__container {
+    display: grid;
+    grid-template-columns: minmax(300px, 762px) minmax(300px, 538px);
+    gap: 20px;
+
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @media screen and (max-width: 900px) {
+      grid-template-columns: minmax(300px, 1fr);
+      grid-template-areas:
+        'checkout-order'
+        'checkout-form';
+    }
+  }
+}

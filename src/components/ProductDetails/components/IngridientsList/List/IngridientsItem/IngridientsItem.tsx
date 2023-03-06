@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC } from 'react';
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -187,7 +188,9 @@ const IngridientsItem: FC<ComponentProps> = ({ ingridient, setDetails }) => {
         <span className={styles.productDetails__qty}>{ingridient.qty}</span>
 
         <span
-          className={styles.productDetails__ingridientQtyIcon}
+          className={classNames(styles.productDetails__ingridientQtyIcon, {
+            [styles.productDetails__ingridientQtyDisabled]: ingridient.qty === 2,
+          })}
           onClick={() => changeIngridientQty(PLUS, ingridient.ingridientId._id)}>
           <AiOutlinePlus />
         </span>

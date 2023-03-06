@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import classNames from 'classnames';
+import { FC, PropsWithChildren } from 'react';
 
 import './Container.scss';
 
 interface ComponentProps {
-  children: React.ReactNode;
+  className?: any;
 }
 
-const Container: FC<ComponentProps> = ({ children }) => {
-  return <div className='container'>{children}</div>;
+const Container: FC<PropsWithChildren<ComponentProps>> = ({ children, className }) => {
+  return <div className={classNames('container', { [className]: className })}>{children}</div>;
 };
 
 export default Container;

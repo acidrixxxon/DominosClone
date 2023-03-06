@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
+import CartPage from './Pages/CartPage/CartPage';
 import HomePage from './Pages/HomePage/HomePage';
 import ProductPage from './Pages/ProductPage/ProductPage';
 import LocalStorageService from './Services/LocalStorageService';
@@ -41,6 +42,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path='/' element={<HomePage />} />
           <Route path='/product/:id' element={<ProductPage />} />
+          <Route path='/cart' element={<CartPage />} />
         </Routes>
       </AnimatePresence>
     </div>

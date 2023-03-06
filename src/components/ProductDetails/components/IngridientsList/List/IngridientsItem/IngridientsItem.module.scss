@@ -75,6 +75,13 @@
       align-items: center;
       justify-content: center;
 
+      transition: .2s all linear;
+
+      &.productDetails__ingridientQtyDisabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
       svg {
         width: 14px;
         height: 14px;

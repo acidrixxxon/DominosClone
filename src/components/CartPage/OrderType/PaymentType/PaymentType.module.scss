@@ -1,0 +1,51 @@
+.paymentType {
+  position: relative;
+  margin-bottom: 30px;
+
+  .paymentType__dropdownButton {
+    border: 1px solid rgba(79, 79, 79, 0.5);
+    cursor: pointer;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 15px;
+    color: #4f4f4f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 220px;
+
+    background-color: transparent;
+
+    &:hover,
+    &.paymentType__dropdownButtonActive {
+      border: 1px solid #4f4f4f;
+    }
+  }
+
+  .paymentType__dropdownList {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 2px);
+    left: 0;
+    background-color: #fff;
+    width: 220px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+
+    .paymentType__dropdownListItem {
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+
+      font-size: 14px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

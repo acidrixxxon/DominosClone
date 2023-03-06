@@ -39,19 +39,19 @@ export interface IPizza {
     {
       _id: string;
       title: string;
-      variants: [
-        {
-          _id: string;
-          id?: string;
-          fulltitle: string;
-          inSell: true;
-          price: number;
-          title: string;
-        },
-      ];
+      variants: IPizzaCrust[];
       size?: string;
     },
   ];
+}
+
+export interface IPizzaCrust {
+  _id: string;
+  id?: string;
+  fulltitle: string;
+  inSell: true;
+  price: number;
+  title: string;
 }
 
 export interface ISide {

@@ -1,0 +1,5 @@
+.orderItems {
+  @media screen and (max-width: 900px) {
+    grid-area: checkout-order;
+  }
+}

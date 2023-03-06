@@ -1,6 +1,8 @@
 import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useState } from 'react';
 
+import { IPizzaCrust } from '../../../../types/ProductTypes';
 import styles from './ProductOptions.module.scss';
 import ProductOptionsItem from './ProductOptionsItem/ProductOptionsItem';
 
@@ -17,7 +19,10 @@ const ProductOptions: FC<ComponentProps> = ({ data }) => {
   const renderCrustOptions = data.class === 0 && data.variants.length > 0;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.15 } }}
+      exit={{ opacity: 0 }}
       className={classNames(styles.productDetails__options, {
         [styles.productDetails__optionsSingle]: !renderCrustOptions,
       })}>
@@ -42,7 +47,7 @@ const ProductOptions: FC<ComponentProps> = ({ data }) => {
           <span className={styles.productDetails__listTitle}>Тісто:</span>
 
           <ul className={styles.productDetails__optionsList}>
-            {data.variants[data.activeTypes.size].variants.map((item, index: number) => (
+            {data.variants[data.activeTypes.size].variants.map((item: IPizzaCrust, index: number) => (
               <ProductOptionsItem
                 item={item}
                 activeTypes={data.activeTypes}
@@ -54,7 +59,7 @@ const ProductOptions: FC<ComponentProps> = ({ data }) => {
           </ul>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

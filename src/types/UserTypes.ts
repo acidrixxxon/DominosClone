@@ -21,3 +21,40 @@ export interface IUserState {
   };
   error: string | null;
 }
+
+export interface IClientData {
+  email: string;
+  phone: string;
+  name: string;
+}
+
+export type IAddressData =
+  | {
+      street: string;
+      house: string;
+      room: string;
+      floor: string;
+      comments: string;
+    }
+  | {
+      restaurant: {
+        id: number;
+        title: string;
+      } | null;
+      street?: string;
+      house?: string;
+      room?: string;
+      floor?: string;
+      comments?: string;
+    };
+
+export interface ICustomerData {
+  client: IClientData;
+  details: IAddressData;
+  paymentType: IPaymentType | null;
+}
+
+export interface IPaymentType {
+  id: number;
+  title: string;
+}

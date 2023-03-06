@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 import { FC } from 'react';
 
 import styles from './ProductOptionsItem.module.scss';
@@ -20,7 +21,12 @@ const ProductOptionsItem: FC<ComponentProps> = ({ item, activeTypes, active, set
   if (item.inSell !== undefined && !item.inSell) return null;
 
   return (
-    <li
+    <motion.li
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      whileHover={{ scale: 1.035 }}
+      whileTap={{ scale: 0.95 }}
       className={classNames(styles.productDetails__optionsItem, { [styles.productDetails__optionsItemActive]: active })}
       onClick={setActiveTypes}>
       <div className={styles.productDetails__titleContainer}>
@@ -31,7 +37,7 @@ const ProductOptionsItem: FC<ComponentProps> = ({ item, activeTypes, active, set
       <div className={styles.productDetails__priceContainer}>
         від <span>{price}.00</span> грн
       </div>
-    </li>
+    </motion.li>
   );
 };
 

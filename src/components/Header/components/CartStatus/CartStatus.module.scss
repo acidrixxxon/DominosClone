@@ -66,6 +66,7 @@
   position: relative;
 
   @media screen and (max-width: 600px) {
+    display: none;
     position: fixed;
 
     left: 30px;
@@ -105,6 +106,113 @@
       min-width: 100px;
 
       margin: 0 10px;
+
+      @media screen and (max-width: 1050px) {
+        min-width: 80px;
+      }
+
+      @media screen and (max-width: 600px) {
+        min-width: 100px;
+      }
+    }
+
+    .cartStatus__order {
+      background-color: #bf142e;
+      color: #fff;
+
+      font-size: 16px;
+
+      height: 46px;
+      width: 145px;
+
+      border-radius: 25px;
+
+      @include dflex(center, center);
+
+      cursor: pointer;
+
+      .cartStatus__arrow {
+        .cartStatus__arrowIcon {
+          fill: #333;
+
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.cartStatus__mobile {
+  background-color: #fff;
+
+  border-radius: 25px;
+
+  height: 50px;
+
+  padding: 2px;
+
+  display: none;
+
+  cursor: pointer;
+
+  transition: 0.2s all linear;
+
+  z-index: 999999;
+  position: relative;
+
+  &.cartStatus__mobileHidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    @include dflex(center, center);
+
+    position: fixed;
+
+    left: 30px;
+    bottom: 100px;
+
+    z-index: 99;
+
+    box-shadow: 0 0 15px #000;
+  }
+
+  .cartStatus__container {
+    @include dflex(space-between, center);
+
+    .cartStatus__count {
+      display: flex;
+      flex-direction: column;
+
+      background-color: #4f4f4f;
+      color: #fff;
+
+      height: 46px;
+      width: 46px;
+
+      @include dflex(center, center);
+
+      border-radius: 50%;
+      border: 1px solid transparent;
+
+      @media screen and (max-width: 600px) {
+        background-color: #e31837;
+      }
+    }
+
+    .cartStatus__price {
+      text-align: center;
+
+      min-width: 100px;
+
+      margin: 0 10px;
+
+      color: var(--black-color);
 
       @media screen and (max-width: 1050px) {
         min-width: 80px;
