@@ -1,14 +1,8 @@
 .deliveryForm {
   margin-bottom: 30px;
 
-  .deliveryForm__heading {
-    font-weight: 600;
-    font-family: Open Sans, sans-serif;
-    margin-bottom: 15px;
-
-    @media screen and (max-width: 600px) {
-      margin-bottom: 20px;
-    }
+  @media screen and (max-width: 600px) {
+    margin-bottom: 20px;
   }
 
   .deliveryForm__inputGroup {
@@ -28,12 +22,18 @@
 
     @media screen and (max-width: 600px) {
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 5px;
+
+      margin-bottom: 5px;
     }
 
     &.deliveryForm__inputGroupTextarea {
       display: grid;
       grid-template-columns: repeat(1, 0.66fr);
+
+      @media screen and (max-width: 600px) {
+        grid-template-columns: repeat(1, 1fr) !important;
+      }
 
       .deliveryForm__inputContainer {
         .deliveryForm__inputTextarea {
@@ -43,7 +43,6 @@
           font-size: 16px;
           color: #4f4f4f;
           outline: none;
-          height: 30px;
           border-radius: 15px;
 
           &:hover {

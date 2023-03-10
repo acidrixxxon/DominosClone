@@ -39,7 +39,7 @@ const DeliveryDetailsForm: React.FC<ComponentProps> = ({ data, setData, err: { s
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: 'auto', transition: { duration: 0.1, opacity: { delay: 0.15 } } }}
       exit={{ opacity: 0 }}>
-      <h4 className={styles.deliveryForm__heading}>Адреса</h4>
+      <h4 className={classNames(styles.deliveryForm__heading, 'heading')}>Адреса</h4>
 
       <div className={classNames(styles.deliveryForm__inputGroup, styles.deliveryForm__inputGroupSingle)}>
         <div className={styles.deliveryForm__inputContainer}>

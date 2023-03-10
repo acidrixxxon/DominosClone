@@ -80,7 +80,7 @@ export const orderFormValidate = (
   if (orderType === 0) {
     for (const prop in data.details) {
       if (prop === 'street' || prop === 'house') {
-        if (data.details[prop].trim() === '') {
+        if (data.details[prop]?.trim() === '') {
           totalErrors[prop]?.push(`Заповніть поля адреси`);
           result = false;
         }

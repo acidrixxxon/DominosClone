@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { useOutsideClick2 } from '../../../hooks/useOutsideClick2';
 import { IRestaurant } from '../../../types/CommontTypes';
-import { ICustomerData } from '../../../types/UserTypes';
+import { IAddressData1, ICustomerData } from '../../../types/UserTypes';
 import ArrowIcon from '../../UI/Icons/ArrowIcon';
 import styles from './DineInDetailsForm.module.scss';
 
@@ -17,9 +17,7 @@ const restaurantList: IRestaurant[] = [
 ];
 
 interface ComponentProps {
-  data: {
-    restaurant: IRestaurant | null;
-  };
+  data: IAddressData1;
   setData: React.SetStateAction<any>;
 }
 
@@ -45,7 +43,7 @@ const DineInDetailsForm: React.FC<ComponentProps> = ({ data, setData }) => {
 
       <div className={styles.dineInForm__dropdown} ref={ref}>
         <button className={styles.dineInForm__dropdownButton} onClick={() => setState((state) => !state)}>
-          {data.restaurant !== null ? data.restaurant.title : 'Оберіть ресторан'} <ArrowIcon status={state} />
+          {data.restaurant !== null ? data.restaurant?.title : 'Оберіть ресторан'} <ArrowIcon status={state} />
         </button>
 
         <AnimatePresence>

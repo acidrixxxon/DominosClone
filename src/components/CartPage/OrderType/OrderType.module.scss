@@ -37,6 +37,10 @@
         .orderType__price {
           margin-bottom: 30px;
 
+          @media screen and (max-width: 600px) {
+            margin-bottom: 20px;
+          }
+
           .paymentType__priceNumber {
             font-size: 28px;
             font-weight: 700;

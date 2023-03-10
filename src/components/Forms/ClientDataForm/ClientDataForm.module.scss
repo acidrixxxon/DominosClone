@@ -1,6 +1,10 @@
 .clientDataForm {
   margin-bottom: 30px;
 
+  @media screen and (max-width: 600px) {
+    margin-bottom: 20px;
+  }
+
   .clientDataForm__inputGroup {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -16,7 +20,7 @@
 
     @media screen and (max-width: 600px) {
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 5px;
     }
 
     .clientDataForm__inputContainer {
