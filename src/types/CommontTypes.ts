@@ -8,3 +8,8 @@ export interface RegisterFormFieldInterface {
   password: string;
   repeatPassword: string;
 }
+
+export interface IRestaurant {
+  id: number;
+  title: string;
+}

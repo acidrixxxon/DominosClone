@@ -23,8 +23,10 @@ export const initialDineinInfo = {
   restaurant: null,
 };
 
-export const initialClientInfo = {
-  name: '',
-  phone: '',
-  email: '',
-};
+export const initialClientInfo = localStorage.getItem('customer')
+  ? localStorage.getItem('customer')
+  : {
+      name: '',
+      phone: '',
+      email: '',
+    };

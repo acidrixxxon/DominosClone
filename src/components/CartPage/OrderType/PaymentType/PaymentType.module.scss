@@ -1,50 +1,90 @@
 .paymentType {
-  position: relative;
   margin-bottom: 30px;
 
-  .paymentType__dropdownButton {
-    border: 1px solid rgba(79, 79, 79, 0.5);
-    cursor: pointer;
-    padding: 0 10px;
-    height: 30px;
-    border-radius: 15px;
-    color: #4f4f4f;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .paymentType__heading {
     position: relative;
-    width: 220px;
 
-    background-color: transparent;
+    .paymentType__error {
+      position: relative;
+      top: -6px;
+      left: -2px;
 
-    &:hover,
-    &.paymentType__dropdownButtonActive {
-      border: 1px solid #4f4f4f;
+      font-size: 11px;
+      font-weight: 400;
     }
   }
 
-  .paymentType__dropdownList {
-    position: absolute;
-    z-index: 10;
-    top: calc(100% + 2px);
-    left: 0;
-    background-color: #fff;
-    width: 220px;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
+  .paymentType__dropdown {
+    position: relative;
 
-    .paymentType__dropdownListItem {
-      padding: 10px;
-      border-bottom: 1px solid #e0e0e0;
+    .paymentType__dropdownButton {
+      border: 1px solid rgba(0, 0, 0, 0.5);
 
-      font-size: 14px;
+      cursor: pointer;
 
-      &:last-child {
-        border-bottom: none;
+      padding: 0 10px;
+
+      height: 30px;
+
+      border-radius: 15px;
+
+      color: #333;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: relative;
+      width: 220px;
+
+      background-color: transparent;
+
+      opacity: 0.7;
+
+      &.paymentType__dropdownButtonError {
+        border: none !important;
+        border-radius: 0%;
+        border-bottom: 1px solid rgba(79, 79, 79, 1) !important;
+        animation: errorBluring 1s ease-in-out 1;
+
+        &:hover {
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px solid #4f4f4f;
+        }
       }
 
-      &:hover {
-        cursor: pointer;
+      &:hover,
+      &.paymentType__dropdownButtonActive,
+      &.paymentType__dropdownButtonFilled {
+        border: 1px solid rgba(0, 0, 0, 1);
+        opacity: 1;
+      }
+    }
+
+    .paymentType__dropdownList {
+      position: absolute;
+      z-index: 10;
+      top: calc(100% + 2px);
+      left: 0;
+      background-color: #fff;
+      width: 220px;
+      border: 1px solid #e0e0e0;
+      border-radius: 15px;
+
+      .paymentType__dropdownListItem {
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+
+        font-size: 14px;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

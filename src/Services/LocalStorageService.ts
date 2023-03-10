@@ -1,4 +1,5 @@
 import { ICartState } from '../types/CartTypes';
+import { IClientData } from '../types/UserTypes';
 
 class LocalStorageService {
   saveAccessToken(token: string): void {
@@ -19,6 +20,10 @@ class LocalStorageService {
 
   getCart(): string | null {
     return localStorage.getItem('cart');
+  }
+
+  saveCustomerData(data: IClientData): void {
+    localStorage.setItem('customer', JSON.stringify(data));
   }
 }
 

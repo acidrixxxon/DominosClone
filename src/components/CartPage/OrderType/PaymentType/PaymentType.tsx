@@ -2,18 +2,36 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 
+import { totalErrors } from '../../../../Utils/formValidators';
 import { useOutsideClick2 } from '../../../../hooks/useOutsideClick2';
 import { ICustomerData, IPaymentType } from '../../../../types/UserTypes';
 import ArrowIcon from '../../../UI/Icons/ArrowIcon';
+import OrderType from '../OrderType';
 import styles from './PaymentType.module.scss';
 
-const paymentVariants: IPaymentType[] = [
-  { id: 4123, title: 'Готівкою' },
-  { id: 11231, title: 'Карткою курьєру' },
-  { id: 12312, title: 'Онлайн' },
-];
+interface ComponentProps {
+  setData: React.SetStateAction<any>;
+  data: IPaymentType | null;
+  orderType: number;
+  err: {
+    errors: totalErrors | null;
+    setErrors: React.SetStateAction<any>;
+  };
+  state1: ICustomerData;
+}
 
-const PaymentType: React.FC<{ setData: React.SetStateAction<any>; data: IPaymentType }> = ({ data, setData }) => {
+const PaymentType: React.FC<ComponentProps> = ({ data, setData, orderType, err: { errors, setErrors }, state1 }) => {
+  const paymentVariants =
+    orderType === 0
+      ? [
+          { id: 4123, title: 'Готівкою' },
+          { id: 11231, title: 'Карткою курьєру' },
+          { id: 12312, title: 'Онлайн' },
+        ]
+      : [
+          { id: 41121, title: 'У ресторані' },
+          { id: 12312, title: 'Онлайн' },
+        ];
   const [state, setState, ref] = useOutsideClick2();
 
   const changeHandler = (paymentType: IPaymentType): void => {
@@ -21,16 +39,43 @@ const PaymentType: React.FC<{ setData: React.SetStateAction<any>; data: IPayment
       ...state,
       paymentType,
     }));
-
+    if (errors && errors.paymentType) {
+      setErrors((state: totalErrors) => ({
+        ...state,
+        paymentType: [],
+      }));
+    }
     setState(false);
   };
+
+  if (orderType === 1 && !state1.details.restaurant) return null;
+  if (
+    (orderType === 0 && state1.client.email === '') ||
+    state1.client.phone === '' ||
+    state1.client.name === '' ||
+    state1.details.house === '' ||
+    state1.details.street === ''
+  )
+    return null;
   return (
-    <div className={styles.paymentType}>
-      <h4 className={classNames(styles.paymentType__heading, 'heading')}>Оплата</h4>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.paymentType}>
+      <h4 className={classNames(styles.paymentType__heading, 'heading')}>
+        Оплата{' '}
+        {errors && errors.paymentType.length > 0 && (
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.paymentType__error}>
+            ({errors.paymentType[0]})
+          </motion.span>
+        )}
+      </h4>
 
       <div className={styles.paymentType__dropdown} ref={ref}>
         <button
-          className={classNames(styles.paymentType__dropdownButton, { [styles.paymentType__dropdownButtonActive]: state })}
+          className={classNames(
+            styles.paymentType__dropdownButton,
+            { [styles.paymentType__dropdownButtonActive]: state },
+            { [styles.paymentType__dropdownButtonError]: errors && errors.paymentType.length > 0 },
+            { [styles.paymentType__dropdownButtonFilled]: data },
+          )}
           onClick={() => setState((state) => !state)}>
           {data !== null ? data.title : 'Тип оплати'}
           <ArrowIcon status={state} />
@@ -52,7 +97,7 @@ const PaymentType: React.FC<{ setData: React.SetStateAction<any>; data: IPayment
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

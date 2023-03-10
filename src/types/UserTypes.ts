@@ -35,6 +35,29 @@ export type IAddressData =
       room: string;
       floor: string;
       comments: string;
+      restaurant?: {
+        id: number;
+        title: string;
+      } | null;
+    }
+  | {
+      restaurant: {
+        id: number;
+        title: string;
+      } | null;
+    };
+
+export type IAddressData1 =
+  | {
+      street: string;
+      house: string;
+      room: string;
+      floor: string;
+      comments: string;
+      restaurant?: {
+        id: number;
+        title: string;
+      } | null;
     }
   | {
       restaurant: {
@@ -50,8 +73,8 @@ export type IAddressData =
 
 export interface ICustomerData {
   client: IClientData;
-  details: IAddressData;
-  paymentType: IPaymentType | null;
+  details: IAddressData1;
+  paymentType: null | IPaymentType;
 }
 
 export interface IPaymentType {

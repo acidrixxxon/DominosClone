@@ -60,6 +60,13 @@
         height: 50px;
         width: 214px;
         cursor: pointer;
+
+        &.orderType__submitBtnDisabled {
+          background: transparent;
+          border: 1px solid lightgray;
+          color: var(--gray-color);
+          cursor: default;
+        }
       }
     }
 
