@@ -1,4 +1,5 @@
 import React, { FC, memo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Container from '../UI/Container/Container';
 import Logotype from '../UI/Logotype/Logotype';
@@ -15,28 +16,30 @@ interface ComponentProps {
 }
 
 const Header: FC<ComponentProps> = ({ refLink, appRef }) => {
-  useEffect(() => {
-    if (refLink && appRef) {
-      const onScrollHandler = (e: any) => {
-        const scrollOffset = window.scrollY;
+  const { pathname } = useLocation();
 
-        if (refLink?.current && appRef?.current) {
-          if (scrollOffset > refLink.current.offsetHeight) {
-            refLink.current.classList.add('header__sticky');
-            appRef.current.style.marginTop = `${refLink.current.offsetHeight + 100}px`;
-          } else {
-            refLink.current.classList.remove('header__sticky');
-            appRef.current.style.marginTop = `0px`;
-          }
-        }
-      };
-      window.addEventListener('scroll', onScrollHandler);
+  // useEffect(() => {
+  //   if (refLink && appRef && pathname !== 'cart') {
+  //     const onScrollHandler = (e: any) => {
+  //       const scrollOffset = window.scrollY;
 
-      return () => {
-        window.removeEventListener('scroll', onScrollHandler);
-      };
-    }
-  }, []);
+  //       if (refLink?.current && appRef?.current) {
+  //         if (scrollOffset > refLink.current.offsetHeight) {
+  //           refLink.current.classList.add('header__sticky');
+  //           appRef.current.style.marginTop = `${refLink.current.offsetHeight + 80}px`;
+  //         } else {
+  //           refLink.current.classList.remove('header__sticky');
+  //           appRef.current.style.marginTop = `0px`;
+  //         }
+  //       }
+  //     };
+  //     window.addEventListener('scroll', onScrollHandler);
+
+  //     return () => {
+  //       window.removeEventListener('scroll', onScrollHandler);
+  //     };
+  //   }
+  // }, [pathname]);
 
   return (
     <div id='header' ref={refLink}>

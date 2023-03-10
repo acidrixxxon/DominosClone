@@ -1,12 +1,22 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { ICartState } from '../../types/CartTypes';
+import { IProductInCart } from '../../types/ProductTypes';
 
 const setInitialState = () => {
   const LS = localStorage.getItem('cart');
 
   if (LS !== null) {
-    return JSON.parse(LS);
+    const parsedCart = JSON.parse(LS);
+    if (parsedCart.items.length === 0) {
+      return {
+        items: [],
+        totalCount: 0,
+        totalCost: 0,
+      };
+    }
+
+    return parsedCart;
   } else {
     return {
       items: [],
@@ -16,7 +26,6 @@ const setInitialState = () => {
   }
 };
 
-setInitialState();
 const initialState: ICartState = setInitialState();
 
 export const cartSlise = createSlice({
@@ -33,9 +42,19 @@ export const cartSlise = createSlice({
       state.totalCount = action.payload.totalCount;
       state.totalCost = action.payload.totalCost;
     },
+    removeFromCart: (state, action: PayloadAction<IProductInCart>) => {
+      state.items = state.items.filter((item) => item.uniqueId !== action.payload.uniqueId);
+      state.totalCount = state.totalCount - action.payload.qty;
+      state.totalCost = state.totalCost - action.payload.qty * action.payload.price;
+    },
+    clearCart: (state: ICartState) => {
+      state.items = [];
+      state.totalCost = 0;
+      state.totalCount = 0;
+    },
   },
 });
 
-export const { addToCart, setCart } = cartSlise.actions;
+export const { addToCart, setCart, removeFromCart, clearCart } = cartSlise.actions;
 
 export default cartSlise.reducer;

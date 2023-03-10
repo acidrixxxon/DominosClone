@@ -2,7 +2,7 @@ import lodash from 'lodash';
 
 import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../Utils/constants';
 import { IProductInCart } from '../../types/ProductTypes';
-import { addToCart, setCart } from '../slices/cartSlice';
+import { addToCart, clearCart, removeFromCart, setCart } from '../slices/cartSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
 
 const addToCartAction = (item: IProductInCart) => async (dispatch: AppDispatch, getState: GetState) => {
@@ -182,8 +182,25 @@ const toggleMocarella = (type: MOCARELLA_TYPES, id: string) => async (dispatch: 
   }
 };
 
+const removeItemFromCart = (item: IProductInCart) => async (dispatch: AppDispatch, getState: GetState) => {
+  const {
+    cart: { items, totalCost, totalCount },
+  } = getState();
+
+  const itemInCart = items.find((prod) => prod.uniqueId === item.uniqueId);
+  console.log(items);
+
+  if (itemInCart) dispatch(removeFromCart(item));
+};
+
+const clearCartAction = () => async (dispatch: AppDispatch, getState: GetState) => {
+  dispatch(clearCart());
+};
+
 export default {
   addToCartAction,
   changeQtyInCart,
   toggleMocarella,
+  removeItemFromCart,
+  clearCartAction,
 };

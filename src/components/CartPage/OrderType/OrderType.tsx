@@ -3,8 +3,10 @@ import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 
 import LocalStorageService from '../../../Services/LocalStorageService';
+import { NewOrderDto } from '../../../Utils/Dto';
 import { initialClientInfo, initialDeliveryInfo, initialDineinInfo } from '../../../Utils/constants';
 import { orderFormValidate, totalErrors } from '../../../Utils/formValidators';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ICustomerData } from '../../../types/UserTypes';
 import ClientDataForm from '../../Forms/ClientDataForm/ClientDataForm';
 import DeliveryDetailsForm from '../../Forms/DeliveryDetailsForm/DeliveryDetailsForm';
@@ -22,7 +24,7 @@ const OrderType: React.FC = () => {
     paymentType: null,
   });
 
-  console.log(customerData);
+  const { cart } = useAppSelector((state) => state);
 
   const setType = (id: number) => {
     setOrderType(id);
@@ -48,6 +50,8 @@ const OrderType: React.FC = () => {
 
     if (result) {
       setErrors(null);
+
+      console.log(NewOrderDto(orderType, customerData, cart));
       LocalStorageService.saveCustomerData(customerData.client);
     } else {
       setErrors(errors);
