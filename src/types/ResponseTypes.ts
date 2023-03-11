@@ -1,3 +1,4 @@
+import { IOrderFromServer } from './CommontTypes';
 import { IPizza, IPizzaIngridientsCategory, IProduct, IProductCategory } from './ProductTypes';
 import { IUser } from './UserTypes';
 
@@ -109,3 +110,16 @@ export interface IFetchIngridientsError {
 }
 
 export type IFetchIngridientsResponse = IFetchIngridientsSuccess | IFetchIngridientsError;
+
+export interface ICreateNewOrderSuccess {
+  message: string;
+  order: IOrderFromServer;
+  success: true;
+}
+
+export interface ICreateNewOrderError {
+  success: false;
+  message: string;
+}
+
+export type ICreateNewOrderResponse = ICreateNewOrderSuccess | ICreateNewOrderError;

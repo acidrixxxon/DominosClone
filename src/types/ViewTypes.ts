@@ -9,4 +9,7 @@ export interface IViewState {
     title: string;
   };
   category: number;
+  loaders: {
+    createOrderLoader: boolean;
+  };
 }

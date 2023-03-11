@@ -13,6 +13,9 @@ const initialState: IViewState = {
     title: 'популярністю',
   },
   category: 0,
+  loaders: {
+    createOrderLoader: false,
+  },
 };
 
 export const viewSlise = createSlice({
@@ -34,6 +37,9 @@ export const viewSlise = createSlice({
     },
     setSort: (state, action: PayloadAction<{ id: number; title: string }>) => {
       state.sort = action.payload;
+    },
+    setCreateOrderLoader: (state, action: PayloadAction<boolean>) => {
+      state.loaders.createOrder = action.payload;
     },
   },
 });

@@ -49,7 +49,7 @@ const ListItem: React.FC<{ item: IProductInCart; index: number }> = ({ item, ind
 
         <div className={styles.listItem__footer}>
           <div className={styles.listItem__price}>
-            <span>{item.price}.00</span> грн
+            <span>{item.price * item.qty}.00</span> грн
           </div>
 
           <div className={styles.listItem__qty}>

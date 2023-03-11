@@ -1,12 +1,17 @@
 import classNames from 'classnames';
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
+import { InfinitySpin, ThreeDots } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 import LocalStorageService from '../../../Services/LocalStorageService';
 import { NewOrderDto } from '../../../Utils/Dto';
 import { initialClientInfo, initialDeliveryInfo, initialDineinInfo } from '../../../Utils/constants';
 import { orderFormValidate, totalErrors } from '../../../Utils/formValidators';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import OrderActions from '../../../redux/actions/OrderActions';
+import { useActionCreators } from '../../../redux/store';
+import { ICreateNewOrderResponse, ICreateNewOrderSuccess } from '../../../types/ResponseTypes';
 import { ICustomerData } from '../../../types/UserTypes';
 import ClientDataForm from '../../Forms/ClientDataForm/ClientDataForm';
 import DeliveryDetailsForm from '../../Forms/DeliveryDetailsForm/DeliveryDetailsForm';
@@ -24,7 +29,15 @@ const OrderType: React.FC = () => {
     paymentType: null,
   });
 
-  const { cart } = useAppSelector((state) => state);
+  const navigate = useNavigate();
+
+  const {
+    cart,
+    view: {
+      loaders: { createOrderLoader },
+    },
+  } = useAppSelector((state) => state);
+  const { createNewOrder } = useActionCreators(OrderActions);
 
   const setType = (id: number) => {
     setOrderType(id);
@@ -41,9 +54,10 @@ const OrderType: React.FC = () => {
     customerData.client.name !== '' &&
     customerData.paymentType !== null &&
     customerData.details.street !== '' &&
-    customerData.details.house !== '';
+    customerData.details.house !== '' &&
+    cart.items.length > 0;
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     setErrors(null);
 
     const { errors, result } = orderFormValidate(customerData, orderType);
@@ -51,8 +65,13 @@ const OrderType: React.FC = () => {
     if (result) {
       setErrors(null);
 
-      console.log(NewOrderDto(orderType, customerData, cart));
-      LocalStorageService.saveCustomerData(customerData.client);
+      const orderDto = NewOrderDto(orderType, customerData, cart);
+
+      if (orderDto) {
+        LocalStorageService.saveCustomerData(customerData.client);
+        const data: ICreateNewOrderSuccess = await createNewOrder(orderDto);
+        if (data) navigate(`/order/${data.order._id}`);
+      }
     } else {
       setErrors(errors);
     }
@@ -97,7 +116,23 @@ const OrderType: React.FC = () => {
             disabled={!buttonStatus}
             className={classNames(styles.orderType__submitBtn, { [styles.orderType__submitBtnDisabled]: !buttonStatus })}
             onClick={submitHandler}>
-            Замовити
+            {createOrderLoader ? (
+              <span className={styles.orderType__loader}>
+                {' '}
+                Створюємо{' '}
+                <ThreeDots
+                  height='50'
+                  width='50'
+                  radius='5'
+                  color='var(--gray-color)'
+                  ariaLabel='three-dots-loading'
+                  wrapperStyle={{ marginLeft: '10px' }}
+                  visible={true}
+                />
+              </span>
+            ) : (
+              'Замовити'
+            )}
           </button>
         </div>
       </div>

@@ -37,7 +37,7 @@ const ProductItem: FC<ComponentProps> = ({ item, index }) => {
   return (
     <motion.li
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0, transition: { duration: 0.15, delay: index * 0.3 } }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: index * 0.15 } }}
       className='productList__category-item'>
       <div className='item__image-container'>
         <Link to={`/product/${item._id}`} className='item__link'>

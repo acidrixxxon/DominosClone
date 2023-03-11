@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import CartPage from './Pages/CartPage/CartPage';
 import HomePage from './Pages/HomePage/HomePage';
+import OrderPage from './Pages/OrderPage/OrderPage';
 import ProductPage from './Pages/ProductPage/ProductPage';
 import LocalStorageService from './Services/LocalStorageService';
 import './assets/base.scss';
@@ -43,6 +44,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/product/:id' element={<ProductPage />} />
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/order/:id' element={<OrderPage />} />
         </Routes>
       </AnimatePresence>
     </div>
