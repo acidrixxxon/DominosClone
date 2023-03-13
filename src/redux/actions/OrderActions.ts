@@ -7,6 +7,7 @@ import { viewActions } from '../slices/viewSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
 
 const createNewOrder = (order: IOrder) => async (dispatch: AppDispatch, getState: GetState) => {
+  console.log(order);
   if (!order) return;
 
   dispatch(viewActions.setCreateOrderLoader(true));
