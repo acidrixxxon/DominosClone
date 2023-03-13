@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetProductByIdQuery } from '../../Api/ProductApi';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
+import Container from '../../components/UI/Container/Container';
 import PageContainer from '../../components/UI/PageContainer/PageContainer';
 import styles from './ProductPage.module.scss';
 
@@ -14,7 +15,7 @@ const ProductPage: FC = () => {
 
   return (
     <PageContainer className={styles.productPage}>
-      <div className={styles.productPage__container}>
+      <Container className={styles.productPage__container}>
         {isLoading && (
           <div className={styles.productPage__loaderContainer}>
             <Oval
@@ -31,7 +32,7 @@ const ProductPage: FC = () => {
         )}
 
         {data && data.result && <ProductDetails product={data.result} />}
-      </div>
+      </Container>
     </PageContainer>
   );
 };

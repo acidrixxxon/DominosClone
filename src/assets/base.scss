@@ -1,12 +1,13 @@
 :root {
   --gray-color: #6a6a76;
+  --lightgray-color: #f8f4f8;
+
   --tablet-displayWidth: 768px;
   --mobile-displayWidth: 500px;
 
   --white-color: #fff;
   --black-color: #333;
   --red-color: red;
-  --gray-color: gray;
   --lightgray-color: lightgray;
 
   --transition-duration: 0.25s;
@@ -77,4 +78,16 @@ li {
   right: 10px;
   font-size: 11px;
   top: 7px;
+}
+
+.page-container {
+  padding: 40px 0;
+
+  min-height: calc(100vh - 105px);
+
+  background-color: var(--white-color);
+
+  @media screen and (max-width: 600px) {
+    padding: 20px 0;
+  }
 }

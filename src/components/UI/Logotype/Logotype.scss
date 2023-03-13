@@ -4,6 +4,11 @@
   @media screen and (max-width: 768px) {
     display: block;
   }
+
+  @media screen and (max-width: 478px) {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .desktop__logotype {

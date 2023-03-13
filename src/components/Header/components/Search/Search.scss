@@ -7,6 +7,10 @@
 
     margin: 0 40px;
   }
+
+  @media screen and (max-width: 478px) {
+    margin: 0 20px;
+  }
 }
 
 .header-search__input-container {
@@ -43,6 +47,10 @@
 
     @media screen and (max-width: 700px) {
       min-width: auto;
+    }
+
+    @media screen and (max-width: 478px) {
+      height: 28px;
     }
   }
 }

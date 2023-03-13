@@ -20,8 +20,10 @@ const ListItem: React.FC<{ item: IProductInCart }> = ({ item }) => {
         {item.class === 0 && item.ingridients && item.ingridients.length > 0 && (
           <div className={styles.orderItems__body}>
             <ul className={styles.orderItems__ingridientsList}>
-              {item.ingridients.map((item, index) => (
-                <li key={item.ingridientId._id}>{index === 0 ? item.ingridientId.title : `, ${item.ingridientId.title}`}</li>
+              {item.ingridients.map((ingrid, index) => (
+                <li key={ingrid.ingridientId._id}>
+                  {index + 1 !== item.ingridients?.length ? `${ingrid.ingridientId.title} ,` : ingrid.ingridientId.title}
+                </li>
               ))}
             </ul>
           </div>

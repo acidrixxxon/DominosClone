@@ -85,6 +85,7 @@
     .orderItems__body {
       .orderItems__ingridientsList {
         display: flex;
+        flex-wrap: wrap;
 
         li {
           text-transform: lowercase;

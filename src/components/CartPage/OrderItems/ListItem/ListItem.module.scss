@@ -1,33 +1,66 @@
 .listItem__item {
   display: flex;
 
+  gap: 10px;
+
   padding: 10px;
 
   border-bottom: 1px solid #e5e5e5;
 
+  @media screen and (max-width: 478px) {
+    gap: 5px;
+  }
+
   .listItem__imageContainer {
+    width: 193px;
+
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 478px) {
+      height: 80px;
+    }
+
     .listItem__image {
       object-fit: contain;
       border-radius: 15px;
-      height: 120px;
-      width: 193px;
+
+      width: 100%;
+      height: auto;
+
+      @media screen and (max-width: 478px) {
+        height: 100%;
+
+        border-radius: 10px;
+      }
     }
   }
 
   .listItem__details {
     width: 100%;
 
-    margin-left: 10px;
     padding: 0 0 12px 0;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+    @media screen and (max-width: 900px) {
+      padding: 0;
+    }
+
+    @media screen and (max-width: 478px) {
+      border-radius: 15px;
+    }
+
     .listItem__header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media screen and (max-width: 478px) {
+        align-items: baseline;
+      }
 
       .listItem__title {
         font-size: 14px;
@@ -35,6 +68,18 @@
         letter-spacing: 0.05em;
 
         font-weight: 400;
+
+        @media screen and (max-width: 478px) {
+          font-size: 12px;
+
+          min-height: 30px;
+        }
+      }
+
+      svg {
+        @media screen and (max-width: 478px) {
+          transform: translateY(3px);
+        }
       }
     }
 
@@ -71,11 +116,15 @@
           font-size: 18px;
           letter-spacing: 0.03em;
           font-weight: 700;
+
+          @media screen and (max-width: 478px) {
+            font-size: 15px;
+          }
         }
       }
 
       .listItem__qty {
-        color: #fff;
+        color: var(--white-color);
         background: #e31837;
 
         border-radius: 15px;
@@ -91,6 +140,13 @@
 
         font-family: Open Sans, sans-serif;
         font-size: 15px;
+
+        @media screen and (max-width: 478px) {
+          width: 75px;
+          height: 25px;
+
+          font-size: 13px;
+        }
 
         .listItem__icon {
           font-weight: 700;

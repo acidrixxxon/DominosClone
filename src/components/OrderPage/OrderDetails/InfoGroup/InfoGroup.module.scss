@@ -7,6 +7,10 @@
     padding: 10px 0;
 
     margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   &:last-child {
     border-bottom: 0;
@@ -15,7 +19,7 @@
   .infoGroup__title {
     font-size: 24px;
     font-weight: 600;
-    color: #3e4959;
+    color: var(--black-color);
     margin-bottom: 15px;
 
     @media screen and (max-width: 650px) {

@@ -16,13 +16,7 @@
       justify-content: space-between;
       align-items: center;
 
-      padding: 7px 0;
-
-      margin: 0 20px;
-
-      @media screen and (max-width: 768px) {
-        margin: 0 20px;
-      }
+      padding: 7px 20px;
     }
   }
 
@@ -31,24 +25,14 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #333;
+    background-color: var(--black-color);
 
     padding: 10px 0;
-
-    @media screen and (max-width: 600px) {
-      padding: 10px 0;
-    }
 
     .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      margin: 0 20px;
-
-      @media screen and (max-width: 768px) {
-        margin: 0 20px;
-      }
     }
   }
 }

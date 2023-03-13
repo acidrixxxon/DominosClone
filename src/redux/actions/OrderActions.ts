@@ -1,13 +1,12 @@
 import lodash from 'lodash';
 
 import OrderService from '../../Services/OrderService';
-import { IOrder, IOrderFromServer } from '../../types/CommontTypes';
-import { addToCart, clearCart, removeFromCart, setCart } from '../slices/cartSlice';
+import { IOrder } from '../../types/CommontTypes';
+import { clearCart } from '../slices/cartSlice';
 import { viewActions } from '../slices/viewSlice';
-import { AppDispatch, GetState, storeSetup } from '../store';
+import { AppDispatch, GetState } from '../store';
 
 const createNewOrder = (order: IOrder) => async (dispatch: AppDispatch, getState: GetState) => {
-  console.log(order);
   if (!order) return;
 
   dispatch(viewActions.setCreateOrderLoader(true));
