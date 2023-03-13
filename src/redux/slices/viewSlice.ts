@@ -39,7 +39,7 @@ export const viewSlise = createSlice({
       state.sort = action.payload;
     },
     setCreateOrderLoader: (state, action: PayloadAction<boolean>) => {
-      state.loaders.createOrder = action.payload;
+      state.loaders.createOrderLoader = action.payload;
     },
   },
 });
