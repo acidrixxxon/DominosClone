@@ -33,8 +33,8 @@ const OrderPage: React.FC = () => {
 
         {renderCondition && (
           <>
-            <OrderDetails />
-            <OrderItems />
+            <OrderDetails data={data.order} />
+            <OrderItems cart={data.order.cart} />
           </>
         )}
       </Container>

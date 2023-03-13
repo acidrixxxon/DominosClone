@@ -4,6 +4,10 @@
   display: flex;
   justify-content: center;
 
+  @media screen and (max-width: 600px) {
+    padding: 20px 0;
+  }
+
   .orderPage__container {
     min-height: calc(100vh - 185px);
 
@@ -20,6 +24,12 @@
       color: #505061;
 
       line-height: 0.9;
+
+      @media screen and (max-width: 600px) {
+        font-size: 23px;
+
+        margin-bottom: 20px;
+      }
     }
   }
 }

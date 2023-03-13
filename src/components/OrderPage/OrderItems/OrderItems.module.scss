@@ -1,0 +1,60 @@
+.orderItems {
+  background-color: var(--white-color);
+
+  padding: 30px;
+  margin-bottom: 40px;
+
+  border-radius: 15px;
+
+  @media screen and (max-width: 600px) {
+    padding: 20px 15px;
+  }
+
+  .orderItems__heading {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 650px) {
+      margin-bottom: 10px;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  .orderItems__totals {
+    .orderItems__price {
+      color: var(--gray-color);
+
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      font-weight: 800;
+      font-size: 20px;
+
+      @media screen and (max-width: 650px) {
+        font-size: 17px;
+
+        font-weight: 600;
+      }
+
+      .orderItems__number {
+        margin-left: 10px;
+
+        @media screen and (max-width: 650px) {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .orderItems__list {
+    @media screen and (max-width: 600px) {
+      margin-bottom: 20px;
+    }
+  }
+}

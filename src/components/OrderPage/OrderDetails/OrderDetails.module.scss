@@ -5,4 +5,53 @@
   margin-bottom: 40px;
 
   border-radius: 15px;
+
+  @media screen and (max-width: 600px) {
+    padding: 20px 15px;
+
+    margin-bottom: 20px;
+  }
+
+  .orderDetails__heading {
+    border-bottom: 0.125em solid #f0f0f7;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 500px) {
+      padding-bottom: 10px;
+
+      font-size: 13px;
+    }
+  }
+
+  .orderDetails__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+
+    @media screen and (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .orderDetails__status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 350px;
+        width: 100%;
+
+        @media screen and (max-width: 600px) {
+          margin: 0 15px;
+
+          width: 70%;
+        }
+      }
+    }
+
+    .orderDetails__details {
+    }
+  }
 }

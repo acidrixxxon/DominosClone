@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
+    "@types/dateformat": "^5.0.0",
     "@types/enzyme": "^3.10.12",
     "@types/react-content-loader": "^4.0.0",
     "@types/react-loader-spinner": "^4.0.0",
@@ -19,6 +20,7 @@
     "@types/react-toastify": "^4.1.0",
     "axios": "^1.2.3",
     "classnames": "^2.3.2",
+    "dateformat": "^5.0.3",
     "framer-motion": "^8.5.0",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.0",
@@ -46,6 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "@vitejs/plugin-react": "^3.0.0",
+    "dayjs": "^1.11.7",
     "enzyme": "^3.11.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
