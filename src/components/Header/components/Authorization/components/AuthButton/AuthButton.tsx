@@ -1,8 +1,11 @@
 import { AnimatePresence } from 'framer-motion';
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 import { ThreeDots } from 'react-loader-spinner';
+import { useLocation } from 'react-router-dom';
+
+import './AuthButton.scss';
 
 import { useAppDispatch } from '../../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../../hooks/useAppSelector';
@@ -11,10 +14,11 @@ import { useActionCreators } from '../../../../../../redux/store';
 import LoginForm from '../../../../../Forms/LoginForm/LoginForm';
 import RegisterForm from '../../../../../Forms/RegisterForm/RegisterForm';
 import Modal from '../../../../../UI/Modal/Modal';
-import './AuthButton.scss';
 
 const AuthButton: FC = () => {
   const [authType, setAuthType] = React.useState<number>(0);
+
+  const { search } = useLocation();
 
   const {
     user: {
@@ -28,6 +32,15 @@ const AuthButton: FC = () => {
   } = useAppSelector((state) => state);
 
   const viewActions = useActionCreators(actions);
+
+  useEffect(() => {
+    const searchStringArr = search.substring(1).split('=');
+    if (search.length > 0 && searchStringArr.length > 0 && searchStringArr[1] === 'active') {
+      if (!visible) {
+        viewActions.showAuthModal();
+      }
+    }
+  }, [search]);
 
   if (refreshLoading)
     return (

@@ -4,11 +4,12 @@ import React, { FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Rings } from 'react-loader-spinner';
 
+import './LoginForm.scss';
+
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { loginUserProcess } from '../../../redux/actions/UserActions';
 import { LoginFormFieldInterface } from '../../../utils/types/CommontTypes';
-import './LoginForm.scss';
 
 const LoginForm: FC = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -29,6 +30,7 @@ const LoginForm: FC = () => {
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log(userData.password.length);
     setUserData((state) => ({
       ...state,
       [e.target.name]: e.target.value,
@@ -80,7 +82,10 @@ const LoginForm: FC = () => {
           name='password'
           value={userData.password}
           onChange={inputChangeHandler}
-          onBlur={() => userData.password === '' && passwordLabelRef.current?.classList.remove('loginForm__label-onTop')}
+          onBlur={() =>
+            (userData.password.trim() === '' || userData.password.trim().length === 0) &&
+            passwordLabelRef.current?.classList.remove('loginForm__label-onTop')
+          }
           onFocus={() => passwordLabelRef.current?.classList.add('loginForm__label-onTop')}
         />
 
