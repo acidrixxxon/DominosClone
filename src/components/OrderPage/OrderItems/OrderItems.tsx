@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { ICartState } from '../../../types/CartTypes';
+import { ICartState } from '../../../utils/types/CartTypes';
 import ListItem from './ListItem/ListItem';
 import styles from './OrderItems.module.scss';
 

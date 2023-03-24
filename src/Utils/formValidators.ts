@@ -1,4 +1,4 @@
-import { IAddressData1, IClientData, ICustomerData, IPaymentType } from '../types/UserTypes';
+import { IAddressData1, IClientData, ICustomerData, IPaymentType } from './types/UserTypes';
 
 interface IDeliveryErrors {
   street: string[] | null;

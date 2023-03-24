@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { MINUS, PLUS } from '../../../../Utils/constants';
 import { useActionCreators } from '../../../../redux/store';
-import { IProductInCart } from '../../../../types/ProductTypes';
+import { MINUS, PLUS } from '../../../../utils/constants';
+import { IProductInCart } from '../../../../utils/types/ProductTypes';
 import CloseIcon from '../../../UI/Icons/CloseIcon';
 import MinusIcon from '../../../UI/Icons/MinusIcon';
 import PlusIcon from '../../../UI/Icons/PlusIcon';

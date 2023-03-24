@@ -1,8 +1,8 @@
 import { ActionCreatorsMapObject, PreloadedState, bindActionCreators, combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 
-import { productApi } from '../Api/ProductApi';
 import { useAppDispatch } from '../hooks/useAppDispatch';
+import { productApi } from './api/ProductApi';
 import cartReducer from './slices/cartSlice';
 import userReducer from './slices/userSlice';
 import viewReducer from './slices/viewSlice';

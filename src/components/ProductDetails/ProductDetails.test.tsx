@@ -3,9 +3,9 @@ import axios from 'axios';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 
-import { BACKEND_URL } from '../../Utils/config';
-import { request } from '../../Utils/test-utils';
 import { AppStore, storeSetup } from '../../redux/store';
+import { BACKEND_URL } from '../../utils/config';
+import { request } from '../../utils/test-utils';
 import ProductDetails from './ProductDetails';
 
 describe('Product Page testing', () => {

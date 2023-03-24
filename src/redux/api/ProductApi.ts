@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { BACKEND_URL } from '../Utils/config';
+import { BACKEND_URL } from '../../utils/config';
 import {
   ICreateNewOrderResponse,
   IFetchCategoriesResponse,
   IFetchIngridientsResponse,
   IFetchProductsResponse,
-} from '../types/ResponseTypes';
+} from '../../utils/types/ResponseTypes';
 
 export const productApi = createApi({
   reducerPath: 'productApi',

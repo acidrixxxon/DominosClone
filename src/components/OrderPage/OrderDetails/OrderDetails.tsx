@@ -3,7 +3,7 @@ import 'dayjs/locale/uk';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { IOrderFromServer } from '../../../types/CommontTypes';
+import { IOrderFromServer } from '../../../utils/types/CommontTypes';
 import InfoGroup from './InfoGroup/InfoGroup';
 import styles from './OrderDetails.module.scss';
 
@@ -15,7 +15,6 @@ const OrderDetails: React.FC<ComponentProps> = ({ data }) => {
   const shortedId = data._id.split('').splice(data._id.length - 5, data._id.length);
   const formattedDate = dayjs(data.createdAt).locale('uk').format('D MMMM YYYY - HH:MM').toString();
 
-  
   return (
     <motion.div className={styles.orderDetails} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className={styles.orderDetails__heading}>

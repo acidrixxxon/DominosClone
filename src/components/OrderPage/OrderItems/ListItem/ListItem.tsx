@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IProductInCart } from '../../../../types/ProductTypes';
+import { IProductInCart } from '../../../../utils/types/ProductTypes';
 import styles from './ListItem.module.scss';
 
 const ListItem: React.FC<{ item: IProductInCart }> = ({ item }) => {

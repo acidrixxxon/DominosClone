@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import React, { FC, useEffect } from 'react';
 import { AiFillCheckCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
-import { ADD_MOCARELLA, MINUS, PLUS, REMOVE_MOCARELLA } from '../../../../../../../../../Utils/constants';
 import ProductActions from '../../../../../../../../../redux/actions/ProductActions';
 import { useActionCreators } from '../../../../../../../../../redux/store';
-import { IProductInCart } from '../../../../../../../../../types/ProductTypes';
+import { ADD_MOCARELLA, MINUS, PLUS, REMOVE_MOCARELLA } from '../../../../../../../../../utils/constants';
+import { IProductInCart } from '../../../../../../../../../utils/types/ProductTypes';
 import MinusIcon from '../../../../../../../../UI/Icons/MinusIcon';
 import PlusIcon from '../../../../../../../../UI/Icons/PlusIcon';
 import animationStyles from './../../../../../../../../../assets/animations.module.scss';

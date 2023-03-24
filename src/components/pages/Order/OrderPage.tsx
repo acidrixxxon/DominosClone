@@ -2,12 +2,13 @@ import React from 'react';
 import { Triangle } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 
-import { useFetchOrderQuery } from '../../Api/ProductApi';
-import OrderDetails from '../../components/OrderPage/OrderDetails/OrderDetails';
-import OrderItems from '../../components/OrderPage/OrderItems/OrderItems';
-import Container from '../../components/UI/Container/Container';
-import PageContainer from '../../components/UI/PageContainer/PageContainer';
 import styles from './OrderPage.module.scss';
+
+import { useFetchOrderQuery } from '../../../redux/api/ProductApi';
+import OrderDetails from '../../OrderPage/OrderDetails/OrderDetails';
+import OrderItems from '../../OrderPage/OrderItems/OrderItems';
+import Container from '../../UI/Container/Container';
+import PageContainer from '../../UI/PageWrapper/PageWrapper';
 
 const OrderPage: React.FC = () => {
   const { id } = useParams();

@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import { BACKEND_URL } from '../Utils/config';
+import { BACKEND_URL } from '../config';
 import { IOrder, IOrderFromServer } from '../types/CommontTypes';
 import { ICreateNewOrderResponse, ICreateNewOrderSuccess } from '../types/ResponseTypes';
 

@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 
-import OrderService from '../../Services/OrderService';
-import { IOrder } from '../../types/CommontTypes';
+import OrderService from '../../utils/services/OrderService';
+import { IOrder } from '../../utils/types/CommontTypes';
 import { clearCart } from '../slices/cartSlice';
 import { viewActions } from '../slices/viewSlice';
 import { AppDispatch, GetState } from '../store';

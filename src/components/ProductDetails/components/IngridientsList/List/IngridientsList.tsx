@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 
-import { IPizzaIngridientsFull } from '../../../../../types/ProductTypes';
+import { IPizzaIngridientsFull } from '../../../../../utils/types/ProductTypes';
 import AddIngridients from '../AddIngridients/AddIngridients';
 import IngridientsItem from './IngridientsItem/IngridientsItem';
 

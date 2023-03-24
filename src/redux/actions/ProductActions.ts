@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 
-import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../Utils/constants';
-import { IProductInCart } from '../../types/ProductTypes';
+import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../utils/constants';
+import { IProductInCart } from '../../utils/types/ProductTypes';
 import { addToCart, clearCart, removeFromCart, setCart } from '../slices/cartSlice';
 import { AppDispatch, GetState, storeSetup } from '../store';
 

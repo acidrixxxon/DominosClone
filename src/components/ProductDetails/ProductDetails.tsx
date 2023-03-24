@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash';
 import { FC, useEffect, useState } from 'react';
 
-import { CartProductDto } from '../../Utils/Dto';
 import { useActionCreators } from '../../redux/store';
-import { IProduct, IProductDetails } from '../../types/ProductTypes';
+import { CartProductDto } from '../../utils/Dto';
+import { IProduct, IProductDetails } from '../../utils/types/ProductTypes';
 import cartActions from './../../redux/actions/ProductActions';
 import styles from './ProductDetails.module.scss';
 import Image from './components/Image/Image';

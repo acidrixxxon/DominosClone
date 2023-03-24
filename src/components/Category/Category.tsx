@@ -1,9 +1,9 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { viewActions as actions } from '@/redux/slices/viewSlice';
+import { useActionCreators } from '@/redux/store';
 import classNames from 'classnames';
 import { FC } from 'react';
 
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { viewActions as actions } from '../../redux/slices/viewSlice';
-import { useActionCreators } from '../../redux/store';
 import './Category.scss';
 
 const menuList = [

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useState } from 'react';
 
-import { IPizzaCrust } from '../../../../types/ProductTypes';
+import { IPizzaCrust } from '../../../../utils/types/ProductTypes';
 import styles from './ProductOptions.module.scss';
 import ProductOptionsItem from './ProductOptionsItem/ProductOptionsItem';
 

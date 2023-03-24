@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { ILoginErrors } from '../../types/ResponseTypes';
-import { IUser, IUserState } from '../../types/UserTypes';
+import { ILoginErrors } from '../../utils/types/ResponseTypes';
+import { IUser, IUserState } from '../../utils/types/UserTypes';
 
 const initialState: IUserState = {
   user: null,

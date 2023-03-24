@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { IViewState } from '../../types/ViewTypes';
+import { IViewState } from '../../utils/types/ViewTypes';
 
 const initialState: IViewState = {
   modals: {

@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import { useOutsideClick2 } from '../../../hooks/useOutsideClick2';
-import { IRestaurant } from '../../../types/CommontTypes';
-import { IAddressData1, ICustomerData } from '../../../types/UserTypes';
+import { IRestaurant } from '../../../utils/types/CommontTypes';
+import { IAddressData1, ICustomerData } from '../../../utils/types/UserTypes';
 import ArrowIcon from '../../UI/Icons/ArrowIcon';
 import styles from './DineInDetailsForm.module.scss';
 

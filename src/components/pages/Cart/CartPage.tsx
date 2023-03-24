@@ -1,10 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 
-import OrderItems from '../../components/CartPage/OrderItems/OrderItems';
-import OrderType from '../../components/CartPage/OrderType/OrderType';
-import Container from '../../components/UI/Container/Container';
-import PageContainer from '../../components/UI/PageContainer/PageContainer';
 import styles from './CartPage.module.scss';
+
+import OrderItems from '../../CartPage/OrderItems/OrderItems';
+import OrderType from '../../CartPage/OrderType/OrderType';
+import Container from '../../UI/Container/Container';
+import PageContainer from '../../UI/PageWrapper/PageWrapper';
 
 const CartPage: React.FC<PropsWithChildren> = () => {
   return (

@@ -16,6 +16,14 @@
 
       transition: 0.2s all ease-in;
 
+      @media screen and (max-width: 900px) {
+        margin-right: 5px;
+
+        padding: 10px 25px;
+
+        font-size: 14px;
+      }
+
       &.category__item-active {
         background-color: #282828;
 

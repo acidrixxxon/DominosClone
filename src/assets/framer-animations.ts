@@ -5,16 +5,12 @@ export const addIngridientAnimations = {
     opacity: 1,
     margin: '10px 0 20px',
     transition: {
-      padding: {
-        duration: 0.1,
-        delay: 0,
-      },
-      marginBottom: {
+      margin: {
         duration: 0.1,
         delay: 0,
       },
       height: {
-        duration: 0.4,
+        duration: 0.2,
       },
       opacity: {
         duration: 0.25,
@@ -23,11 +19,17 @@ export const addIngridientAnimations = {
     },
   },
   exit: {
+    margin: 0,
     height: 0,
     opacity: 0,
     transition: {
+      margin: {
+        delay: 0.1,
+        duration: 0.05,
+      },
       height: {
-        duration: 0.25,
+        delay: 0.1,
+        duration: 0.15,
       },
       opacity: {
         duration: 0.1,

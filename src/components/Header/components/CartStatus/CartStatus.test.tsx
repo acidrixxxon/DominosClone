@@ -2,7 +2,7 @@ import { cleanup, fireEvent, getByTestId, render, screen } from '@testing-librar
 import { Provider } from 'react-redux';
 
 import { storeSetup } from '../../../../redux/store';
-import { ICartState } from '../../../../types/CartTypes';
+import { ICartState } from '../../../../utils/types/CartTypes';
 import CartStatus from './CartStatus';
 
 const cartState = { items: [], totalCount: 5, totalCost: 500 };

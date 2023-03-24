@@ -2,6 +2,10 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import Container from '@/components/UI/Container/Container';
+
+import styles from './PageWrapper.module.scss';
+
 interface ComponentProps {
   children: React.ReactNode;
   className: string;
@@ -9,7 +13,7 @@ interface ComponentProps {
   style?: any;
 }
 
-const PageContainer: React.FC<ComponentProps> = ({ children, className, id, style }) => {
+const PageWrapper: React.FC<ComponentProps> = ({ children, className, id, style }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -18,10 +22,10 @@ const PageContainer: React.FC<ComponentProps> = ({ children, className, id, styl
       transition={{ ease: 'linear', duration: 0.3 }}
       id={id}
       style={style}
-      className={classNames('page-container', { [className]: className })}>
-      {children}
+      className={classNames([styles.pageWrapper, { [className]: className }])}>
+      <Container>{children}</Container>
     </motion.div>
   );
 };
 
-export default PageContainer;
+export default PageWrapper;

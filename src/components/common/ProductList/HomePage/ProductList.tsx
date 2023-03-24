@@ -1,11 +1,15 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
 import React, { FC } from 'react';
 
-import { useFetchProductsQuery } from '../../../../Api/ProductApi';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { IProductCategory } from '../../../../types/ProductTypes';
-import Skeleton from '../../../UI/Skeleton/Skeleton';
-import ProductItem from './ProductItem/ProductItem';
+import Skeleton from '@/components/UI/Skeleton/Skeleton';
+
+import { IProductCategory } from '@/utils/types/ProductTypes';
+
+import { useFetchProductsQuery } from '@/redux/api/ProductApi';
+
 import './ProductList.scss';
+
+import ProductItem from './ProductItem/ProductItem';
 
 const ProductList: FC = () => {
   const { category, sort } = useAppSelector((state) => state.view);

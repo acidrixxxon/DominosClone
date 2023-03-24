@@ -1,10 +1,12 @@
+import { useFetchIngridientsCategoriesQuery } from '@/redux/api/ProductApi';
 import { FC, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Oval } from 'react-loader-spinner';
 
-import { useFetchIngridientsCategoriesQuery } from '../../../../../Api/ProductApi';
-import { IPizzaIngridientsFull } from '../../../../../types/ProductTypes';
-import Modal from '../../../../UI/Modal/Modal';
+import Modal from '@/components/UI/Modal/Modal';
+
+import { IPizzaIngridientsFull } from '@/utils/types/ProductTypes';
+
 import styles from './AddIngridients.module.scss';
 import Category from './Category/Category';
 

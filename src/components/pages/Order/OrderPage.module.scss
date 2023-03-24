@@ -4,14 +4,14 @@
   display: flex;
   justify-content: center;
 
+  background-color: #f8f4f8 !important;
+
   @media screen and (max-width: 600px) {
     padding: 20px 0;
   }
 
   .orderPage__container {
     min-height: calc(100vh - 185px);
-
-    margin: 0 20px;
 
     .orderPage__heading {
       font-size: 25px;

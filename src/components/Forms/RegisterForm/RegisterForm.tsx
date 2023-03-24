@@ -7,7 +7,7 @@ import { Rings } from 'react-loader-spinner';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { registerUserProcess } from '../../../redux/actions/UserActions';
-import { RegisterFormFieldInterface } from '../../../types/CommontTypes';
+import { RegisterFormFieldInterface } from '../../../utils/types/CommontTypes';
 import SuccessRegister from '../../UI/SuccessRegister/SuccessRegister';
 import './RegisterForm.scss';
 
@@ -66,7 +66,7 @@ const RegisterForm: FC = () => {
             </span>
             <input
               onChange={inputChangeHandler}
-              type='text'
+              type='email'
               name='email'
               value={userData.email}
               className='registerForm__input'

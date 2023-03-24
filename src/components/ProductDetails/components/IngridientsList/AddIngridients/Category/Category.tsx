@@ -3,9 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useEffect, useRef, useState } from 'react';
 import { HiArrowSmRight } from 'react-icons/hi';
 
-import { addIngridientAnimations } from '../../../../../../assets/framer-animations';
-import { IPizzaIngridientsCategory, IPizzaIngridientsFull } from '../../../../../../types/ProductTypes';
+import { IPizzaIngridientsCategory, IPizzaIngridientsFull } from '@/utils/types/ProductTypes';
+
+import { addIngridientAnimations } from '@/assets/framer-animations';
+
 import styles from './Category.module.scss';
+
 import CategoryItem from './CategoryItem/CategoryItem';
 
 interface ComponentProps {

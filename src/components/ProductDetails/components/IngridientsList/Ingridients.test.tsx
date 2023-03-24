@@ -3,8 +3,8 @@ import { render, shallow } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { request } from '../../../../Utils/test-utils';
 import { storeSetup } from '../../../../redux/store';
+import { request } from '../../../../utils/test-utils';
 import ProductDetails from '../../ProductDetails';
 import Ingridients from './Ingridients';
 

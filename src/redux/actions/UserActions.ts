@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 
-import LocalStorageService from '../../Services/LocalStorageService';
-import UserService from '../../Services/UserService';
-import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../../types/CommontTypes';
+import LocalStorageService from '../../utils/services/LocalStorageService';
+import UserService from '../../utils/services/UserService';
+import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../../utils/types/CommontTypes';
 import {
   loginUserError,
   loginUserRequest,
@@ -64,6 +64,7 @@ export const registerUserProcess = (data: RegisterFormFieldInterface) => async (
       return true;
     }
   } catch (error: any) {
+    toast.error(error.response.data.message);
     dispatch(registerUserError(error.response.data.message));
   }
 };

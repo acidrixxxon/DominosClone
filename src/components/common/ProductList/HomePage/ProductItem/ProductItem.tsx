@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { CartProductDto } from '../../../../../Utils/Dto';
 import { useActionCreators } from '../../../../../redux/store';
-import { IProduct } from '../../../../../types/ProductTypes';
+import { CartProductDto } from '../../../../../utils/Dto';
+import { IProduct } from '../../../../../utils/types/ProductTypes';
 import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
 import actions from './../../../../../redux/actions/ProductActions';
 import './ProductItem.scss';

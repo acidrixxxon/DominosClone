@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 
-import { totalErrors } from '../../../../Utils/formValidators';
 import { useOutsideClick2 } from '../../../../hooks/useOutsideClick2';
-import { ICustomerData, IPaymentType } from '../../../../types/UserTypes';
+import { totalErrors } from '../../../../utils/formValidators';
+import { ICustomerData, IPaymentType } from '../../../../utils/types/UserTypes';
 import ArrowIcon from '../../../UI/Icons/ArrowIcon';
 import OrderType from '../OrderType';
 import styles from './PaymentType.module.scss';

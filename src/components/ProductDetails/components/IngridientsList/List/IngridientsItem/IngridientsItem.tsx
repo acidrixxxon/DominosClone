@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FC } from 'react';
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
-import { CHANGE_QTY, MINUS, PLUS } from '../../../../../../Utils/constants';
-import { IPizzaIngridientsFull, IProductDetails } from '../../../../../../types/ProductTypes';
+import { CHANGE_QTY, MINUS, PLUS } from '../../../../../../utils/constants';
+import { IPizzaIngridientsFull, IProductDetails } from '../../../../../../utils/types/ProductTypes';
 import styles from './IngridientsItem.module.scss';
 
 interface ComponentProps {

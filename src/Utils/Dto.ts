@@ -1,8 +1,8 @@
 import { v4 } from 'uuid';
 
-import { ICartState } from '../types/CartTypes';
-import { IProduct, IProductInCart } from '../types/ProductTypes';
-import { ICustomerData } from '../types/UserTypes';
+import { ICartState } from './types/CartTypes';
+import { IProduct, IProductInCart } from './types/ProductTypes';
+import { ICustomerData } from './types/UserTypes';
 
 export const CartProductDto = (item: IProduct, activeType: { size: number; crust: number | -1 }): IProductInCart => {
   return {

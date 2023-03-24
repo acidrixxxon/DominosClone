@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { totalErrors } from '../../../Utils/formValidators';
-import { IClientData, ICustomerData } from '../../../types/UserTypes';
+import { totalErrors } from '../../../utils/formValidators';
+import { IClientData, ICustomerData } from '../../../utils/types/UserTypes';
 import InputError from '../../UI/Errors/InputError/InputError';
 import styles from './ClientDataForm.module.scss';
 

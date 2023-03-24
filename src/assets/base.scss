@@ -35,6 +35,14 @@ button {
   outline: none;
   border: none;
 
+  cursor: pointer;
+  transition: 0.2s all linear;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+  position: relative;
+
   &:hover {
     background-color: transparent;
   }

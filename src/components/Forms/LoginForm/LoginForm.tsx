@@ -7,7 +7,7 @@ import { Rings } from 'react-loader-spinner';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { loginUserProcess } from '../../../redux/actions/UserActions';
-import { LoginFormFieldInterface } from '../../../types/CommontTypes';
+import { LoginFormFieldInterface } from '../../../utils/types/CommontTypes';
 import './LoginForm.scss';
 
 const LoginForm: FC = () => {
@@ -52,7 +52,7 @@ const LoginForm: FC = () => {
       exit='exit'
       className='loginForm'>
       <div className='loginForm__group'>
-        <span className={classNames('loginForm__label', { 'loginForm__label-top': userData.email.length < 0 })} ref={emailLabelRef}>
+        <span className={classNames('loginForm__label', { 'loginForm__label-onTop': userData.email })} ref={emailLabelRef}>
           Email
         </span>
         <input
@@ -69,7 +69,7 @@ const LoginForm: FC = () => {
       <div className='loginForm__group'>
         <span
           className={classNames('loginForm__label', {
-            'loginForm__label-top': userData.password.length < 0 || userData.password,
+            'loginForm__label-onTop': userData.password,
           })}
           ref={passwordLabelRef}>
           Пароль

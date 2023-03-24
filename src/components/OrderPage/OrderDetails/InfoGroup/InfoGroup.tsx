@@ -4,7 +4,7 @@ import 'dayjs/locale/uk';
 import { isString } from 'lodash';
 import React from 'react';
 
-import { translate } from '../../../../Utils/helpers';
+import { translate } from '../../../../utils/helpers';
 import styles from './InfoGroup.module.scss';
 
 interface ComponentProps {

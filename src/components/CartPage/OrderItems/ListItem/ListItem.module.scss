@@ -12,24 +12,32 @@
   }
 
   .listItem__imageContainer {
-    width: 193px;
-
     display: flex;
     align-items: center;
 
     @media screen and (max-width: 478px) {
       height: 80px;
+      width: 120px;
+    }
+
+    @media screen and (max-width:600ppx) {
+      height: 80px;
+      width: 120px;
     }
 
     .listItem__image {
       object-fit: contain;
       border-radius: 15px;
 
-      width: 100%;
-      height: auto;
+      // width: 100%;
+      // height: auto;
+
+      width: 193px;
+      height: 120px;
 
       @media screen and (max-width: 478px) {
-        height: 100%;
+        width: 100%;
+        height: auto;
 
         border-radius: 10px;
       }

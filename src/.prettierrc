@@ -7,7 +7,15 @@
   "jsxSingleQuote": true,
   "bracketSpacing": true,
   "bracketSameLine": true,
-  "importOrder": ["^@core/(.*)$", "^components/(.*)$", "^Context/(.*)$", "^[./]"],
+  "importOrder": [
+    "^@core/(.*)$",
+    "^@/components/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/assets/(.*)$",
+    "^@/redux/(.*)$",
+    "(./*)[.module.]scss",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BACKEND_URL } from '../Utils/config';
+import { BACKEND_URL } from '../config';
 
 class ProductService {
   fetchProducts(category: number): Promise<any> | undefined {

@@ -3,8 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { SOUCE_CATEGORY_ID } from '../../../../../../../Utils/constants';
-import { IPizzaIngridientsFull, IPizzaIngridientsShort, IProduct, IProductDetails } from '../../../../../../../types/ProductTypes';
+import { SOUCE_CATEGORY_ID } from '../../../../../../../utils/constants';
+import {
+  IPizzaIngridientsFull,
+  IPizzaIngridientsShort,
+  IProduct,
+  IProductDetails,
+} from '../../../../../../../utils/types/ProductTypes';
 import styles from './CategoryItem.module.scss';
 
 interface ComponentProps {

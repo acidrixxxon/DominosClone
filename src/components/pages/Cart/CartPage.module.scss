@@ -16,5 +16,8 @@
         'checkout-order'
         'checkout-form';
     }
+    @media screen and (max-width: 478px) {
+      gap: 0;
+    }
   }
 }

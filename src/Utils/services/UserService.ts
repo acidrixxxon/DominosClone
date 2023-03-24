@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { BACKEND_URL } from '../Utils/config';
+import { BACKEND_URL } from '../config';
 import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../types/CommontTypes';
 import { ILoginUserResponse, IRefreshTokenResponse, IRegisterUserResponse } from '../types/ResponseTypes';
 

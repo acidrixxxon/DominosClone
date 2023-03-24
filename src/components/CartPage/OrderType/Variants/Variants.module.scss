@@ -16,7 +16,9 @@
 
   @media screen and (max-width: 478px) {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 5px;
+
+    margin-bottom: 30px;
   }
 
   .orderType__item {
@@ -33,8 +35,6 @@
 
     transition: 0.2s background-color ease-in;
 
-    @media screen and (max-width: 900px) {
-    }
     svg {
       width: 38px;
       height: 46px;
