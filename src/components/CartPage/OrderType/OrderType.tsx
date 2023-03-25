@@ -1,22 +1,28 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
+import axios from 'axios';
 import classNames from 'classnames';
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
-import { InfinitySpin, ThreeDots } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import OrderActions from '../../../redux/actions/OrderActions';
-import { useActionCreators } from '../../../redux/store';
-import { NewOrderDto } from '../../../utils/Dto';
-import { initialClientInfo, initialDeliveryInfo, initialDineinInfo } from '../../../utils/constants';
-import { orderFormValidate, totalErrors } from '../../../utils/formValidators';
-import LocalStorageService from '../../../utils/services/LocalStorageService';
-import { ICreateNewOrderResponse, ICreateNewOrderSuccess } from '../../../utils/types/ResponseTypes';
-import { ICustomerData } from '../../../utils/types/UserTypes';
+import { NewOrderDto } from '@/utils/Dto';
+import { BACKEND_URL } from '@/utils/config';
+import { initialClientInfo, initialDeliveryInfo, initialDineinInfo } from '@/utils/constants';
+import { orderFormValidate, totalErrors } from '@/utils/formValidators';
+import LocalStorageService from '@/utils/services/LocalStorageService';
+import { ICreateNewOrderResponse, ICreateNewOrderSuccess } from '@/utils/types/ResponseTypes';
+import { ICustomerData } from '@/utils/types/UserTypes';
+
+import OrderActions from '@/redux/actions/OrderActions';
+import { useActionCreators } from '@/redux/store';
+
+import styles from './OrderType.module.scss';
+
 import ClientDataForm from '../../Forms/ClientDataForm/ClientDataForm';
 import DeliveryDetailsForm from '../../Forms/DeliveryDetailsForm/DeliveryDetailsForm';
 import DineInDetailsForm from '../../Forms/DineInDetailsForm/DineInDetailsForm';
-import styles from './OrderType.module.scss';
 import PaymentType from './PaymentType/PaymentType';
 import Variants from './Variants/Variants';
 
@@ -69,8 +75,17 @@ const OrderType: React.FC = () => {
 
       if (orderDto) {
         LocalStorageService.saveCustomerData(customerData.client);
-        const data: ICreateNewOrderSuccess = await createNewOrder(orderDto);
-        if (data) navigate(`/order/${data.order._id}`);
+        const data: ICreateNewOrderResponse = await createNewOrder(orderDto);
+
+        if (data.order) {
+          if (data.order.details.customerData.paymentType?.id === 12312 && data.order.details.customerData.paymentType.paymentLink) {
+            return window.location.replace(data.order.details.customerData.paymentType.paymentLink);
+          } else {
+            return navigate(`/order/${data.order._id}`);
+          }
+        } else {
+          toast.error(data.message);
+        }
       }
     } else {
       setErrors(errors);
@@ -114,7 +129,11 @@ const OrderType: React.FC = () => {
 
           <button
             disabled={!buttonStatus}
-            className={classNames(styles.orderType__submitBtn, { [styles.orderType__submitBtnDisabled]: !buttonStatus })}
+            className={classNames(
+              styles.orderType__submitBtn,
+              { [styles.orderType__submitBtnLoading]: createOrderLoader },
+              { [styles.orderType__submitBtnDisabled]: !buttonStatus },
+            )}
             onClick={submitHandler}>
             {createOrderLoader ? (
               <span className={styles.orderType__loader}>
@@ -124,7 +143,7 @@ const OrderType: React.FC = () => {
                   height='50'
                   width='50'
                   radius='5'
-                  color='var(--gray-color)'
+                  color='var(--white-color)'
                   ariaLabel='three-dots-loading'
                   wrapperStyle={{ marginLeft: '10px' }}
                   visible={true}

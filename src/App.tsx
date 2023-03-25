@@ -1,4 +1,3 @@
-import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { AnimatePresence } from 'framer-motion';
 import React, { useEffect } from 'react';
@@ -15,28 +14,26 @@ import LocalStorageService from '@/utils/services/LocalStorageService';
 
 import '@/assets/base.scss';
 
-import { refreshTokenProcess } from '@/redux/actions/UserActions';
+import UserActions from '@/redux/actions/UserActions';
+import { useActionCreators } from '@/redux/store';
 
 function App() {
   const appRef = React.useRef<HTMLDivElement>(null);
   const headerRef = React.useRef<HTMLDivElement>(null);
 
-  const state = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((state) => state);
 
-  console.log(state);
+  const { refreshTokenProcess } = useActionCreators(UserActions);
 
   const location = useLocation();
 
   React.useLayoutEffect(() => {
-    setInterval(() => {
-      dispatch(refreshTokenProcess());
-    }, 60000);
+    refreshTokenProcess();
   }, []);
 
   useEffect(() => {
-    LocalStorageService.saveCart(state.cart);
-  }, [state.cart]);
+    LocalStorageService.saveCart(cart);
+  }, [cart]);
 
   return (
     <div className='App' ref={appRef}>

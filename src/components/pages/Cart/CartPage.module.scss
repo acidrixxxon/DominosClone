@@ -5,7 +5,7 @@
     min-height: calc(100vh - 75px);
   }
 
-  .cart__container {
+  & > div {
     display: grid;
     grid-template-columns: minmax(300px, 762px) minmax(300px, 538px);
     gap: 20px;

@@ -2,10 +2,14 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import 'dayjs/locale/uk';
 import { isString } from 'lodash';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link, Location, useLocation } from 'react-router-dom';
+
+import { BACKEND_URL } from '@/utils/config';
+
+import styles from './InfoGroup.module.scss';
 
 import { translate } from '../../../../utils/helpers';
-import styles from './InfoGroup.module.scss';
 
 interface ComponentProps {
   title: string;
@@ -13,6 +17,8 @@ interface ComponentProps {
 }
 
 const InfoGroup: React.FC<ComponentProps> = ({ title, data }) => {
+  const id = useLocation().pathname.substring(1).split('/')[1];
+
   const readyTime = data.createdAt && dayjs(data.createdAt).add(30, 'minute').locale('uk').format('D MMMM YYYY, HH:MM');
   const formattedAddress =
     title === 'address' && data.orderType
@@ -56,7 +62,21 @@ const InfoGroup: React.FC<ComponentProps> = ({ title, data }) => {
 
         {title === 'payment' && (
           <div className={classNames(styles.infoGroup__row, styles.infoGroup__singleCol)}>
-            <span className={styles.infoGroup__value}>{data.title}</span>
+            {data.id === 12312 ? (
+              <span
+                className={styles.infoGroup__value}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ display: 'flex', alignItems: 'center' }}>Онлайн на сайті ({data.stage})</span>
+
+                {data.status === false && (
+                  <a className={styles.paymentButton} href={data.paymentLink}>
+                    Сплатити
+                  </a>
+                )}
+              </span>
+            ) : (
+              <span className={styles.infoGroup__value}>{data.title}</span>
+            )}
           </div>
         )}
 

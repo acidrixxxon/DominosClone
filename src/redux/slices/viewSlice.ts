@@ -14,7 +14,7 @@ const initialState: IViewState = {
   },
   category: 0,
   loaders: {
-    createOrderLoader: false,
+    createOrderLoader: true,
   },
 };
 

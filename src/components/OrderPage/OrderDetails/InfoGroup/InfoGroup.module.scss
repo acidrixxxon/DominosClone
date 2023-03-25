@@ -45,6 +45,27 @@
 
       font-weight: 400;
 
+      .infoGroup__value {
+        .paymentButton {
+          background-color: var(--red-color);
+
+          padding: 10px 15px;
+
+          border-radius: 10px;
+
+          color: var(--white-color);
+
+          font-size: 14px;
+
+          font-family: 'ProximaNova', sans-serif;
+
+          &:hover {
+            opacity: 0.6;
+            transform: scale(1.15);
+          }
+        }
+      }
+
       @media screen and (max-width: 1200px) {
         display: flex;
         justify-content: space-between;

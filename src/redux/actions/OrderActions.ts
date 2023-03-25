@@ -13,9 +13,11 @@ const createNewOrder = (order: IOrder) => async (dispatch: AppDispatch, getState
 
   const { data, status, statusText } = await OrderService.createOrder(order);
 
-  if (status === 200 && statusText === 'OK') {
+  if (data) {
+    console.log(data);
     dispatch(viewActions.setCreateOrderLoader(false));
-    dispatch(clearCart());
+    if (data.order && status === 200 && statusText === 'OK') dispatch(clearCart());
+
     return data;
   }
 };

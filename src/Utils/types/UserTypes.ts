@@ -80,4 +80,7 @@ export interface ICustomerData {
 export interface IPaymentType {
   id: number;
   title: string;
+  stage?: 'замовлення сплачене' | 'очікує на оплату';
+  status?: boolean;
+  paymentLink?: string;
 }

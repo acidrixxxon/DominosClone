@@ -61,20 +61,28 @@
       }
 
       .orderType__submitBtn {
-        border-radius: 15px;
-        border: none;
         background: #e31837;
+
         color: #fff;
         font-family: Open Sans, sans-serif;
         font-size: 18px;
+
         height: 50px;
         width: 214px;
-        cursor: pointer;
 
-        .orderType__loader {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        &.orderType__submitBtnLoading {
+          background-color: lightcoral;
+          cursor: default;
+
+          font-size: 17px;
+
+          animation: blaming 1s ease-in-out infinite;
+
+          .orderType__loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
 
         @media screen and (max-width: 600px) {
@@ -93,5 +101,18 @@
     @media screen and (max-width: 600px) {
       padding: 15px 12px 25px;
     }
+  }
+}
+
+@keyframes blaming {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -120,6 +120,7 @@ export interface ICreateNewOrderSuccess {
 export interface ICreateNewOrderError {
   success: false;
   message: string;
+  order?: IOrderFromServer;
 }
 
 export type ICreateNewOrderResponse = ICreateNewOrderSuccess | ICreateNewOrderError;

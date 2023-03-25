@@ -30,7 +30,17 @@ export const NewOrderDto = (orderType: number, customerData: ICustomerData, cart
     cart,
     details: {
       orderType: orderType === 0 ? { id: 0, title: 'Доставка' } : { id: 1, title: 'Самовиніс' },
-      customerData,
+      customerData:
+        customerData.paymentType?.id === 12312
+          ? {
+              ...customerData,
+              paymentType: {
+                ...customerData.paymentType,
+                stage: 'очікує на оплату',
+                status: false,
+              },
+            }
+          : customerData,
     },
   };
 };

@@ -1,8 +1,9 @@
 import { toast } from 'react-toastify';
 
-import LocalStorageService from '../../utils/services/LocalStorageService';
-import UserService from '../../utils/services/UserService';
-import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../../utils/types/CommontTypes';
+import LocalStorageService from '@/utils/services/LocalStorageService';
+import UserService from '@/utils/services/UserService';
+import { LoginFormFieldInterface, RegisterFormFieldInterface } from '@/utils/types/CommontTypes';
+
 import {
   loginUserError,
   loginUserRequest,
@@ -16,7 +17,7 @@ import {
 } from '../slices/userSlice';
 import { AppDispatch } from '../store';
 
-export const loginUserProcess = (data: LoginFormFieldInterface) => async (dispatch: AppDispatch) => {
+const loginUserProcess = (data: LoginFormFieldInterface) => async (dispatch: AppDispatch) => {
   try {
     dispatch(loginUserRequest());
 
@@ -32,7 +33,7 @@ export const loginUserProcess = (data: LoginFormFieldInterface) => async (dispat
   }
 };
 
-export const refreshTokenProcess = () => async (dispatch: AppDispatch) => {
+const refreshTokenProcess = () => async (dispatch: AppDispatch) => {
   try {
     const token = LocalStorageService.getAccessToken();
     if (token === null) {
@@ -47,12 +48,13 @@ export const refreshTokenProcess = () => async (dispatch: AppDispatch) => {
       }
     }
   } catch (error: any) {
+    console.log(error);
     dispatch(refreshTokenError(error.response.data.message));
     LocalStorageService.removeTokenFromLS();
   }
 };
 
-export const registerUserProcess = (data: RegisterFormFieldInterface) => async (dispatch: AppDispatch) => {
+const registerUserProcess = (data: RegisterFormFieldInterface) => async (dispatch: AppDispatch) => {
   try {
     dispatch(registerUserRequest());
 
@@ -67,4 +69,10 @@ export const registerUserProcess = (data: RegisterFormFieldInterface) => async (
     toast.error(error.response.data.message);
     dispatch(registerUserError(error.response.data.message));
   }
+};
+
+export default {
+  registerUserProcess,
+  loginUserProcess,
+  refreshTokenProcess,
 };

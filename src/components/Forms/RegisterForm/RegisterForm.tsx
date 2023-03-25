@@ -1,14 +1,17 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Rings } from 'react-loader-spinner';
 
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { registerUserProcess } from '../../../redux/actions/UserActions';
-import { RegisterFormFieldInterface } from '../../../utils/types/CommontTypes';
-import SuccessRegister from '../../UI/SuccessRegister/SuccessRegister';
+import SuccessRegister from '@/components/UI/SuccessRegister/SuccessRegister';
+
+import { RegisterFormFieldInterface } from '@/utils/types/CommontTypes';
+
+import UserActions from '@/redux/actions/UserActions';
+import { useActionCreators } from '@/redux/store';
+
 import './RegisterForm.scss';
 
 const RegisterForm: FC = () => {
@@ -19,7 +22,8 @@ const RegisterForm: FC = () => {
   const {
     loaders: { registerLoading },
   } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+
+  const { registerUserProcess } = useActionCreators(UserActions);
 
   const emailRef = React.useRef<HTMLSpanElement>(null);
   const passwordRef = React.useRef<HTMLSpanElement>(null);
@@ -44,7 +48,7 @@ const RegisterForm: FC = () => {
   const formSubmitHandler = async (e: React.FormEvent<HTMLFormElement>): Promise<any> => {
     e.preventDefault();
 
-    const result = await dispatch(registerUserProcess(userData));
+    const result = await registerUserProcess(userData);
     if (result) setRegistered(true);
   };
 

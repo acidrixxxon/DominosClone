@@ -4,11 +4,13 @@ import React, { FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Rings } from 'react-loader-spinner';
 
+import UserActions from '@/redux/actions/UserActions';
+import { useActionCreators } from '@/redux/store';
+
 import './LoginForm.scss';
 
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { loginUserProcess } from '../../../redux/actions/UserActions';
 import { LoginFormFieldInterface } from '../../../utils/types/CommontTypes';
 
 const LoginForm: FC = () => {
@@ -18,7 +20,8 @@ const LoginForm: FC = () => {
   const emailLabelRef = React.useRef<HTMLSpanElement>(null);
   const passwordLabelRef = React.useRef<HTMLSpanElement>(null);
 
-  const dispatch = useAppDispatch();
+  const { loginUserProcess } = useActionCreators(UserActions);
+
   const {
     loaders: { loginLoading },
   } = useAppSelector((state) => state.user);
@@ -30,7 +33,6 @@ const LoginForm: FC = () => {
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(userData.password.length);
     setUserData((state) => ({
       ...state,
       [e.target.name]: e.target.value,
@@ -40,7 +42,7 @@ const LoginForm: FC = () => {
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    dispatch(loginUserProcess(userData));
+    loginUserProcess(userData);
   };
 
   const buttonDisabled = userData.email.trim() === '' || userData.password.trim() === '' ? true : false;

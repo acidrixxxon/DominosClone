@@ -3,9 +3,10 @@ import 'dayjs/locale/uk';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import styles from './OrderDetails.module.scss';
+
 import { IOrderFromServer } from '../../../utils/types/CommontTypes';
 import InfoGroup from './InfoGroup/InfoGroup';
-import styles from './OrderDetails.module.scss';
 
 interface ComponentProps {
   data: IOrderFromServer;
