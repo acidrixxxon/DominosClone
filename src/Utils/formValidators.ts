@@ -61,6 +61,11 @@ export const orderFormValidate = (
       result = false;
     }
 
+    if (prop === 'name' && data.client[prop].length < 4) {
+      totalErrors[prop].push(`Імя дуже коротке!`);
+      result = false;
+    }
+
     if (prop === 'phone' && data.client[prop].length < 8) {
       totalErrors[prop].push(`Номер містить меньше 8 цифр`);
       result = false;
@@ -79,7 +84,15 @@ export const orderFormValidate = (
 
   if (orderType === 0) {
     for (const prop in data.details) {
-      if (prop === 'street' || prop === 'house') {
+      if (prop === 'street' && data.details[prop].length < 4) {
+        totalErrors[prop]?.push(`Коротка назва вулиці!`);
+        result = false;
+      }
+      if (prop === 'house') {
+        if (Number(data.details[prop]?.trim()) < 0) {
+          totalErrors[prop]?.push(`Не корректний номер дому`);
+          result = false;
+        }
         if (data.details[prop]?.trim() === '') {
           totalErrors[prop]?.push(`Заповніть поля адреси`);
           result = false;

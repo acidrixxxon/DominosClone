@@ -43,4 +43,18 @@
   right: 0;
   left: 0;
   z-index: 999999;
+  box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+  animation: 400ms ease-in-out running headerAnimation;
+}
+
+@keyframes headerAnimation {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateZ(0, -0, 0);
+  }
 }

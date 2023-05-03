@@ -16,6 +16,7 @@
 
   .paymentType__dropdown {
     position: relative;
+    z-index: 999;
 
     .paymentType__dropdownButton {
       border: 1px solid rgba(0, 0, 0, 0.5);

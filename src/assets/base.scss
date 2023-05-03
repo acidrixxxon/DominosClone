@@ -8,6 +8,7 @@
   --white-color: #fff;
   --black-color: #333;
   --red-color: red;
+  --mainRed-color: #bf142e;
   --lightgray-color: lightgray;
 
   --transition-duration: 0.25s;
@@ -81,11 +82,30 @@ li {
   }
 }
 
+.headline__title {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 40px;
+}
+
 .formInput__error {
   position: absolute;
-  right: 10px;
+  left: 5px;
   font-size: 11px;
-  top: 7px;
+  bottom: -18px;
+
+  color: var(--mainRed-color);
+
+  @media screen and (max-width: 1200px) {
+    &.formInput__errorName,
+    &.formInput__errorEmail {
+      bottom: -15px;
+    }
+    &.formInput__errorPhone {
+      bottom: 0;
+    }
+  }
 }
 
 .page-container {
@@ -97,5 +117,27 @@ li {
 
   @media screen and (max-width: 600px) {
     padding: 20px 0;
+  }
+}
+
+.dark__toast {
+  border-radius: 10px;
+  min-height: 55px;
+  padding: 4px 8px;
+  font-size: 14px;
+
+  .Toastify__toast-body {
+    .Toastify__toast-icon {
+      margin-inline-end: 5px;
+
+      svg {
+        fill: #fff;
+        color: #333;
+      }
+    }
+  }
+
+  .Toastify__progress-bar--error {
+    background-color: var(--white-color);
   }
 }

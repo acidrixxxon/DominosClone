@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import styles from './ClientDataForm.module.scss';
+
 import { totalErrors } from '../../../utils/formValidators';
 import { IClientData, ICustomerData } from '../../../utils/types/UserTypes';
 import InputError from '../../UI/Errors/InputError/InputError';
-import styles from './ClientDataForm.module.scss';
 
 interface ComponentProps {
   data: IClientData;
@@ -54,7 +55,7 @@ const ClientDataForm: React.FC<ComponentProps> = ({ data, setData, err: { errors
             onChange={inputChangeHandler}
           />
 
-          {errors && <InputError value={errors.name[0]} />}
+          {errors && <InputError value={errors.name[0]} type='name' />}
         </div>
 
         <div className={styles.clientDataForm__inputContainer}>
@@ -73,7 +74,7 @@ const ClientDataForm: React.FC<ComponentProps> = ({ data, setData, err: { errors
             onChange={inputChangeHandler}
           />
 
-          {errors && <InputError value={errors.phone[0]} />}
+          {errors && <InputError type='phone' value={errors.phone[0]} />}
         </div>
 
         <div className={styles.clientDataForm__inputContainer}>
@@ -92,7 +93,7 @@ const ClientDataForm: React.FC<ComponentProps> = ({ data, setData, err: { errors
             onChange={inputChangeHandler}
           />
 
-          {errors && <InputError value={errors.email[0]} />}
+          {errors && <InputError type='email' value={errors.email[0]} />}
         </div>
       </div>
     </motion.div>

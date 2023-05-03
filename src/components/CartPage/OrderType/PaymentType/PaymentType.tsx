@@ -2,12 +2,13 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 
+import styles from './PaymentType.module.scss';
+
 import { useOutsideClick2 } from '../../../../hooks/useOutsideClick2';
 import { totalErrors } from '../../../../utils/formValidators';
 import { ICustomerData, IPaymentType } from '../../../../utils/types/UserTypes';
 import ArrowIcon from '../../../UI/Icons/ArrowIcon';
 import OrderType from '../OrderType';
-import styles from './PaymentType.module.scss';
 
 interface ComponentProps {
   setData: React.SetStateAction<any>;
@@ -26,11 +27,11 @@ const PaymentType: React.FC<ComponentProps> = ({ data, setData, orderType, err: 
       ? [
           { id: 4123, title: 'Готівкою' },
           { id: 11231, title: 'Карткою курьєру' },
-          { id: 12312, title: 'Онлайн' },
+          { id: 12312, title: 'Онлайн на сайті' },
         ]
       : [
           { id: 41121, title: 'У ресторані' },
-          { id: 12312, title: 'Онлайн' },
+          { id: 12312, title: 'Онлайн на сайті' },
         ];
   const [state, setState, ref] = useOutsideClick2();
 
@@ -84,8 +85,8 @@ const PaymentType: React.FC<ComponentProps> = ({ data, setData, orderType, err: 
         <AnimatePresence>
           {state && (
             <motion.ul
-              initial={{ opacity: 0, x: '-100%' }}
-              animate={{ opacity: 1, x: 0, transition: { opacity: { delay: 0.1 }, duration: 0.15 } }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { opacity: { delay: 0.1 }, duration: 0.15 } }}
               exit={{ opacity: 0, transition: { opacity: { delay: 0 }, duration: 0.05 } }}
               className={styles.paymentType__dropdownList}>
               {paymentVariants.map((item) => (

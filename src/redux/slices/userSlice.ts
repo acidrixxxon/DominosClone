@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { IUserAnalytics } from '@/utils/types/Response/AnalyticsResponse';
+
 import { ILoginErrors } from '../../utils/types/ResponseTypes';
 import { IUser, IUserState } from '../../utils/types/UserTypes';
 
@@ -9,6 +11,7 @@ const initialState: IUserState = {
     loginLoading: false,
     refreshLoading: false,
     registerLoading: false,
+    updateProfileLoading: false,
   },
   error: null,
 };
@@ -59,6 +62,16 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loaders.registerLoading = false;
     },
+    updateProfileStart: (state) => {
+      state.loaders.updateProfileLoading = true;
+    },
+    updateProfileStop: (state) => {
+      state.loaders.updateProfileLoading = false;
+    },
+    logoutUser: (state) => {
+      state.user = null;
+      state.error = null;
+    },
   },
 });
 
@@ -73,6 +86,9 @@ export const {
   registerUserError,
   registerUserRequest,
   registerUserSuccess,
+  logoutUser,
 } = userSlice.actions;
+
+export const userActions = userSlice.actions;
 
 export default userSlice.reducer;

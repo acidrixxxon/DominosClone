@@ -16,7 +16,7 @@ const ProductList: FC = () => {
   const productString = category === 0 ? 'pizza' : category === 1 ? 'sides' : category === 2 ? 'drinks' : '';
 
   const { data, error, isLoading } = useFetchProductsQuery({ category: productString, sortId: sort.id });
-
+  console.log(error);
   if (isLoading) return <Skeleton />;
   return (
     <div className='productList'>

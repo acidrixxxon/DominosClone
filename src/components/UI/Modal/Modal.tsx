@@ -3,8 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import ReactPortal from '../../common/ReactPortal/ReactPortal';
 import './Modal.scss';
+
+import ReactPortal from '../../common/ReactPortal/ReactPortal';
 
 interface ComponentProps {
   children: React.ReactNode;
@@ -58,6 +59,7 @@ const Modal: FC<ComponentProps> = ({ ref, id, children, renderCondition, onClose
             className={classNames('modal__overlay', className)}
             onClick={onClose}
             variants={defaultOptions.overlay}
+            transition={{ duration: 0.15 }}
             initial='initial'
             animate='animate'
             exit='exit'>

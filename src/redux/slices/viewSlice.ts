@@ -8,13 +8,15 @@ const initialState: IViewState = {
       visible: false,
     },
   },
+  analytics: 'month',
   sort: {
     id: 0,
     title: 'популярністю',
   },
   category: 0,
   loaders: {
-    createOrderLoader: true,
+    createOrderLoader: false,
+    globalLoader: false,
   },
 };
 
@@ -40,6 +42,12 @@ export const viewSlise = createSlice({
     },
     setCreateOrderLoader: (state, action: PayloadAction<boolean>) => {
       state.loaders.createOrderLoader = action.payload;
+    },
+    setGlobalLoader: (state, action: PayloadAction<boolean>) => {
+      state.loaders.globalLoader = action.payload;
+    },
+    setAnalyticsMonth: (state, action: PayloadAction<'month' | 'year'>) => {
+      state.analytics = action.payload;
     },
   },
 });

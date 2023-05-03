@@ -2,7 +2,18 @@ import { v4 } from 'uuid';
 
 import { ICartState } from './types/CartTypes';
 import { IProduct, IProductInCart } from './types/ProductTypes';
-import { ICustomerData } from './types/UserTypes';
+import { ICustomerData, PaymentStages } from './types/UserTypes';
+
+interface INewOrderDto {
+  cart: ICartState;
+  details: {
+    orderType: {
+      id: number;
+      title: string;
+    };
+    customerData: ICustomerData;
+  };
+}
 
 export const CartProductDto = (item: IProduct, activeType: { size: number; crust: number | -1 }): IProductInCart => {
   return {
@@ -25,22 +36,21 @@ export const CartProductDto = (item: IProduct, activeType: { size: number; crust
   };
 };
 
-export const NewOrderDto = (orderType: number, customerData: ICustomerData, cart: ICartState) => {
+export const NewOrderDto = (orderType: number, customerData: ICustomerData, cart: ICartState): INewOrderDto => {
   return {
     cart,
     details: {
       orderType: orderType === 0 ? { id: 0, title: 'Доставка' } : { id: 1, title: 'Самовиніс' },
-      customerData:
-        customerData.paymentType?.id === 12312
+      customerData: {
+        ...customerData,
+        paymentType: customerData.paymentType
           ? {
-              ...customerData,
-              paymentType: {
-                ...customerData.paymentType,
-                stage: 'очікує на оплату',
-                status: false,
-              },
+              ...customerData.paymentType,
+              stage: PaymentStages.Waiting,
+              status: false,
             }
-          : customerData,
+          : null,
+      },
     },
   };
 };

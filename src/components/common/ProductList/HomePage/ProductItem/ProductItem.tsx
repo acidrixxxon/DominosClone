@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import './ProductItem.scss';
+
 import { useActionCreators } from '../../../../../redux/store';
 import { CartProductDto } from '../../../../../utils/Dto';
 import { IProduct } from '../../../../../utils/types/ProductTypes';
 import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
 import actions from './../../../../../redux/actions/ProductActions';
-import './ProductItem.scss';
 
 interface ComponentProps {
   item: IProduct;
@@ -32,6 +33,7 @@ const ProductItem: FC<ComponentProps> = ({ item, index }) => {
     const product = CartProductDto(item, activeType);
 
     if (product) addToCartAction(product);
+    setActiveType({ size: 0, crust: item.class === 0 ? 0 : -1 });
   };
 
   return (

@@ -1,0 +1,141 @@
+.updateProfileForm {
+  width: 100%;
+  margin: 0 auto;
+
+  .updateProfileForm__fieldGroup {
+    display: grid;
+
+    margin-bottom: 20px;
+
+    &.fieldGroupDouble {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .updateProfileForm__field {
+      position: relative;
+
+      .updateProfileForm__label {
+        margin-bottom: 8px;
+
+        display: block;
+      }
+
+      .updateProfileForm__input {
+        border: 1px solid rgba(79, 79, 79, 0.5);
+        border-radius: 15px;
+        color: #4f4f4f;
+        font-size: 16px;
+        height: 35px;
+        outline: none;
+        padding: 0 10px;
+        width: 100%;
+
+        &:hover,
+        &:focus,
+        &.updateProfileForm__inputFilled {
+          cursor: pointer;
+          border: 1px solid rgba(0, 0, 0, 1);
+        }
+      }
+    }
+  }
+
+  .updateProfileForm__submitBtn {
+    background-color: var(--mainRed-color);
+    color: var(--white-color);
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    opacity: 1;
+
+    height: 45px;
+    width: 214px;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &.submitBtn__loading {
+      background-color: var(--black-color);
+      color: var(--white-color);
+      cursor: default;
+      opacity: 1;
+
+      svg {
+        margin-right: 5px;
+      }
+
+      animation: blaming 1s ease-in-out infinite;
+    }
+
+    &.submitBtn__disabled {
+      background-color: #ffabab;
+
+      border: 1px solid transparent;
+
+      color: var(--white-color);
+
+      cursor: default;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.submitBtn__success {
+      background-color: transparent;
+      border: 1px solid var(--mainRed-color);
+      color: var(--mainRed-color);
+
+      opacity: 1;
+
+      cursor: default;
+
+      span {
+        animation: fadeIn 1s ease-in-out;
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 5px;
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes blaming {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

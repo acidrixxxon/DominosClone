@@ -18,6 +18,7 @@
     "@types/react-redux": "^7.1.25",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-toastify": "^4.1.0",
+    "@types/recharts": "^1.8.24",
     "axios": "^1.2.3",
     "classnames": "^2.3.2",
     "dateformat": "^5.0.3",
@@ -29,6 +30,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-toastify": "^9.1.1",
+    "recharts": "^2.5.0",
     "sass": "^1.57.1"
   },
   "devDependencies": {

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Triangle } from 'react-loader-spinner';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import OrderService from '@/utils/services/OrderService';
 
 import styles from './OrderPage.module.scss';
 
@@ -12,8 +14,22 @@ import PageContainer from '../../UI/PageWrapper/PageWrapper';
 
 const OrderPage: React.FC = () => {
   const { id } = useParams();
-  const { data, error, isSuccess, isLoading } = useFetchOrderQuery(id);
-  console.log(data);
+  const { search } = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { data, isSuccess, isLoading } = useFetchOrderQuery(id);
+
+  useEffect(() => {
+    if (!id) return;
+    const paymentStatus = search.split('=')[1];
+    console.log(location.search.split('=')[1] === 'success');
+    if (paymentStatus === 'success') {
+      OrderService.orderPaymentStatus(id).then((res) => {
+        console.log(res);
+        // if (res.data.order && res.data.success && res.status === 200) navigate(`/order/${id}`);
+      });
+    }
+  }, [search, id]);
 
   const renderCondition = data && data.success && data.order && isSuccess;
   return (

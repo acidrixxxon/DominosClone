@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import styles from './DeliveryDetailsForm.module.scss';
+
 import { totalErrors } from '../../../utils/formValidators';
 import { IAddressData, IAddressData1, ICustomerData } from '../../../utils/types/UserTypes';
 import InputError from '../../UI/Errors/InputError/InputError';
-import styles from './DeliveryDetailsForm.module.scss';
 
 interface ComponentProps {
   data: IAddressData1;
@@ -58,7 +59,7 @@ const DeliveryDetailsForm: React.FC<ComponentProps> = ({ data, setData, err: { s
             onChange={inputChangeHandler}
           />
 
-          {errors && errors.street && <InputError value={errors.street[0]} />}
+          {errors && errors.street && <InputError type='street' value={errors.street[0]} />}
         </div>
       </div>
 
@@ -79,13 +80,15 @@ const DeliveryDetailsForm: React.FC<ComponentProps> = ({ data, setData, err: { s
             onChange={inputChangeHandler}
           />
 
-          {errors && errors.house && <InputError value={errors.house[0]} />}
+          {errors && errors.house && <InputError type='house' value={errors.house[0]} />}
         </div>
 
         <div className={styles.deliveryForm__inputContainer}>
           <input
             type='text'
-            className={styles.deliveryForm__input}
+            className={classNames(styles.deliveryForm__input, {
+              [styles.deliveryForm__inputFilled]: data.room && data.room.trim().length > 0,
+            })}
             placeholder='Квартира'
             name='room'
             value={data.room}
@@ -96,7 +99,9 @@ const DeliveryDetailsForm: React.FC<ComponentProps> = ({ data, setData, err: { s
         <div className={styles.deliveryForm__inputContainer}>
           <input
             type='text'
-            className={styles.deliveryForm__input}
+            className={classNames(styles.deliveryForm__input, {
+              [styles.deliveryForm__inputFilled]: data.floor && Number(data.floor) >= 0,
+            })}
             placeholder='Поверх'
             name='floor'
             value={data.floor}
@@ -110,8 +115,11 @@ const DeliveryDetailsForm: React.FC<ComponentProps> = ({ data, setData, err: { s
           <textarea
             name='comments'
             onChange={inputChangeHandler}
-            className={classNames(styles.deliveryForm__input, styles.deliveryForm__inputTextarea)}
+            className={classNames(styles.deliveryForm__input, styles.deliveryForm__inputTextarea, {
+              [styles.deliveryForm__inputFilled]: data.comments && data.comments.length > 0,
+            })}
             placeholder='Коментар для курьера'
+            value={data.comments}
           />
         </div>
       </div>

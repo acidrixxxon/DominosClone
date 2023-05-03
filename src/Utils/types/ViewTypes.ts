@@ -4,6 +4,7 @@ export interface IViewState {
       visible: boolean;
     };
   };
+  analytics: 'month' | 'year';
   sort: {
     id: number;
     title: string;
@@ -11,5 +12,6 @@ export interface IViewState {
   category: number;
   loaders: {
     createOrderLoader: boolean;
+    globalLoader: boolean;
   };
 }

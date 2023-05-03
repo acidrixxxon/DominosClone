@@ -1,5 +1,5 @@
 import { ICartState } from '../types/CartTypes';
-import { IClientData } from '../types/UserTypes';
+import { IClientData, ICustomerData } from '../types/UserTypes';
 
 class LocalStorageService {
   saveAccessToken(token: string): void {
@@ -10,7 +10,7 @@ class LocalStorageService {
     return localStorage.getItem('accessToken');
   }
 
-  removeTokenFromLS(): void {
+  removeAccessToken(): void {
     return localStorage.removeItem('accessToken');
   }
 
@@ -22,8 +22,11 @@ class LocalStorageService {
     return localStorage.getItem('cart');
   }
 
-  saveCustomerData(data: IClientData): void {
-    localStorage.setItem('customer', JSON.stringify(data));
+  saveCustomerData(data: ICustomerData, orderType: number): void {
+    localStorage.setItem('customer', JSON.stringify(data.client));
+    orderType === 0
+      ? localStorage.setItem('deliveryAddress', JSON.stringify(data.details))
+      : localStorage.setItem('dineinAddress', JSON.stringify(data.details));
   }
 }
 

@@ -1,0 +1,61 @@
+.userNav {
+  background-color: var(--white-color);
+
+  border-radius: 15px;
+
+  padding: 5px 15px;
+
+  position: relative;
+
+  .userNav__email {
+    color: #333;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    .userNav__arrow {
+      margin-left: 15px;
+
+      transition: transform 0.25s ease-in 0s, -webkit-transform 0.25s ease-in 0s;
+      &.userNav__arrowRotated {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .userNav__dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 9999999;
+
+    border-radius: 15px;
+
+    background-color: var(--white-color);
+
+    .userNav__dropdownLink {
+      display: block;
+
+      color: #333;
+
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+      cursor: pointer;
+
+      padding: 15px 5px 15px 20px;
+
+      transition: background-color 0.25s ease-in 0s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

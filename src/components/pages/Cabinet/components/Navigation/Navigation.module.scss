@@ -1,0 +1,30 @@
+.cabinetNav {
+  .cabinetNav__list {
+    @media screen and (max-width: 992px) {
+      display: flex;
+      gap: 20px;
+    }
+    .cabinetNav__item {
+      background-color: var(--white-color);
+
+      padding: 12px 15px;
+
+      border-radius: 10px;
+
+      margin-bottom: 10px;
+
+      cursor: pointer;
+
+      @media screen and (max-width: 992px) {
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      &.cabinetNav__itemActive,
+      &:hover {
+        background-color: var(--black-color);
+        color: var(--white-color);
+      }
+    }
+  }
+}

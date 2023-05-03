@@ -1,0 +1,27 @@
+.ordersHistory {
+  .ordersHistory__headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .ordersHistory__buttonsGroup {
+      button {
+        padding: 7px 15px;
+        min-width: 120px;
+        border: 1px solid var(--black-color);
+        color: var(--black-color);
+        background-color: transparent;
+
+        &:last-child {
+          margin-left: 10px;
+        }
+
+        &.active {
+          border: 1px solid transparent;
+          background-color: var(--black-color);
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+}

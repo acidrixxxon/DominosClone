@@ -2,7 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 
 import { BACKEND_URL } from '../config';
 import { LoginFormFieldInterface, RegisterFormFieldInterface } from '../types/CommontTypes';
-import { ILoginUserResponse, IRefreshTokenResponse, IRegisterUserResponse } from '../types/ResponseTypes';
+import { ILoginUserResponse, IRefreshTokenResponse, IRegisterUserResponse, IUpdateProfileResponse } from '../types/ResponseTypes';
+import { IUserData } from '../types/UserTypes';
 
 class UserService {
   loginUser(data: LoginFormFieldInterface) {
@@ -19,6 +20,14 @@ class UserService {
 
   registerUser(data: RegisterFormFieldInterface): Promise<AxiosResponse> {
     return axios.post<IRegisterUserResponse>(`${BACKEND_URL}/user/register`, data);
+  }
+
+  updateUserProfile(data: IUserData, token: string): Promise<AxiosResponse<IUpdateProfileResponse>> {
+    return axios.post(`${BACKEND_URL}/user/update__profile`, data, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
   }
 }
 

@@ -1,9 +1,11 @@
-import React, { FC, memo, useEffect } from 'react';
+import { useAuth } from '@/hooks/useAuth';
+import React, { FC, memo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import './Header.scss';
 
 import Container from '../UI/Container/Container';
 import Logotype from '../UI/Logotype/Logotype';
-import './Header.scss';
 import { Authorization } from './components/Authorization/Authorization';
 import AvgDeliveryTime from './components/AvgDeliveryTime/AvgDeliveryTime';
 import CartStatus from './components/CartStatus/CartStatus';
@@ -15,34 +17,29 @@ interface ComponentProps {
   appRef?: React.RefObject<HTMLDivElement>;
 }
 
-const Header: FC<ComponentProps> = ({ refLink, appRef }) => {
-  const { pathname } = useLocation();
+const Header: FC<ComponentProps> = () => {
+  const location = useLocation();
+  const headerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (refLink && appRef && pathname !== 'cart') {
-  //     const onScrollHandler = (e: any) => {
-  //       const scrollOffset = window.scrollY;
+  const isSticky = (e: any) => {
+    const offsetY = window.scrollY;
+    if (headerRef.current) {
+      offsetY >= 200 ? headerRef.current.classList.add('header__sticky') : headerRef.current.classList.remove('header__sticky');
+    }
+  };
 
-  //       if (refLink?.current && appRef?.current) {
-  //         if (scrollOffset > refLink.current.offsetHeight) {
-  //           refLink.current.classList.add('header__sticky');
-  //           appRef.current.style.marginTop = `${refLink.current.offsetHeight + 80}px`;
-  //         } else {
-  //           refLink.current.classList.remove('header__sticky');
-  //           appRef.current.style.marginTop = `0px`;
-  //         }
-  //       }
-  //     };
-  //     window.addEventListener('scroll', onScrollHandler);
+  useEffect(() => {
+    if (location.pathname !== 'cart' && location.pathname.split('/')[1] !== 'product') {
+      window.addEventListener('scroll', isSticky);
 
-  //     return () => {
-  //       window.removeEventListener('scroll', onScrollHandler);
-  //     };
-  //   }
-  // }, [pathname]);
+      return () => {
+        window.removeEventListener('scroll', isSticky);
+      };
+    }
+  });
 
   return (
-    <div id='header' ref={refLink}>
+    <div id='header'>
       <div className='header__top'>
         <Container>
           <AvgDeliveryTime />
@@ -51,7 +48,7 @@ const Header: FC<ComponentProps> = ({ refLink, appRef }) => {
         </Container>
       </div>
 
-      <div className='header__main'>
+      <div className='header__main' ref={headerRef}>
         <Container>
           <Logotype />
 

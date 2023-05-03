@@ -3,6 +3,8 @@ import 'dayjs/locale/uk';
 import { motion } from 'framer-motion';
 import React from 'react';
 
+import { formatDate, shortedOrderId } from '@/utils/helpers';
+
 import styles from './OrderDetails.module.scss';
 
 import { IOrderFromServer } from '../../../utils/types/CommontTypes';
@@ -13,13 +15,10 @@ interface ComponentProps {
 }
 
 const OrderDetails: React.FC<ComponentProps> = ({ data }) => {
-  const shortedId = data._id.split('').splice(data._id.length - 5, data._id.length);
-  const formattedDate = dayjs(data.createdAt).locale('uk').format('D MMMM YYYY - HH:MM').toString();
-
   return (
     <motion.div className={styles.orderDetails} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className={styles.orderDetails__heading}>
-        Замовлення #{shortedId} {`${formattedDate && ` , ${formattedDate}`}`}
+        Замовлення #{shortedOrderId(data._id)} {formatDate(data.createdAt, 'D MMMM YYYY - HH:MM')}
       </div>
 
       <div className={styles.orderDetails__content}>

@@ -3,7 +3,7 @@ import lodash from 'lodash';
 import { ADD_MOCARELLA, CHANGE_QTY, MINUS, MOCARELLA_ID, MOCARELLA_TYPES, PLUS, REMOVE_MOCARELLA } from '../../utils/constants';
 import { IProductInCart } from '../../utils/types/ProductTypes';
 import { addToCart, clearCart, removeFromCart, setCart } from '../slices/cartSlice';
-import { AppDispatch, GetState, storeSetup } from '../store';
+import { AppDispatch, GetState } from '../store';
 
 const addToCartAction = (item: IProductInCart) => async (dispatch: AppDispatch, getState: GetState) => {
   const { cart } = getState();

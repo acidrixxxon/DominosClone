@@ -1,18 +1,15 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
-import axios from 'axios';
 import classNames from 'classnames';
 import { AnimatePresence } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { NewOrderDto } from '@/utils/Dto';
-import { BACKEND_URL } from '@/utils/config';
-import { initialClientInfo, initialDeliveryInfo, initialDineinInfo } from '@/utils/constants';
 import { orderFormValidate, totalErrors } from '@/utils/formValidators';
-import LocalStorageService from '@/utils/services/LocalStorageService';
-import { ICreateNewOrderResponse, ICreateNewOrderSuccess } from '@/utils/types/ResponseTypes';
+import { setInitialCustomerData, setInitialDeliveryInfo, setInitialDineinInfo } from '@/utils/helpers';
+import { ICreateNewOrderResponse } from '@/utils/types/ResponseTypes';
 import { ICustomerData } from '@/utils/types/UserTypes';
 
 import OrderActions from '@/redux/actions/OrderActions';
@@ -29,28 +26,25 @@ import Variants from './Variants/Variants';
 const OrderType: React.FC = () => {
   const [errors, setErrors] = useState<totalErrors | null>(null);
   const [orderType, setOrderType] = useState<number>(0);
-  const [customerData, setCustomerData] = useState<ICustomerData>({
-    client: typeof initialClientInfo === 'string' ? JSON.parse(initialClientInfo) : initialClientInfo,
-    details: orderType === 0 ? initialDeliveryInfo : initialDineinInfo,
-    paymentType: null,
-  });
+  const [customerData, setCustomerData] = useState<ICustomerData>(setInitialCustomerData(orderType));
 
   const navigate = useNavigate();
+  const { createNewOrder } = useActionCreators(OrderActions);
 
   const {
     cart,
+    user: { user },
     view: {
       loaders: { createOrderLoader },
     },
   } = useAppSelector((state) => state);
-  const { createNewOrder } = useActionCreators(OrderActions);
 
   const setType = (id: number) => {
     setOrderType(id);
     setCustomerData((state) => ({
       ...state,
       paymentType: null,
-      details: orderType !== 0 ? initialDeliveryInfo : initialDineinInfo,
+      details: orderType !== 0 ? setInitialDeliveryInfo() : setInitialDineinInfo(),
     }));
   };
 
@@ -74,22 +68,17 @@ const OrderType: React.FC = () => {
       const orderDto = NewOrderDto(orderType, customerData, cart);
 
       if (orderDto) {
-        LocalStorageService.saveCustomerData(customerData.client);
-        const data: ICreateNewOrderResponse = await createNewOrder(orderDto);
+        const { order, success, message } = await createNewOrder(orderDto);
 
-        if (data.order) {
-          if (data.order.details.customerData.paymentType?.id === 12312 && data.order.details.customerData.paymentType.paymentLink) {
-            return window.location.replace(data.order.details.customerData.paymentType.paymentLink);
-          } else {
-            return navigate(`/order/${data.order._id}`);
-          }
-        } else {
-          toast.error(data.message);
-        }
+        return (
+          success &&
+          (order.details.customerData.paymentType?.id === 12312 && order.details.customerData.paymentType.paymentLink
+            ? window.location.replace(order.details.customerData.paymentType.paymentLink)
+            : navigate(`/order/${order._id}`))
+        );
       }
-    } else {
-      setErrors(errors);
     }
+    return setErrors(errors);
   };
 
   return (
@@ -122,7 +111,7 @@ const OrderType: React.FC = () => {
             <span>Усьго</span>
 
             <div className={styles.orderType__price}>
-              <span className={styles.paymentType__priceNumber}>324.00</span>
+              <span className={styles.paymentType__priceNumber}>{cart.totalCost}.00</span>
               <span className={styles.paymentType__priceText}>грн</span>
             </div>
           </div>

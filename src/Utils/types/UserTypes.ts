@@ -1,3 +1,5 @@
+import { IUserAnalytics } from './Response/AnalyticsResponse';
+
 export interface IUser {
   email: string;
   _id: string;
@@ -13,11 +15,12 @@ export interface IUser {
 }
 
 export interface IUserState {
-  user: IUser | {} | null;
+  user: IUser | null;
   loaders: {
     loginLoading: boolean;
     refreshLoading: boolean;
     registerLoading: boolean;
+    updateProfileLoading: boolean;
   };
   error: string | null;
 }
@@ -80,7 +83,19 @@ export interface ICustomerData {
 export interface IPaymentType {
   id: number;
   title: string;
-  stage?: 'замовлення сплачене' | 'очікує на оплату';
+  stage?: PaymentStages.Paid | PaymentStages.Waiting;
   status?: boolean;
   paymentLink?: string;
+}
+
+export enum PaymentStages {
+  Paid = 'замовлення сплачене',
+  Waiting = 'очікує на оплату',
+}
+
+export interface IUserData {
+  firstName: string;
+  secondName: string;
+  phone: string;
+  email: string;
 }

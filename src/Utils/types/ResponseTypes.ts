@@ -1,6 +1,23 @@
+import { type } from 'os';
+
 import { IOrderFromServer } from './CommontTypes';
 import { IPizza, IPizzaIngridientsCategory, IProduct, IProductCategory } from './ProductTypes';
 import { IUser } from './UserTypes';
+
+export interface ResponseMessage {
+  message: string;
+}
+
+export interface ResponseSuccess extends ResponseMessage {
+  success: true;
+}
+export interface ResponseError extends ResponseMessage {
+  success: false;
+}
+
+export interface Response extends ResponseMessage {
+  success: boolean;
+}
 
 //LOGIN TYPES
 export interface ILoginUserResponseSuccess {
@@ -57,6 +74,16 @@ export interface IRegisterUserResponseError {
 
 export type IRegisterUserResponse = IRefreshTokenResponseSuccess | IRefreshTokenResponseError;
 
+// USER UPDATE PROFILE RESPOMSE
+export interface IUpdateProfileSuccess extends ResponseSuccess {
+  message: 'Дані успішно оновлені';
+  user: IUser;
+}
+
+export interface IUpdateProfileError extends ResponseError {}
+
+export type IUpdateProfileResponse = IUpdateProfileSuccess | IUpdateProfileError;
+
 //Product Responses
 
 //Get categories with products
@@ -111,16 +138,13 @@ export interface IFetchIngridientsError {
 
 export type IFetchIngridientsResponse = IFetchIngridientsSuccess | IFetchIngridientsError;
 
-export interface ICreateNewOrderSuccess {
-  message: string;
+export interface ICreateNewOrderSuccess extends ResponseSuccess {
+  message: 'Нове замовлення створене!';
   order: IOrderFromServer;
-  success: true;
 }
 
-export interface ICreateNewOrderError {
-  success: false;
-  message: string;
-  order?: IOrderFromServer;
+export interface ICreateNewOrderError extends ResponseError {
+  order?: null;
 }
 
 export type ICreateNewOrderResponse = ICreateNewOrderSuccess | ICreateNewOrderError;

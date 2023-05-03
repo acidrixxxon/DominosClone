@@ -45,3 +45,17 @@ export interface IOrderFromServer {
     title: string;
   };
 }
+
+export const enum ICabinetTabs {
+  PROFILE = 'profile',
+  ORDERS = 'orders',
+  USER_DASHBOARD = 'user_dashboard',
+  ADMIN_DASHBOARD = 'admin_dashboard',
+  LOGOUT = 'LOGOUT',
+}
+
+export const enum ICabinetTabNames {
+  USER_DASHBOARD = 'Головна',
+  PROFILE = 'Профіль',
+  ORDERS = 'Замовлення',
+}

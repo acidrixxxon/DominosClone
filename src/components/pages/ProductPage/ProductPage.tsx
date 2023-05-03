@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Oval } from 'react-loader-spinner';
+import { Oval, Triangle } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 
-import ProductDetails from '@/components/ProductDetails/ProductDetails';
 import PageWrapper from '@/components/UI/PageWrapper/PageWrapper';
+import ProductDetails from '@/components/pages/ProductPage/components/ProductDetails/ProductDetails';
 
 import { useGetProductByIdQuery } from '@/redux/api/ProductApi';
 
@@ -12,23 +12,19 @@ import styles from './ProductPage.module.scss';
 const ProductPage: FC = () => {
   const { id } = useParams();
 
-  const { data } = useGetProductByIdQuery(id);
-
-  const isLoading = true;
+  const { data, isLoading } = useGetProductByIdQuery(id);
 
   return (
     <PageWrapper className={styles.productPage}>
       {isLoading && (
         <div className={styles.productPage__loaderContainer}>
-          <Oval
-            height={150}
-            width={150}
-            color='red'
+          <Triangle
+            height='300'
+            width='300'
+            color='var(--black-color)'
+            ariaLabel='triangle-loading'
+            wrapperStyle={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-150px,-150px)' }}
             visible={true}
-            ariaLabel='oval-loading'
-            secondaryColor='#4f4f4f'
-            strokeWidth={2}
-            strokeWidthSecondary={2}
           />
         </div>
       )}
