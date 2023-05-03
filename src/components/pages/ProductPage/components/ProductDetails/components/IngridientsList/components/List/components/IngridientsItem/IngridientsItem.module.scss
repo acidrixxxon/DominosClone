@@ -1,4 +1,4 @@
-@import './../../../../../../assets/mixins.scss';
+@import '@/assets/mixins.scss';
 
 .productDetails__ingridientsItem {
   cursor: pointer;
@@ -75,7 +75,7 @@
       align-items: center;
       justify-content: center;
 
-      transition: .2s all linear;
+      transition: 0.2s all linear;
 
       &.productDetails__ingridientQtyDisabled {
         opacity: 0.5;
