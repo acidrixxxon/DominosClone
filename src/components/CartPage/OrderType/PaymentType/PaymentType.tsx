@@ -1,14 +1,14 @@
+import { useOutsideClick2 } from '@/hooks/useOutsideClick2';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useRef, useState } from 'react';
+import React from 'react';
+
+import ArrowIcon from '@/components/UI/Icons/ArrowIcon';
+
+import { totalErrors } from '@/utils/formValidators';
+import { ICustomerData, IPaymentType } from '@/utils/types/UserTypes';
 
 import styles from './PaymentType.module.scss';
-
-import { useOutsideClick2 } from '../../../../hooks/useOutsideClick2';
-import { totalErrors } from '../../../../utils/formValidators';
-import { ICustomerData, IPaymentType } from '../../../../utils/types/UserTypes';
-import ArrowIcon from '../../../UI/Icons/ArrowIcon';
-import OrderType from '../OrderType';
 
 interface ComponentProps {
   setData: React.SetStateAction<any>;
