@@ -49,7 +49,11 @@ const UserNavigation = () => {
                 );
               } else if (item.isAdmin && user.isAdmin) {
                 return (
-                  <Link className={styles.userNav__dropdownLink} to={item.to} key={item.id} onClick={() => menuClickHandler(item.id)}>
+                  <Link
+                    className={styles.userNav__dropdownLink}
+                    to={item.to}
+                    key={item.id}
+                    onClick={() => menuClickHandler(item.title)}>
                     {item.name}
                   </Link>
                 );

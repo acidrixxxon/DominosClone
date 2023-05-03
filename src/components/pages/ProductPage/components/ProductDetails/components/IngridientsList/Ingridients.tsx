@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 
+import { IPizzaIngridientsFull } from '@/utils/types/ProductTypes';
+
 import styles from './Ingridients.module.scss';
 
-import { IPizzaIngridientsFull } from '../../../../../../../utils/types/ProductTypes';
 import IngridientsList from './components/List/IngridientsList';
 
 interface ComponentProps {

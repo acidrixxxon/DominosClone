@@ -10,7 +10,7 @@ const GlobalLoader: React.FC = () => {
   return (
     <ReactPortal wrapperId='root'>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.loader__overlay}>
-        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve'>
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' xmlSpace='preserve'>
           <path
             className={styles.loader__icon}
             style={{

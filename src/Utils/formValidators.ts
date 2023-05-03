@@ -84,7 +84,7 @@ export const orderFormValidate = (
 
   if (orderType === 0) {
     for (const prop in data.details) {
-      if (prop === 'street' && data.details[prop].length < 4) {
+      if (prop === 'street' && data.details.street && data.details.street.trim().length > 4) {
         totalErrors[prop]?.push(`Коротка назва вулиці!`);
         result = false;
       }
