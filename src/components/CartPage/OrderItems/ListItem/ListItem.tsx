@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { MINUS, PLUS } from '@/utils/constants.ts';
+import CloseIcon from '@/components/UI/Icons/CloseIcon';
+import MinusIcon from '@/components/UI/Icons/MinusIcon';
+import PlusIcon from '@/components/UI/Icons/PlusIcon';
+
+import { MINUS, PLUS } from '@/utils/constants';
+import { IProductInCart } from '@/utils/types/ProductTypes';
+
+import { useActionCreators } from '@/redux/store';
 
 import styles from './ListItem.module.scss';
 
-import { useActionCreators } from '../../../../redux/store';
-import { IProductInCart } from '../../../../utils/types/ProductTypes';
-import CloseIcon from '../../../UI/Icons/CloseIcon';
-import MinusIcon from '../../../UI/Icons/MinusIcon';
-import PlusIcon from '../../../UI/Icons/PlusIcon';
 import cartActions from './../../../../redux/actions/ProductActions';
 
 const ListItem: React.FC<{ item: IProductInCart; index: number }> = ({ item, index }) => {
