@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import MotionTr from '@/components/common/MotionContainer/MotionTr/MotionTr';
 import NoActiveOrders from '@/components/common/NoActiveOrders/NoActiveOrders';
 
 import { formatDate, shortedOrderId } from '@/utils/helpers';
@@ -10,11 +11,21 @@ import { IOrderFromServer } from '@/utils/types/CommontTypes';
 import styles from './ActiveOrdersTable.module.scss';
 
 interface ComponentProps {
-  data: IOrderFromServer[] | undefined;
+  data: IOrderFromServer[] | null;
 }
 
 const ActiveOrdersTable: React.FC<ComponentProps> = ({ data }) => {
-  if (!data || data.length < 1) return <NoActiveOrders />;
+  const activeOrders = data && data.length > 0;
+
+  const navigate = useNavigate();
+
+  const navigateHandler = (e: React.MouseEvent<HTMLElement>, url: string): void => {
+    e.preventDefault();
+
+    navigate(`/order/${url}`);
+  };
+
+  if (!activeOrders) return <NoActiveOrders />;
 
   return (
     <motion.table initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={styles.table}>
@@ -31,9 +42,31 @@ const ActiveOrdersTable: React.FC<ComponentProps> = ({ data }) => {
       </thead>
 
       <tbody>
-        {data.map((item) => (
-          <Link to={`/order/${item._id}`} key={item._id}>
-            <tr>
+        <AnimatePresence mode='wait'>
+          {data.map((item, index) => (
+            <MotionTr
+              onClick={(e) => navigateHandler(e, item._id)}
+              key={item._id}
+              initial={{
+                opacity: 0,
+                translateY: -10,
+                scale: 0.97,
+              }}
+              animate={{
+                opacity: 0.9,
+                translateY: 0,
+                scale: 0.97,
+                transition: {
+                  delay: index * 0.15,
+                  opacity: {
+                    duration: 0.3,
+                  },
+                  translateY: {
+                    duration: 0.1,
+                  },
+                },
+              }}
+              exit='none'>
               <td>{shortedOrderId(item._id)}</td>
               <td>{formatDate(item.createdAt, 'D.MM.YYYY, HH:MM')}</td>
               <td>{item.details.orderType.title}</td>
@@ -41,7 +74,7 @@ const ActiveOrdersTable: React.FC<ComponentProps> = ({ data }) => {
                 {item.details.orderType.id === 0 ? (
                   `вул.${item.details.customerData.details.street}, буд.${item.details.customerData.details.house}`
                 ) : (
-                  <>${item.details.customerData.details.restaurant}</>
+                  <>${item.details.customerData.details.restaurant?.title}</>
                 )}
               </td>
               <td>{item.details.customerData.client.phone}</td>
@@ -49,9 +82,9 @@ const ActiveOrdersTable: React.FC<ComponentProps> = ({ data }) => {
               <td>
                 <button>{item.status.title}</button>
               </td>
-            </tr>
-          </Link>
-        ))}
+            </MotionTr>
+          ))}
+        </AnimatePresence>
       </tbody>
     </motion.table>
   );

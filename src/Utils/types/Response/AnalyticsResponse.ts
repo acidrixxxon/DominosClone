@@ -13,10 +13,13 @@ export interface IUserAnalytics {
 }
 
 export interface FetchUserAnalyticsSuccess extends ResponseSuccess {
-  message: 'Данні отримано!';
+  message: 'Аналітику отримано!';
   analytics: IUserAnalytics;
 }
 
-export interface FetchUserAnalyticsError extends ResponseError {}
+export interface FetchUserAnalyticsError extends ResponseError {
+  analytics: null;
+  message: 'Не вдалось отримати аналітику!';
+}
 
 export type FetchUserAnalyticsResponse = FetchUserAnalyticsSuccess | FetchUserAnalyticsError;

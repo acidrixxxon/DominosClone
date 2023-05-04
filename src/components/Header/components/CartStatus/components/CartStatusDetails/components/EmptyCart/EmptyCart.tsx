@@ -1,8 +1,10 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
 import classNames from 'classnames';
 
-import { useAppSelector } from '../../../../../../../../hooks/useAppSelector';
-import EmptyCartIcon from '../../../../../../../UI/Icons/EmptyCartIcon';
-import animationStyles from './../../../../../../../../assets/animations.module.scss';
+import EmptyCartIcon from '@/components/UI/Icons/EmptyCartIcon';
+
+import animationStyles from '@/assets/animations.module.scss';
+
 import styles from './EmptyCart.module.scss';
 
 const EmptyCart = () => {

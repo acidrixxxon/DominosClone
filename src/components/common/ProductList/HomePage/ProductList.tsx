@@ -3,47 +3,27 @@ import React, { FC } from 'react';
 
 import Skeleton from '@/components/UI/Skeleton/Skeleton';
 
-import { IProductCategory } from '@/utils/types/ProductTypes';
-
 import { useFetchProductsQuery } from '@/redux/api/ProductApi';
 
-import './ProductList.scss';
+import styles from './ProductList.module.scss';
 
-import ProductItem from './ProductItem/ProductItem';
+import CategoriesList from './components/CategoriesList/CategoriesList';
+import SortedList from './components/SortedList/SortedList';
 
 const ProductList: FC = () => {
   const { category, sort } = useAppSelector((state) => state.view);
   const productString = category === 0 ? 'pizza' : category === 1 ? 'sides' : category === 2 ? 'drinks' : '';
 
   const { data, error, isLoading } = useFetchProductsQuery({ category: productString, sortId: sort.id });
-  console.log(error);
-  if (isLoading) return <Skeleton />;
-  return (
-    <div className='productList'>
-      {sort.id === 0 ? (
-        <>
-          {data &&
-            data.categories &&
-            data.categories.map((item: IProductCategory) => {
-              if (item.products.length === 0) return;
-              return (
-                <div className='productList__category' key={item._id}>
-                  <h4 className='productList__category-title'>{item.title}</h4>
 
-                  <ul className='productList__category-list'>
-                    {item.products.map((item, index) => (
-                      <ProductItem item={item} key={item._id} index={index} />
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-        </>
-      ) : (
-        <ul className='productList__category-list'>
-          {data && data.products && data.products.map((item, index) => <ProductItem index={index} item={item} key={item._id} />)}
-        </ul>
-      )}
+  if (isLoading) return <Skeleton />;
+  if (!data || error) return <span>Не вдалось отримати товари!</span>;
+
+  return (
+    <div className={styles.productList}>
+      {sort.id === 0
+        ? data.categories && <CategoriesList categories={data.categories} />
+        : data.products && <SortedList products={data.products} />}
     </div>
   );
 };

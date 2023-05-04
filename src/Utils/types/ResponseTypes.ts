@@ -88,12 +88,18 @@ export type IUpdateProfileResponse = IUpdateProfileSuccess | IUpdateProfileError
 
 //Get categories with products
 
-export interface IFetchCategoriesSuccess {
+export interface IFetchCategoriesSuccess extends ResponseSuccess {
   categories: IProductCategory[];
-  products?: [];
-  message: string;
-  success: true;
 }
+
+//Fetch all products with sort params
+
+export interface IFetchProductsSuccess extends ResponseSuccess {
+  products: IProduct[];
+}
+
+//tip responsa dlya huka iz api
+export type FetchProductsSuccess = IFetchCategoriesSuccess & IFetchProductsSuccess;
 
 export interface IFetchCategoriesError {
   message: string;
@@ -103,15 +109,6 @@ export interface IFetchCategoriesError {
 }
 
 export type IFetchCategoriesResponse = IFetchCategoriesError | IFetchCategoriesSuccess;
-
-//Fetch all products with sort params
-
-export interface IFetchProductsSuccess {
-  message: string;
-  success: true;
-  products: IProduct[];
-  categories?: [];
-}
 
 export interface IFetchProductsError {
   message: string;

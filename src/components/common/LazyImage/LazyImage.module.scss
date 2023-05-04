@@ -1,0 +1,22 @@
+.lazyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    position: absolute;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    border-radius: 15px;
+    transition: all 0.2s ease-in;
+
+    object-fit: cover;
+
+    opacity: 1;
+    visibility: visible;
+  }
+}

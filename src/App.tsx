@@ -13,8 +13,8 @@ import '@/assets/base.scss';
 import UserActions from '@/redux/actions/UserActions';
 import { useActionCreators } from '@/redux/store';
 
-import lazyLoad from './components/LazyLoad/LazyLoad';
 import GlobalLoader from './components/UI/GlobalLoader/GlobalLoader';
+import lazyLoad from './components/common/LazyLoad/LazyLoad';
 import Cabinet from './components/pages/Cabinet/Cabinet';
 import { useAuth } from './hooks/useAuth';
 import { useScrollToTop } from './hooks/useScrollToTop';

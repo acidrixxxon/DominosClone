@@ -1,5 +1,6 @@
 .table {
   width: 100%;
+  min-height: 280px;
 
   thead {
     tr {
@@ -8,7 +9,7 @@
       gap: 5px;
       align-items: center;
 
-      background-color: #f8f4f8;
+      background-color: var(--lightgray-color);
       border-radius: 10px;
 
       padding: 10px 15px;
@@ -18,53 +19,52 @@
 
         font-size: 13px;
         font-weight: 600;
-        color: rgba(0, 0, 0, 1);
+        color: var(--black-color);
       }
     }
   }
 
   tbody {
-    a {
-      &:hover {
-        tr {
-          background-color: #f8f4f8;
-          transform: scale(1);
+    tr {
+      display: grid !important;
+      grid-template-columns: 0.7fr 1.3fr 0.7fr 1.5fr 1fr 0.6fr 0.8fr;
+      align-items: center;
+      gap: 5px;
 
-          td {
-            color: rgba(0, 0, 0, 1);
+      padding: 5px 15px;
+
+      border-radius: 10px;
+      display: block;
+
+      cursor: pointer;
+
+      td {
+        text-align: left;
+
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.49);
+
+        padding: 10px 0;
+
+        &:last-child {
+          button {
+            padding: 5px 15px;
+
+            width: 100%;
+
+            background-color: var(--mainRed-color);
+            color: var(--white-color);
           }
         }
       }
 
-      tr {
-        transform: scale(0.98);
-        display: grid;
-        grid-template-columns: 0.7fr 1.3fr 0.7fr 1.5fr 1fr 0.6fr 0.8fr;
-        align-items: center;
-        gap: 5px;
-
-        padding: 5px 15px;
-        border-radius: 10px;
+      &:hover {
+        background-color: var(--lightgray-color);
+        transform: scale(1) !important;
 
         td {
-          text-align: left;
-
-          font-size: 12px;
-          font-weight: 400;
-          color: rgba(0, 0, 0, 0.49);
-
-          padding: 10px 0;
-
-          &:last-child {
-            button {
-              padding: 5px 15px;
-
-              width: 100%;
-
-              background-color: var(--mainRed-color);
-              color: var(--white-color);
-            }
-          }
+          color: rgba(0, 0, 0, 1);
         }
       }
     }

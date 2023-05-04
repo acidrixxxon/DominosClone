@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { FetchUserOrdersResponse } from '@/utils/types/Response/UserResponse';
+import { FetchUserActiveOrdersResponse, FetchUserOrdersResponse, FetchUserOrdersSuccess } from '@/utils/types/Response/UserResponse';
 
 import { BACKEND_URL } from '../../utils/config';
 import { RootState } from '../store';
@@ -19,11 +19,15 @@ export const userApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    fetchUserOrders: builder.query<FetchUserOrdersResponse, void>({
-      query: () => '/getuserorders',
+    fetchUserOrders: builder.query<FetchUserOrdersSuccess, { page: number; limit: number }>({
+      query: ({ page, limit }) => `/getuserorders?page=${page}&limit=${limit}`,
+      keepUnusedDataFor: 0,
+    }),
+    fetchUserActiveOrders: builder.query<FetchUserActiveOrdersResponse, number>({
+      query: (page) => `/getuseractiveorders?page=${page}`,
       keepUnusedDataFor: 0,
     }),
   }),
 });
 
-export const { useFetchUserOrdersQuery } = userApi;
+export const { useFetchUserOrdersQuery, useFetchUserActiveOrdersQuery } = userApi;

@@ -59,3 +59,9 @@ export const enum ICabinetTabNames {
   PROFILE = 'Профіль',
   ORDERS = 'Замовлення',
 }
+
+export interface IPagination<T> {
+  page: number;
+  limit: number;
+  pageCount: T;
+}

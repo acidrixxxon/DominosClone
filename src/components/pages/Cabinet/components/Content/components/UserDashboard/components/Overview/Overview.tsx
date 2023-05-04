@@ -21,11 +21,11 @@ const Overview = () => {
   if (error || !data || !data.success || !data.analytics) return <OverviewError />;
 
   return (
-    <>
-      <div className={styles.userDashboard__headline}>
-        <h4 className={classNames(styles.userDashboard__title, 'headline__title')}>Оглядини</h4>
+    <div className={styles.overview}>
+      <div className={styles.overview__headline}>
+        <h4 className={classNames(styles.overview__title, 'headline__title')}>Оглядини</h4>
 
-        <div className={styles.userDashboard__buttonsGroup}>
+        <div className={styles.overview__buttonsGroup}>
           <button
             className={classNames({ [styles.active]: analytics === 'month' })}
             onClick={() => setAnalyticsMonth('month')}
@@ -41,80 +41,82 @@ const Overview = () => {
         </div>
       </div>
 
-      {isLoading ? (
-        <Oval
-          height={80}
-          width={80}
-          color='#4f4f4f'
-          wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
-          visible={true}
-          ariaLabel='loading-indicator'
-          secondaryColor='#151617'
-          strokeWidth={2}
-          strokeWidthSecondary={2}
-        />
-      ) : (
-        <div className={styles.userDashboard__content}>
-          <div className={styles.userDashboard__chartsContainer}>
-            <motion.div
-              initial={{ opacity: 0, transform: 'scale(.7)' }}
-              animate={{ opacity: 1, transform: 'scale(1)' }}
-              exit={{ opacity: 0 }}
-              className={styles.userDashboard__chart}>
-              <h4>Усього замовлень:</h4>
+      <div className={styles.overview__content}>
+        {isLoading ? (
+          <Oval
+            height={80}
+            width={80}
+            color='#4f4f4f'
+            wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
+            visible={true}
+            ariaLabel='loading-indicator'
+            secondaryColor='#151617'
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
+        ) : (
+          <>
+            <div className={styles.overview__chartsContainer}>
+              <motion.div
+                initial={{ opacity: 0, transform: 'scale(.7)' }}
+                animate={{ opacity: 1, transform: 'scale(1)' }}
+                exit={{ opacity: 0 }}
+                className={styles.overview__chart}>
+                <h4>Усього замовлень:</h4>
 
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                {data?.analytics.orderCount}
-              </motion.span>
-            </motion.div>
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  {data.analytics.orderCount}
+                </motion.span>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, transform: 'scale(.8)' }}
-              animate={{ opacity: 1, transform: 'scale(1)' }}
-              exit={{ opacity: 0 }}
-              className={styles.userDashboard__chart}>
-              <h4>Витрати загалом:</h4>
+              <motion.div
+                initial={{ opacity: 0, transform: 'scale(.8)' }}
+                animate={{ opacity: 1, transform: 'scale(1)' }}
+                exit={{ opacity: 0 }}
+                className={styles.overview__chart}>
+                <h4>Витрати загалом:</h4>
 
-              <span>{data?.analytics.moneySpent > 0 ? `${data?.analytics.moneySpent}.00` : '00.00'}</span>
-            </motion.div>
+                <span>{data?.analytics.moneySpent > 0 ? `${data.analytics.moneySpent}.00` : '00.00'}</span>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, transform: 'scale(.7)' }}
-              animate={{ opacity: 1, transform: 'scale(1)' }}
-              exit={{ opacity: 0 }}
-              className={styles.userDashboard__chart}>
-              <h4>Замовлено доставок:</h4>
+              <motion.div
+                initial={{ opacity: 0, transform: 'scale(.7)' }}
+                animate={{ opacity: 1, transform: 'scale(1)' }}
+                exit={{ opacity: 0 }}
+                className={styles.overview__chart}>
+                <h4>Замовлено доставок:</h4>
 
-              <span>{data.analytics.deliveriesCount}</span>
-            </motion.div>
-          </div>
+                <span>{data.analytics.deliveriesCount}</span>
+              </motion.div>
+            </div>
 
-          <div className={styles.userDashboard__orderStats}>
-            <h4 className={classNames(styles.userDashboard__title, 'headline__title')}>Статистика замовлень</h4>
+            <div className={styles.overview__orderStats}>
+              <h4 className={classNames(styles.overview__title, 'headline__title')}>Статистика замовлень</h4>
 
-            <ResponsiveContainer width='100%' height={400}>
-              <AreaChart
-                width={800}
-                height={400}
-                data={data1}
-                margin={{
-                  top: 10,
-                  right: 30,
-                  left: 0,
-                  bottom: 0,
-                }}>
-                <CartesianGrid strokeDasharray='3 3' />
-                <XAxis dataKey='month' />
-                <YAxis />
-                <Tooltip />
-                <Area name='К-ть замовлень' type='monotone' dataKey='qty' stroke='#333' fill='#8884d8' />
-                <Area name='Грошей витрачено' type='monotone' dataKey='total' stroke='#333' fill='#8884d8' />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      )}
-    </>
+              <ResponsiveContainer width='100%' height={400}>
+                <AreaChart
+                  width={800}
+                  height={400}
+                  data={data1}
+                  margin={{
+                    top: 10,
+                    right: 30,
+                    left: 0,
+                    bottom: 0,
+                  }}>
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='month' />
+                  <YAxis />
+                  <Tooltip />
+                  <Area name='К-ть замовлень' type='monotone' dataKey='qty' stroke='#333' fill='#8884d8' />
+                  <Area name='Грошей витрачено' type='monotone' dataKey='total' stroke='#333' fill='#8884d8' />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

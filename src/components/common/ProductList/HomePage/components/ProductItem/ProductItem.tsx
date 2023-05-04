@@ -3,21 +3,29 @@ import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import './ProductItem.scss';
+import NewProductIcon from '@/components/UI/Icons/NewProductIcon';
+import LazyImage from '@/components/common/LazyImage/LazyImage';
 
-import { useActionCreators } from '../../../../../redux/store';
-import { CartProductDto } from '../../../../../utils/Dto';
-import { IProduct } from '../../../../../utils/types/ProductTypes';
-import NewProductIcon from '../../../../UI/Icons/NewProductIcon';
-import actions from './../../../../../redux/actions/ProductActions';
+import { CartProductDto } from '@/utils/Dto';
+import { IProduct } from '@/utils/types/ProductTypes';
+
+import actions from '@/redux/actions/ProductActions';
+import { useActionCreators } from '@/redux/store';
+
+import './ProductItem.scss';
 
 interface ComponentProps {
   item: IProduct;
   index: number;
 }
 
+interface IProductDetails {
+  size: number;
+  crust: number | -1;
+}
+
 const ProductItem: FC<ComponentProps> = ({ item, index }) => {
-  const [activeType, setActiveType] = React.useState<{ size: number; crust: number | -1 }>({
+  const [activeType, setActiveType] = React.useState<IProductDetails>({
     size: 0,
     crust: item.class === 0 ? 0 : -1,
   });
@@ -38,12 +46,12 @@ const ProductItem: FC<ComponentProps> = ({ item, index }) => {
 
   return (
     <motion.li
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: index * 0.15 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.5, delay: index * 0.15 } }}
       className='productList__category-item'>
       <div className='item__image-container'>
         <Link to={`/product/${item._id}`} className='item__link'>
-          <img src={item.imageUrl} alt={item.title} className='item__image-img' />
+          <LazyImage src={item.imageUrl} className='item__image-img' />
 
           {item.aNewOne && <NewProductIcon />}
         </Link>

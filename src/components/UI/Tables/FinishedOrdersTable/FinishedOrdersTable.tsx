@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import MotionTable from '@/components/common/MotionContainer/MotionTable/MotionTable';
+import MotionTr from '@/components/common/MotionContainer/MotionTr/MotionTr';
 import NoActiveOrders from '@/components/common/NoActiveOrders/NoActiveOrders';
 
 import { formatDate, shortedOrderId } from '@/utils/helpers';
@@ -16,8 +18,16 @@ interface ComponentProps {
 const FinishedOrdersTable: React.FC<ComponentProps> = ({ data }) => {
   if (!data) return <NoActiveOrders />;
 
+  const navigate = useNavigate();
+
+  const navigateHandler = (e: React.MouseEvent<HTMLElement>, url: string): void => {
+    e.preventDefault();
+
+    navigate(`/order/${url}`);
+  };
+
   return (
-    <motion.table initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={styles.table}>
+    <MotionTable className={styles.table}>
       <thead>
         <tr>
           <th>Номер замовлення</th>
@@ -32,26 +42,29 @@ const FinishedOrdersTable: React.FC<ComponentProps> = ({ data }) => {
 
       <tbody>
         {data.map((item) => (
-          <Link to={`/order/${item._id}`} key={item._id}>
-            <tr key={item._id}>
-              <td>{shortedOrderId(item._id)}</td>
-              <td>{formatDate(item.createdAt, 'D.MM.YYYY, HH:MM')}</td>
-              <td>{item.details.orderType.title}</td>
-              <td>
-                {item.details.orderType.id === 0 ? (
-                  `вул.${item.details.customerData.details.street}, буд.${item.details.customerData.details.house}`
-                ) : (
-                  <>${item.details.customerData.details.restaurant}</>
-                )}
-              </td>
-              <td>{item.details.customerData.client.phone}</td>
-              <td>{item.cart.totalCost}.00</td>
-              <td>{item.status.title}</td>
-            </tr>
-          </Link>
+          <MotionTr
+            key={item._id}
+            onClick={(e) => navigateHandler(e, item._id)}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 0.7, y: 0, transition: { duration: 0.1, opacity: { delay: 0.1 } } }}
+            exit={{}}>
+            <td>{shortedOrderId(item._id)}</td>
+            <td>{formatDate(item.createdAt, 'D.MM.YYYY, HH:MM')}</td>
+            <td>{item.details.orderType.title}</td>
+            <td>
+              {item.details.orderType.id === 0 ? (
+                `вул.${item.details.customerData.details.street}, буд.${item.details.customerData.details.house}`
+              ) : (
+                <>${item.details.customerData.details.restaurant}</>
+              )}
+            </td>
+            <td>{item.details.customerData.client.phone}</td>
+            <td>{item.cart.totalCost}.00</td>
+            <td>{item.status.title}</td>
+          </MotionTr>
         ))}
       </tbody>
-    </motion.table>
+    </MotionTable>
   );
 };
 

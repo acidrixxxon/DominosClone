@@ -1,6 +1,6 @@
 import { ReactElement, Suspense, lazy } from 'react';
 
-import GlobalLoader from '../UI/GlobalLoader/GlobalLoader';
+import GlobalLoader from '../../UI/GlobalLoader/GlobalLoader';
 
 const lazyLoad = (
   importFunct: any,
